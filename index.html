@@ -7,43 +7,44 @@
 
   <!-- ── SEO META ── -->
   <title>Flosswork Dental Clinic Raipur — Invisalign, Clear Aligners & MDS Specialists</title>
-  <meta name="description" content="Raipur's certified Invisalign & Toothsi provider. MDS specialists, 3D digital scanning, 5,000+ patients. Clear aligners from ₹50,000 with no-cost EMI. Book a free scan today.">
+  <meta name="description" content="Raipur's certified Invisalign & Toothsi provider. MDS specialists, 3D digital scanning, 5,000+ patients. Clear aligners from ₹50,000 with no-cost EMI. Book a scan today.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.flossworkdental.in/">
+  <link rel="canonical" href="https://www.flossworkdental.com/">
 
   <!-- ── OPEN GRAPH ── -->
   <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://www.flossworkdental.in/">
+  <meta property="og:url"         content="https://www.flossworkdental.com/">
   <meta property="og:title"       content="Flosswork Dental Clinic — Aligners & Implants, Raipur">
-  <meta property="og:description" content="Certified Invisalign & Toothsi provider in Raipur. MDS specialists, 3D scanning, 5,000+ patients treated. Free consultation.">
-  <meta property="og:image"       content="https://www.flossworkdental.in/images/og-homepage.jpg">
+  <meta property="og:description" content="Certified Invisalign & Toothsi provider in Raipur. MDS specialists, 3D scanning, 5,000+ patients treated. Consultation.">
+  <meta property="og:image"       content="https://www.flossworkdental.com/images/home/og-homepage.jpg">
   <meta property="og:locale"      content="en_IN">
   <meta name="twitter:card"       content="summary_large_image">
 
   <!-- ── PRELOAD HERO IMAGE ── -->
-  <link rel="preload" as="image" href="images/hero/hero-homepage.jpg">
+  <link rel="preload" as="image" href="images/home/hero-homepage.jpg">
 
   <!-- ── FONTS ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <!-- ── CSS ── -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/apple.css">
+  <link rel="stylesheet" href="css/mobile-cta.css">
 
   <!-- ── SCHEMA — LocalBusiness + Dentist ── -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": ["Dentist","LocalBusiness"],
-    "@id": "https://www.flossworkdental.in/#business",
+    "@id": "https://www.flossworkdental.com/#business",
     "name": "Flosswork Dental Clinic",
     "description": "Premium dental clinic in Raipur offering clear aligners, dental implants, smile design and specialist dentistry. Certified Invisalign and Toothsi provider.",
-    "url": "https://www.flossworkdental.in",
-    "logo": "https://www.flossworkdental.in/images/logos/flosswork-logo.png",
-    "image": "https://www.flossworkdental.in/images/hero/hero-homepage.jpg",
+    "url": "https://www.flossworkdental.com",
+    "logo": "https://www.flossworkdental.com/images/shared/flosswork-logo.png",
+    "image": "https://www.flossworkdental.com/images/home/hero-homepage.jpg",
     "telephone": "+918354088822",
     "email": "helloflosswork@gmail.com",
     "foundingDate": "2023",
@@ -116,46 +117,53 @@
     ============================================================ -->
     <section class="section section--top home-hero" aria-labelledby="hero-h1">
       <div class="wrap">
+        <div class="hero-split">
 
-        <!-- Headline + CTA -->
-        <div class="hero-copy reveal">
-          <div>
+          <!-- LEFT — headline + CTA stack -->
+          <div class="hero-split-text reveal">
+            <div class="hero-eyebrow">
+              <span class="hero-live-badge">
+                <span class="hero-live-dot" aria-hidden="true"></span>
+                Clear Aligners
+              </span>
+            </div>
+
             <h1 id="hero-h1" class="display">
-              Straighten your<br>teeth. <em>Without<br>braces.</em>
+              Straighten<br>your teeth.<br><em>Without braces.</em>
             </h1>
-          </div>
-          <div class="hero-sub">
+
             <p class="lead">
-              Precision-planned clear aligners designed by MDS Orthodontists using advanced 3D digital scanning.
+              Precision-planned clear aligners designed by MDS orthodontists using advanced 3D digital scanning.
             </p>
+
             <div class="hero-ctas">
-              <a href="contact.html" class="btn btn--primary" data-track="book_click">
-                Check if aligners are right for you?
+              <a href="aligners.html" class="btn btn--primary" data-track="book_click">
+                Explore Aligners
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
             </div>
+
           </div>
+
+          <!-- RIGHT — hero image → links to aligners page -->
+          <a href="aligners.html" class="hero-split-img reveal reveal-delay-1" data-track="hero_img_click" aria-label="Explore clear aligner plans at Flosswork Dental">
+            <div class="hero-img-wrap">
+              <img src="images/home/hero-homepage.jpg" alt="Patient smiling after clear aligner treatment at Flosswork Dental Clinic Raipur" width="735" height="1103" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;display:block" fetchpriority="high">
+              <div class="hero-float" aria-label="Aligner track record">
+                <span>200+ Aligner Cases</span>
+              </div>
+            </div>
+          </a>
+
         </div>
-
-        <!-- Hero image -->
-        <div class="hero-img-wrap reveal reveal-delay-1">
-          <!-- REPLACE: swap placeholder div with real <img> tag below -->
-          <!-- <img src="images/hero/hero-homepage.jpg" alt="Patient smiling after clear aligner treatment at Flosswork Dental Clinic Raipur" width="1320" height="566" style="width:100%;aspect-ratio:21/9;object-fit:cover" fetchpriority="high"> -->
-          <div class="placeholder" style="aspect-ratio:21/9"></div>
-
-          <!-- Floating card -->
-          <div class="hero-float" aria-label="Pricing information">
-            <span>200+ Aligner Cases</span>
-          </div>
-        </div>
-
       </div>
     </section>
 
     <!-- ============================================================
          § 2 — TRUST STRIP
     ============================================================ -->
-        
+
+    <div class="stats-outer">
       <div class="wrap">
         <div class="stats-strip reveal" role="list" aria-label="Clinic statistics">
            <div class="stat-item" role="listitem">
@@ -186,19 +194,35 @@
           </div>
         </div>
       </div>
+    </div>
 
     <!-- ============================================================
          § 3 — ALIGNER SPOTLIGHT
     ============================================================ -->
-    <section class="section section--top" id="aligners" aria-labelledby="spotlight-h2">
+    <section class="section section--top section--paper" id="aligners" aria-labelledby="spotlight-h2">
       <div class="wrap">
         <div class="spotlight-grid">
-
-          <!-- Image side -->
-          <div class="spotlight-visual reveal">
+          <div class="reveal">
+            <h2 id="spotlight-h2" class="h2"><em>Not confident</em> about<br>your smile anymore?</h2>
+            <p class="lead" style="margin-top:20px">Clear aligners fix this - comfortably, discreetly, and precisely.</p>
+            <div class="feature-pills feature-pills--grid" role="list" aria-label="Key aligner benefits">
+              <span class="feature-pill" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Virtually Invisible</span>
+              <span class="feature-pill" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Comfort-Fit</span>
+              <span class="feature-pill" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Removable Anytime</span>
+              <span class="feature-pill" role="listitem"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Predictable Results</span>
+            </div>
+            <div class="spotlight-ctas">
+              <a href="aligners.html" class="btn btn--primary" data-track="book_click">Explore Aligners <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <span class="cta-note">From ₹50,000 · EMI options</span>
+            </div>
+          </div>
+          <a href="aligners.html" class="spotlight-visual reveal reveal-delay-1" data-track="spotlight_img_click" aria-label="Explore clear aligner plans at Flosswork Dental">
             <div class="spotlight-visual-img-wrap">
-              <!-- REPLACE: <img src="images/hero/aligner-tray.jpg" alt="Flosswork clear aligner tray on 3D scan stage" width="600" height="750" style="width:100%;aspect-ratio:4/5;object-fit:cover" loading="lazy"> -->
-              <div class="placeholder" style="aspect-ratio:4/5"></div>
+              <img src="images/home/aligner-tray.jpg" alt="Clear aligner tray at Flosswork Dental Clinic Raipur" width="1080" height="1080" style="width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center;display:block" loading="lazy">
+              <div class="spotlight-img-cue" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                View aligners
+              </div>
             </div>
             <div class="spotlight-float">
               <span class="mono">Who treats you</span>
@@ -207,41 +231,7 @@
               <span class="mono">Track record</span>
               <strong>200+ Aligner Cases</strong>
             </div>
-          </div>
-
-          <!-- Copy side -->
-          <div class="reveal reveal-delay-1">
-            <h2 id="spotlight-h2" class="h2">
-              <em>Not confident</em> about<br>your smile anymore?
-            </h2>
-            <p class="lead" style="margin-top:20px">
-              Clear aligners fix this — comfortably, discreetly, and precisely.
-            </p>
-
-            <ul class="feature-list">
-              <li class="feature-row">
-                <span class="feature-name">Virtually Invisible</span>
-              </li>
-              <li class="feature-row">
-                <span class="feature-name">Comfort-Fit</span>
-              </li>
-              <li class="feature-row">
-                <span class="feature-name">Removable Anytime</span>
-              </li>
-              <li class="feature-row">
-                <span class="feature-name">Predictable Results</span>
-              </li>
-            </ul>
-
-            <div class="spotlight-ctas">
-              <a href="aligners.html" class="btn btn--primary" data-track="book_click">
-                Explore aligner plans
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </a>
-              <span class="cta-note">From ₹50,000 · EMI options</span>
-            </div>
-          </div>
-
+          </a>
         </div>
       </div>
     </section>
@@ -249,7 +239,7 @@
     <!-- ============================================================
          § 4 — SERVICES LIST
     ============================================================ -->
-    <section class="section" id="services" aria-labelledby="services-h2">
+    <section class="section section--top" id="services" aria-labelledby="services-h2">
       <div class="wrap">
         <div class="section-header reveal">
           <div>
@@ -259,31 +249,52 @@
         </div>
 
         <div class="svc-card-grid">
-          <a href="services.html#rootcanal" class="svc-card reveal reveal-delay-1">
-            <div class="svc-card-img placeholder"></div>
+          <a href="services.html" class="svc-card reveal reveal-delay-1">
+            <!-- REPLACE: <img src="images/services/rootcanal.jpg" alt="Root canal treatment at Flosswork Dental Clinic Raipur" class="svc-card-img" style="aspect-ratio:16/10;object-fit:cover" loading="lazy"> -->
+            <div class="svc-card-img placeholder" style="aspect-ratio:16/10"></div>
             <div class="svc-card-body">
+              <span class="svc-card-eyebrow">Restorative Care</span>
               <h3 class="svc-card-name">Root Canal Treatment</h3>
               <p class="svc-card-desc">Pain-free treatment using rotary endodontic technology.</p>
+              <div class="svc-card-footer">
+                <span class="svc-card-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+              </div>
             </div>
           </a>
-          <a href="services.html#implants" class="svc-card reveal reveal-delay-2">
-            <div class="svc-card-img placeholder"></div>
+          <a href="services.html" class="svc-card reveal reveal-delay-2">
+            <!-- REPLACE: <img src="images/services/implants.jpg" alt="Dental implant procedure at Flosswork Dental Clinic Raipur" class="svc-card-img" style="aspect-ratio:16/10;object-fit:cover" loading="lazy"> -->
+            <div class="svc-card-img placeholder" style="aspect-ratio:16/10"></div>
             <div class="svc-card-body">
+              <span class="svc-card-eyebrow">Tooth Replacement</span>
               <h3 class="svc-card-name">Dental Implants</h3>
               <p class="svc-card-desc">Long-lasting tooth replacements placed with surgical precision.</p>
+              <div class="svc-card-footer">
+                <span class="svc-card-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+              </div>
             </div>
           </a>
-          <a href="services.html#whitening" class="svc-card reveal reveal-delay-3">
-            <div class="svc-card-img placeholder"></div>
+          <a href="services.html" class="svc-card reveal reveal-delay-3">
+            <!-- REPLACE: <img src="images/services/whitening.jpg" alt="Teeth whitening treatment at Flosswork Dental Clinic Raipur" class="svc-card-img" style="aspect-ratio:16/10;object-fit:cover" loading="lazy"> -->
+            <div class="svc-card-img placeholder" style="aspect-ratio:16/10"></div>
             <div class="svc-card-body">
+              <span class="svc-card-eyebrow">Cosmetic Dentistry</span>
               <h3 class="svc-card-name">Teeth Whitening</h3>
               <p class="svc-card-desc">Professional whitening for a noticeably brighter smile in one session.</p>
+              <div class="svc-card-footer">
+                <span class="svc-card-arrow">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </span>
+              </div>
             </div>
           </a>
         </div>
 
         <div class="section-footer">
-          <a href="services.html" class="link">
+          <a href="services.html" class="btn btn--primary">
             View all services
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
@@ -296,7 +307,7 @@
     ============================================================ -->
     <section class="section section--paper" id="advantage" aria-labelledby="advantage-h2">
       <div class="wrap">
-        <div class="section-header">
+        <div class="section-header reveal">
           <div>
             <h2 id="advantage-h2" class="h2"><em>Flosswork+ Advantage</em></h2>
           </div>
@@ -304,36 +315,141 @@
         </div>
 
         <div class="advantage-grid">
+
           <div class="advantage-card reveal reveal-delay-1">
+            <div class="advantage-icon" aria-hidden="true">
+              <!-- Grid / complete care -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+            </div>
             <span class="advantage-stat">Complete</span>
             <h3 class="advantage-title">Dental Care</h3>
-            <p class="advantage-desc">Experts-led treatments for every dental need - all under one roof.</p>
+            <p class="advantage-desc">Expert-led treatments for every dental need — all under one roof.</p>
           </div>
+
           <div class="advantage-card reveal reveal-delay-2">
+            <div class="advantage-icon" aria-hidden="true">
+              <!-- Award / specialist -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
             <span class="advantage-stat">MDS</span>
             <h3 class="advantage-title">Specialist Treatment</h3>
-            <p class="advantage-desc">Every case is handled by a team of expert doctors.</p>
+            <p class="advantage-desc">Every case is handled by a qualified team of expert doctors.</p>
           </div>
+
           <div class="advantage-card reveal reveal-delay-3">
+            <div class="advantage-icon" aria-hidden="true">
+              <!-- Users / patients -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
             <span class="advantage-stat">5,000+</span>
             <h3 class="advantage-title">Patients Treated</h3>
             <p class="advantage-desc">Results you can trust with consistent, predictable outcomes.</p>
           </div>
+
           <div class="advantage-card reveal reveal-delay-4">
+            <div class="advantage-icon" aria-hidden="true">
+              <!-- Shield-check / clear pricing -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
             <span class="advantage-stat">Clear Pricing</span>
             <h3 class="advantage-title">No Hidden Fees</h3>
             <p class="advantage-desc">Know your full cost upfront. No hidden fees. EMI options available.</p>
           </div>
+
           <div class="advantage-card reveal reveal-delay-5">
-            <span class="advantage-stat">Intraoral Scanner</span>
-            <h3 class="advantage-title">AI Powered Tech</h3>
+            <div class="advantage-icon" aria-hidden="true">
+              <!-- Scan corners / intraoral scanner -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 7 23 1 17 1"/><line x1="16" y1="8" x2="23" y2="1"/><polyline points="1 17 1 23 7 23"/><line x1="8" y1="16" x2="1" y2="23"/><polyline points="23 17 23 23 17 23"/><line x1="16" y1="16" x2="23" y2="23"/><polyline points="1 7 1 1 7 1"/><line x1="8" y1="8" x2="1" y2="1"/></svg>
+            </div>
+            <span class="advantage-stat">3D Scanning</span>
+            <h3 class="advantage-title">Digital Precision</h3>
             <p class="advantage-desc">Advanced 3D digital scans replace messy molds for accurate, comfortable planning.</p>
           </div>
+
           <div class="advantage-card reveal reveal-delay-6">
+            <div class="advantage-icon" aria-hidden="true">
+              <!-- Zap / latest tech -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
             <span class="advantage-stat">Latest Tech</span>
-            <h3 class="advantage-title">That Improves Outcomes</h3>
-            <p class="advantage-desc">Trusted systems used by top clinics worldwide - for better outcomes every time.</p>
+            <h3 class="advantage-title">Better Outcomes</h3>
+            <p class="advantage-desc">Trusted systems used by top clinics worldwide — for better outcomes every time.</p>
           </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         § 6 — MEET OUR TEAM
+    ============================================================ -->
+    <section class="section section--top" id="team" aria-labelledby="team-h2">
+      <div class="wrap">
+        <div class="section-header reveal">
+          <div>
+            <h2 id="team-h2" class="h2">Meet the specialists,<br><em>not generalists.</em></h2>
+          </div>
+          <p class="lead">Every treatment at Flosswork is planned and delivered by MDS-qualified specialists.</p>
+        </div>
+
+        <div class="doctors-grid">
+
+          <!-- Dr. Priyesh -->
+          <article class="doctor-card">
+            <!-- REPLACE: <img src="images/about/dr-priyesh.jpg" alt="Dr. Priyesh Gupta, MDS Orthodontist, Lead Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+            <div class="placeholder doctor-img"><span>Portrait · Dr. Priyesh Gupta · 400×500</span></div>
+            <div class="doctor-body">
+              <p class="doctor-role">Lead Orthodontist</p>
+              <h3 class="doctor-name">Dr. Priyesh Gupta</h3>
+              <p class="doctor-qual">MDS Orthodontics · 10+ years experience</p>
+              <div class="doctor-badges" aria-label="Qualifications and certifications">
+                <span class="badge badge--gold">MDS Certified</span>
+                <span class="badge">Invisalign Certified</span>
+              </div>
+              <div class="doctor-tags" aria-label="Specialisms">
+                <span class="doctor-tag">Clear Aligners</span>
+                <span class="doctor-tag">Invisalign</span>
+                <span class="doctor-tag">Orthodontics</span>
+                <span class="doctor-tag">Smile Design</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Dr. Nehal -->
+          <article class="doctor-card">
+            <!-- REPLACE: <img src="images/about/dr-nehal.jpg" alt="Dr. Nehal Gupta, MDS Prosthodontist, Cosmetic Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+            <div class="placeholder doctor-img"><span>Portrait · Dr. Nehal Gupta · 400×500</span></div>
+            <div class="doctor-body">
+              <p class="doctor-role">Cosmetic &amp; Restorative Specialist</p>
+              <h3 class="doctor-name">Dr. Nehal Gupta</h3>
+              <p class="doctor-qual">MDS Prosthodontics · 8+ years experience</p>
+              <div class="doctor-badges" aria-label="Qualifications and certifications">
+                <span class="badge badge--gold">MDS Certified</span>
+                <span class="badge">Smile Design Expert</span>
+              </div>
+              <div class="doctor-tags" aria-label="Specialisms">
+                <span class="doctor-tag">Veneers</span>
+                <span class="doctor-tag">Implants</span>
+                <span class="doctor-tag">Smile Design</span>
+                <span class="doctor-tag">Prosthodontics</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Meet the full team -->
+          <a href="about.html#doctors" class="doctor-cta-card" aria-label="Meet our complete team of specialists">
+            <span class="mono" style="color:rgba(255,255,255,.4)">Book by specialism</span>
+            <div>
+              <div class="doctor-cta-num">8</div>
+              <div class="doctor-cta-label">Meet our<br>complete team</div>
+              <p class="doctor-cta-desc">Aligners, implants, endodontics, paediatrics, cosmetics, and more — every specialist, one clinic.</p>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:8px;font-size:14px">
+              View all specialists
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+
         </div>
       </div>
     </section>
@@ -360,20 +476,10 @@
     </noscript>
   </div>
 
-  <!-- Scroll reveal -->
-  <script>
-    (function () {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
-    })();
-  </script>
-
   <!-- Deferred behaviour scripts -->
+  <script defer src="js/mobile-cta.js"></script>
   <script defer src="js/components.js"></script>
+  <script defer src="js/home.js"></script>
   <script defer src="js/floats.js"></script>
   <script defer src="js/slider.js"></script>
   <script defer src="js/tracking.js"></script>

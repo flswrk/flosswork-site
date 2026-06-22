@@ -1,0 +1,100 @@
+/* ============================================================
+   FLOSSWORK™ — MOBILE CTA BAR  v1.0
+   Sticky mobile CTA bar with WhatsApp, Call, Book
+   Hidden on desktop (> 768px)
+   ============================================================ */
+
+.fw-mobile-cta {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.08);
+  padding: 10px 12px;
+  padding-left: max(12px, calc(12px + env(safe-area-inset-left)));
+  padding-right: max(12px, calc(12px + env(safe-area-inset-right)));
+  padding-bottom: max(10px, calc(10px + env(safe-area-inset-bottom)));
+  height: var(--cta-h);
+}
+
+.fw-mobile-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.fw-mobile-cta-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 12px;
+  min-height: 48px;
+  border-radius: var(--r-full);
+  border: none;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+
+.fw-mobile-cta-btn svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.fw-mobile-cta-btn--wa {
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.24);
+}
+
+.fw-mobile-cta-btn--wa:active {
+  box-shadow: 0 1px 4px rgba(37, 211, 102, 0.16);
+  transform: scale(0.98);
+}
+
+.fw-mobile-cta-btn--call {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(26, 107, 90, 0.24);
+}
+
+.fw-mobile-cta-btn--call:active {
+  box-shadow: 0 1px 4px rgba(26, 107, 90, 0.16);
+  transform: scale(0.98);
+}
+
+.fw-mobile-cta-btn--book {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+.fw-mobile-cta-btn--book:active {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transform: scale(0.98);
+}
+
+@media (min-width: 768px) {
+  .fw-mobile-cta {
+    display: none !important;
+  }
+}

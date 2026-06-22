@@ -136,10 +136,14 @@
     return [
       '<div class="wrap nav-inner">',
 
-      /* ── Logo ── */
+      /* ── Logo ──
+           Real logo image, once added at images/shared/flosswork-logo.png,
+           displays automatically. Until then onerror swaps back to the
+           SVG icon + wordmark below — no broken-image icon in the meantime. */
       '  <a href="index.html" class="nav-logo" aria-label="Flosswork Dental Clinic — Home">',
-      '    ' + ICO.tooth,
-      '    <span class="wordmark">Flosswork™ Dental Clinic</span>',
+      '    <img src="images/shared/flosswork-logo.png" alt="Flosswork Dental Clinic" class="nav-logo-img"',
+      '         onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">',
+      '    <span class="nav-logo-fallback" style="display:none">' + ICO.tooth + '<span class="wordmark">Flosswork™ Dental Clinic</span></span>',
       '  </a>',
 
       /* ── Desktop links ── */
@@ -234,7 +238,6 @@
       '      <div>',
       '        <p class="fcta-body">',
       '          Take the first step towards a more confident smile.',
-      '          Free 3D scan · MDS specialist · Same-day treatment plan.',
       '        </p>',
 
       '        <div class="fcta-ctas">',
@@ -252,16 +255,16 @@
 
       '        <div class="fcta-stats">',
       '          <div>',
-      '            <div class="fcta-stat-v">Free</div>',
-      '            <div class="fcta-stat-l">3D scan</div>',
-      '          </div>',
-      '          <div>',
       '            <div class="fcta-stat-v">MDS</div>',
-      '            <div class="fcta-stat-l">Specialist</div>',
+      '            <div class="fcta-stat-l">Specialists</div>',
       '          </div>',
       '          <div>',
-      '            <div class="fcta-stat-v">Same day</div>',
-      '            <div class="fcta-stat-l">Treatment plan</div>',
+      '            <div class="fcta-stat-v">Latest</div>',
+      '            <div class="fcta-stat-l">Technology</div>',
+      '          </div>',
+      '          <div>',
+      '            <div class="fcta-stat-v">Ai</div>',
+      '            <div class="fcta-stat-l">Powered</div>',
       '          </div>',
       '        </div>',
 
@@ -292,10 +295,11 @@
       /* Brand */
       '      <div class="footer-brand">',
       '        <a href="index.html" class="footer-logo" aria-label="Flosswork Dental Clinic — Home">',
-      '          <span class="wordmark">flosswork<sup>™</sup></span>',
+      '          <img src="images/shared/flosswork-logo.png" alt="Flosswork Dental Clinic" class="footer-logo-img"',
+      '               onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'\'">',
+      '          <span class="wordmark" style="display:none">flosswork<sup>™</sup></span>',
       '        </a>',
-      '        <p>' + (c.tagline || 'Aligners & Implants Experience Centre') + '.<br>' +
-      '           Premium dental care in Choubey Colony, Raipur — since ' + (c.established || '2023') + '.</p>',
+      '        <p>' + (c.tagline || 'Aligners & Implants Experience Centre') + '.</p>',
       '        <div class="footer-social">',
       '          <a href="' + (s.instagram || '#') + '" target="_blank" rel="noopener noreferrer"',
       '             aria-label="Flosswork on Instagram">IG</a>',
@@ -311,10 +315,6 @@
       '        <h3 class="footer-col-heading">Care</h3>',
       '        <ul>',
       '          <li><a href="aligners.html">Clear Aligners</a></li>',
-      '          <li><a href="services.html#implants">Dental Implants</a></li>',
-      '          <li><a href="services.html#smiledesign">Smile Design</a></li>',
-      '          <li><a href="services.html#whitening">Teeth Whitening</a></li>',
-      '          <li><a href="services.html#rootcanal">Root Canal</a></li>',
       '          <li><a href="services.html">All Services</a></li>',
       '        </ul>',
       '      </nav>',
@@ -337,7 +337,6 @@
       '          <li><a href="contact.html">Book a Consultation</a></li>',
       '          <li><a href="' + waUrl('booking') + '" target="_blank" rel="noopener noreferrer">WhatsApp Us</a></li>',
       '          <li><a href="' + (a.mapsUrl || '#') + '" target="_blank" rel="noopener noreferrer">Get Directions</a></li>',
-      '          <li><a href="contact.html#hours">Clinic Hours</a></li>',
       '        </ul>',
       '      </nav>',
 
@@ -345,16 +344,17 @@
 
       /* ── NAP strip (SEO) ── */
       '    <div class="footer-nap">',
+      '      <a href="' + (a.mapsUrl || '#') + '" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit">',
       '      <address class="footer-address" itemprop="address" itemscope',
-      '               itemtype="https://schema.org/PostalAddress">',
+      '               itemtype="https://schema.org/PostalAddress" style="cursor:pointer">',
       '        <span itemprop="streetAddress">' + (a.line1 || '') + ', ' + (a.line2 || '') + '</span><br>',
       '        <span itemprop="addressLocality">' + (a.area || '') + ', ' + (a.city || '') + '</span> ',
       '        <span itemprop="postalCode">' + (a.pin || '') + '</span><br>',
       '        <span itemprop="addressRegion">' + (a.state || '') + '</span>, ' + (a.country || ''),
       '      </address>',
+      '      </a>',
       '      <div class="footer-hours">',
       '        <span>' + (h.display || '') + '</span><br>',
-      '        <span>Lunch: ' + (h.lunch || '') + ' · ' + (h.note || '') + '</span>',
       '      </div>',
       '      <div class="footer-contact">',
       '        <a href="tel:' + (c.phone1raw || '') + '" itemprop="telephone">' + (c.phone1 || '') + '</a><br>',

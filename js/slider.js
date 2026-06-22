@@ -19,7 +19,7 @@
     var caseId    = wrap.getAttribute('data-slider') || '1';
     var divider   = wrap.querySelector('.ba-divider');
     var handle    = wrap.querySelector('.ba-handle');
-    var beforeMask= wrap.querySelector('.ba-before-mask');
+    var beforeMask= wrap.querySelector('.ba-mask');
     if (!divider || !handle || !beforeMask) return;
 
     var pos     = 50;   /* percentage 0–100 */

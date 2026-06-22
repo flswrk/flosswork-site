@@ -11,11 +11,14 @@
   <meta property="og:url" content="https://www.flossworkdental.com/about.html">
   <meta property="og:title" content="About Flosswork Dental — MDS Specialists, Raipur">
   <meta property="og:description" content="8 MDS specialists, 5,000+ patients treated, certified Invisalign & Toothsi partner. Premium dental care in Raipur since 2023.">
-  <meta property="og:image" content="https://www.flossworkdental.com/images/og-about.jpg">
+  <meta property="og:image" content="https://www.flossworkdental.com/images/about/og-about.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/apple.css">
+  <link rel="stylesheet" href="css/mobile-cta.css">
 </head>
 <body>
 
@@ -31,158 +34,50 @@
 
 <main id="main-content">
 
-  <!-- BREADCRUMB -->
-  <div style="padding:14px 0;border-bottom:1px solid var(--line)">
+    <!-- ============================================================
+         § 1 — HERO / STORY
+    ============================================================ -->
+  <section class="section section--top home-hero" aria-labelledby="about-h1">
     <div class="wrap">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html">Home</a>
-        <span class="breadcrumb-sep" aria-hidden="true">/</span>
-        <span aria-current="page">About</span>
-      </nav>
-    </div>
-  </div>
+      <div class="hero-split">
 
-  <!-- § 1 HERO / STORY -->
-  <section class="section section--top" aria-labelledby="about-h1" style="padding-top:48px;padding-bottom:72px">
-    <div class="wrap">
-      <div class="status-strip">
-        <span>About the clinic · Est. 2023</span>
-        <span class="mono">01 / 06</span>
-      </div>
-      <div class="hero-inner" style="display:grid;grid-template-columns:1.4fr 1fr;gap:72px;align-items:end;margin-bottom:56px">
-        <div>
-          <div class="eyebrow-row">
-            <span class="eyebrow-num">01</span>
-            <span class="eyebrow-rule" aria-hidden="true"></span>
-            <span class="eyebrow">Our story</span>
+        <div class="hero-split-text reveal">
+          <div class="hero-eyebrow">
+            <span class="hero-live-badge">
+              <span class="hero-live-dot" aria-hidden="true"></span>
+              Est. 2023 · Raipur
+            </span>
           </div>
+
           <h1 id="about-h1" class="display">Built for patients<br><em>who expect more.</em></h1>
-        </div>
-        <div style="padding-bottom:8px">
+
           <p class="lead">We founded Flosswork in 2023 with one belief — every patient in Raipur deserves specialist-grade dental care, not a rushed appointment. No hidden fees, no general dentists handling complex cases. Just MDS specialists, international equipment, and the time to do the work right.</p>
+
+          <div class="hero-ctas">
+            <a href="contact.html" class="btn btn--primary" data-track="book_click">Book a consultation <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="https://wa.me/918354088822?text=Hi%2C+I%27d+like+to+know+more+about+Flosswork+Dental+Clinic." class="btn btn--ghost" target="_blank" rel="noopener noreferrer" data-track="wa_click"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 01-12.2 6.8L3 20l1.3-4.7A8 8 0 1120 12z"/></svg>WhatsApp</a>
+          </div>
         </div>
-      </div>
-      <!-- REPLACE: <img src="images/hero/clinic-wide.jpg" alt="Flosswork Dental Clinic reception and treatment floor, Choubey Colony Raipur" style="width:100%;aspect-ratio:21/9;object-fit:cover" loading="eager"> -->
-      <div class="placeholder" style="aspect-ratio:21/9"><span>Clinic · reception &amp; treatment floor · 1920×823</span></div>
-    </div>
-  </section>
 
-  <!-- § 2 DOCTORS -->
-  <section class="section" id="doctors" aria-labelledby="doctors-h2" style="scroll-margin-top:var(--nav-h)">
-    <div class="wrap">
-      <div class="section-header">
-        <div>
-          <div class="eyebrow-row">
-            <span class="eyebrow-num">02</span>
-            <span class="eyebrow-rule" aria-hidden="true"></span>
-            <span class="eyebrow">The specialists</span>
+        <div class="hero-split-img reveal reveal-delay-1">
+          <div class="hero-img-wrap">
+            <!-- REPLACE: <img src="images/about/clinic-wide.jpg" alt="Flosswork Dental Clinic reception and treatment floor, Choubey Colony Raipur" style="width:100%;aspect-ratio:4/5;object-fit:cover" loading="eager"> -->
+            <div class="placeholder" style="aspect-ratio:4/5"><span>Clinic · reception &amp; treatment floor · 800×1000</span></div>
           </div>
-          <h2 id="doctors-h2" class="h2">Led by MDS specialists,<br><em>not generalists.</em></h2>
         </div>
-        <p class="lead">Every treatment at Flosswork is planned and delivered by MDS-qualified specialists. Our team represents eight specialisms — book by the specialist you need.</p>
-      </div>
-
-      <div class="doctors-grid">
-
-        <!-- Dr. Priyesh -->
-        <article class="doctor-card">
-          <!-- REPLACE: <img src="images/doctors/dr-priyesh.jpg" alt="Dr. Priyesh Gupta, MDS Orthodontist, Lead Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
-          <div class="placeholder doctor-img"><span>Portrait · Dr. Priyesh Gupta · 400×500</span></div>
-          <div class="doctor-body">
-            <p class="doctor-role">Lead Orthodontist</p>
-            <h3 class="doctor-name">Dr. Priyesh Gupta</h3>
-            <p class="doctor-qual">MDS Orthodontics · 10+ years experience</p>
-            <div class="doctor-badges" aria-label="Qualifications and certifications">
-              <span class="badge badge--gold">MDS Certified</span>
-              <span class="badge">Invisalign Certified</span>
-            </div>
-            <div class="doctor-tags" aria-label="Specialisms">
-              <span class="doctor-tag">Clear Aligners</span>
-              <span class="doctor-tag">Invisalign</span>
-              <span class="doctor-tag">Orthodontics</span>
-              <span class="doctor-tag">Smile Design</span>
-            </div>
-            <div class="doctor-cta">
-              <a href="https://wa.me/918354088822?text=Hi%2C+I%27d+like+to+book+a+consultation+with+Dr.+Priyesh+Gupta+at+Flosswork."
-                 class="btn btn--ghost btn--sm" target="_blank" rel="noopener noreferrer" data-track="wa_click">
-                Book with Dr. Priyesh
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Dr. Nehal -->
-        <article class="doctor-card">
-          <!-- REPLACE: <img src="images/doctors/dr-nehal.jpg" alt="Dr. Nehal Gupta, MDS Prosthodontist, Cosmetic Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
-          <div class="placeholder doctor-img"><span>Portrait · Dr. Nehal Gupta · 400×500</span></div>
-          <div class="doctor-body">
-            <p class="doctor-role">Cosmetic &amp; Restorative Specialist</p>
-            <h3 class="doctor-name">Dr. Nehal Gupta</h3>
-            <p class="doctor-qual">MDS Prosthodontics · 8+ years experience</p>
-            <div class="doctor-badges" aria-label="Qualifications and certifications">
-              <span class="badge badge--gold">MDS Certified</span>
-              <span class="badge">Smile Design Expert</span>
-            </div>
-            <div class="doctor-tags" aria-label="Specialisms">
-              <span class="doctor-tag">Veneers</span>
-              <span class="doctor-tag">Implants</span>
-              <span class="doctor-tag">Smile Design</span>
-              <span class="doctor-tag">Prosthodontics</span>
-            </div>
-            <div class="doctor-cta">
-              <a href="https://wa.me/918354088822?text=Hi%2C+I%27d+like+to+book+a+consultation+with+Dr.+Nehal+Gupta+at+Flosswork."
-                 class="btn btn--ghost btn--sm" target="_blank" rel="noopener noreferrer" data-track="wa_click">
-                Book with Dr. Nehal
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Placeholder doctor card — add real doctors as team grows -->
-        <!-- Pattern: copy article.doctor-card block, update name/role/qual/badges/tags/wa_msg -->
-        <!-- PLACEHOLDER CARD 3 -->
-        <article class="doctor-card">
-          <div class="placeholder doctor-img"><span>Portrait · Specialist 3 · Add real doctor</span></div>
-          <div class="doctor-body">
-            <p class="doctor-role"><!-- REPLACE: e.g. Endodontist --></p>
-            <h3 class="doctor-name"><!-- REPLACE: Dr. Name --></h3>
-            <p class="doctor-qual"><!-- REPLACE: MDS Endodontics · X years --></p>
-            <div class="doctor-badges">
-              <span class="badge badge--gold">MDS Certified</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Team CTA -->
-        <a href="contact.html" class="doctor-cta-card" aria-label="Book a consultation — choose your specialist on WhatsApp">
-          <span class="mono" style="color:rgba(255,255,255,.4)">Book by specialism</span>
-          <div>
-            <div class="doctor-cta-num">8</div>
-            <div class="doctor-cta-label">specialists</div>
-            <p class="doctor-cta-desc">Aligners, implants, endodontics, paediatrics, cosmetics, and more. Book directly with the specialist you need.</p>
-          </div>
-          <span style="display:inline-flex;align-items:center;gap:8px;font-size:14px">
-            Book a consultation
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </span>
-        </a>
 
       </div>
     </div>
   </section>
 
-  <!-- § 3 BY THE NUMBERS -->
+
+    <!-- ============================================================
+         § 1B — BY THE NUMBERS
+    ============================================================ -->
   <section class="section section--paper" aria-labelledby="numbers-h2">
     <div class="wrap">
       <div class="section-header">
         <div>
-          <div class="eyebrow-row">
-            <span class="eyebrow-num">03</span>
-            <span class="eyebrow-rule" aria-hidden="true"></span>
-            <span class="eyebrow">By the numbers</span>
-          </div>
           <h2 id="numbers-h2" class="h2">Three years in.<br><em>Here's where we stand.</em></h2>
         </div>
         <p class="lead">Every number is current and verified. Our Google reviews are unedited.</p>
@@ -211,16 +106,247 @@
     </div>
   </section>
 
-  <!-- § 4 PARTNER BRANDS -->
+
+    <!-- ============================================================
+         § 2 — DOCTORS
+    ============================================================ -->
+  <section class="section" id="doctors" aria-labelledby="doctors-h2" style="scroll-margin-top:var(--nav-h)">
+    <div class="wrap">
+      <div class="section-header">
+        <div>
+          <h2 id="doctors-h2" class="h2">Led by MDS specialists,<br><em>not generalists.</em></h2>
+        </div>
+        <p class="lead">Every treatment at Flosswork is planned and delivered by MDS-qualified specialists. Our team represents eight specialisms — book by the specialist you need.</p>
+      </div>
+
+      <div class="doctors-grid">
+
+        <!-- Dr. Priyesh -->
+        <article class="doctor-card">
+          <!-- REPLACE: <img src="images/about/dr-priyesh.jpg" alt="Dr. Priyesh Gupta, MDS Orthodontist, Lead Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+          <div class="placeholder doctor-img"><span>Portrait · Dr. Priyesh Gupta · 400×500</span></div>
+          <div class="doctor-body">
+            <p class="doctor-role">Lead Orthodontist</p>
+            <h3 class="doctor-name">Dr. Priyesh Gupta</h3>
+            <p class="doctor-qual">MDS Orthodontics · 10+ years experience</p>
+            <div class="doctor-badges" aria-label="Qualifications and certifications">
+              <span class="badge badge--gold">MDS Certified</span>
+              <span class="badge">Invisalign Certified</span>
+            </div>
+            <div class="doctor-tags" aria-label="Specialisms">
+              <span class="doctor-tag">Clear Aligners</span>
+              <span class="doctor-tag">Invisalign</span>
+              <span class="doctor-tag">Orthodontics</span>
+              <span class="doctor-tag">Smile Design</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Dr. Nehal -->
+        <article class="doctor-card">
+          <!-- REPLACE: <img src="images/about/dr-nehal.jpg" alt="Dr. Nehal Gupta, MDS Prosthodontist, Cosmetic Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+          <div class="placeholder doctor-img"><span>Portrait · Dr. Nehal Gupta · 400×500</span></div>
+          <div class="doctor-body">
+            <p class="doctor-role">Cosmetic &amp; Restorative Specialist</p>
+            <h3 class="doctor-name">Dr. Nehal Gupta</h3>
+            <p class="doctor-qual">MDS Prosthodontics · 8+ years experience</p>
+            <div class="doctor-badges" aria-label="Qualifications and certifications">
+              <span class="badge badge--gold">MDS Certified</span>
+              <span class="badge">Smile Design Expert</span>
+            </div>
+            <div class="doctor-tags" aria-label="Specialisms">
+              <span class="doctor-tag">Veneers</span>
+              <span class="doctor-tag">Implants</span>
+              <span class="doctor-tag">Smile Design</span>
+              <span class="doctor-tag">Prosthodontics</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Placeholder doctor cards — add real doctors as team grows -->
+        <!-- Pattern: copy article.doctor-card block, update name/role/qual/badges/tags/wa_msg -->
+        <!-- PLACEHOLDER CARD 3 -->
+        <article class="doctor-card">
+          <!-- REPLACE: <img src="images/about/dr-specialist-3.jpg" alt="Specialist 3, MDS Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+          <div class="placeholder doctor-img"><span>Portrait · Specialist 3 · Add real doctor</span></div>
+          <div class="doctor-body">
+            <p class="doctor-role">Specialty — add role</p>
+            <h3 class="doctor-name">Dr. Name</h3>
+            <p class="doctor-qual">MDS Qualification · X years experience</p>
+            <div class="doctor-badges" aria-label="Qualifications and certifications">
+              <span class="badge badge--gold">MDS Certified</span>
+            </div>
+            <div class="doctor-tags" aria-label="Specialisms">
+              <span class="doctor-tag">Specialism</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PLACEHOLDER CARD 4 -->
+        <article class="doctor-card">
+          <!-- REPLACE: <img src="images/about/dr-specialist-4.jpg" alt="Specialist 4, MDS Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+          <div class="placeholder doctor-img"><span>Portrait · Specialist 4 · Add real doctor</span></div>
+          <div class="doctor-body">
+            <p class="doctor-role">Specialty — add role</p>
+            <h3 class="doctor-name">Dr. Name</h3>
+            <p class="doctor-qual">MDS Qualification · X years experience</p>
+            <div class="doctor-badges" aria-label="Qualifications and certifications">
+              <span class="badge badge--gold">MDS Certified</span>
+            </div>
+            <div class="doctor-tags" aria-label="Specialisms">
+              <span class="doctor-tag">Specialism</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PLACEHOLDER CARD 5 -->
+        <article class="doctor-card">
+          <!-- REPLACE: <img src="images/about/dr-specialist-5.jpg" alt="Specialist 5, MDS Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+          <div class="placeholder doctor-img"><span>Portrait · Specialist 5 · Add real doctor</span></div>
+          <div class="doctor-body">
+            <p class="doctor-role">Specialty — add role</p>
+            <h3 class="doctor-name">Dr. Name</h3>
+            <p class="doctor-qual">MDS Qualification · X years experience</p>
+            <div class="doctor-badges" aria-label="Qualifications and certifications">
+              <span class="badge badge--gold">MDS Certified</span>
+            </div>
+            <div class="doctor-tags" aria-label="Specialisms">
+              <span class="doctor-tag">Specialism</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PLACEHOLDER CARD 6 -->
+        <article class="doctor-card">
+          <!-- REPLACE: <img src="images/about/dr-specialist-6.jpg" alt="Specialist 6, MDS Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+          <div class="placeholder doctor-img"><span>Portrait · Specialist 6 · Add real doctor</span></div>
+          <div class="doctor-body">
+            <p class="doctor-role">Specialty — add role</p>
+            <h3 class="doctor-name">Dr. Name</h3>
+            <p class="doctor-qual">MDS Qualification · X years experience</p>
+            <div class="doctor-badges" aria-label="Qualifications and certifications">
+              <span class="badge badge--gold">MDS Certified</span>
+            </div>
+            <div class="doctor-tags" aria-label="Specialisms">
+              <span class="doctor-tag">Specialism</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PLACEHOLDER CARD 7 -->
+        <article class="doctor-card">
+          <!-- REPLACE: <img src="images/about/dr-specialist-7.jpg" alt="Specialist 7, MDS Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+          <div class="placeholder doctor-img"><span>Portrait · Specialist 7 · Add real doctor</span></div>
+          <div class="doctor-body">
+            <p class="doctor-role">Specialty — add role</p>
+            <h3 class="doctor-name">Dr. Name</h3>
+            <p class="doctor-qual">MDS Qualification · X years experience</p>
+            <div class="doctor-badges" aria-label="Qualifications and certifications">
+              <span class="badge badge--gold">MDS Certified</span>
+            </div>
+            <div class="doctor-tags" aria-label="Specialisms">
+              <span class="doctor-tag">Specialism</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- PLACEHOLDER CARD 8 -->
+        <article class="doctor-card">
+          <!-- REPLACE: <img src="images/about/dr-specialist-8.jpg" alt="Specialist 8, MDS Specialist at Flosswork Dental Raipur" class="doctor-img" loading="lazy" width="400" height="500"> -->
+          <div class="placeholder doctor-img"><span>Portrait · Specialist 8 · Add real doctor</span></div>
+          <div class="doctor-body">
+            <p class="doctor-role">Specialty — add role</p>
+            <h3 class="doctor-name">Dr. Name</h3>
+            <p class="doctor-qual">MDS Qualification · X years experience</p>
+            <div class="doctor-badges" aria-label="Qualifications and certifications">
+              <span class="badge badge--gold">MDS Certified</span>
+            </div>
+            <div class="doctor-tags" aria-label="Specialisms">
+              <span class="doctor-tag">Specialism</span>
+            </div>
+          </div>
+        </article>
+
+
+      </div>
+    </div>
+  </section>
+
+
+    <!-- ============================================================
+         § 5 — CLINIC SHOWCASE
+    ============================================================ -->
+  <section class="section section--paper" id="gallery" aria-labelledby="showcase-h2" style="scroll-margin-top:var(--nav-h)">
+    <div class="wrap">
+      <div class="section-header">
+        <div>
+          <h2 id="showcase-h2" class="h2">A calm,<br><em>clinical space.</em></h2>
+        </div>
+        <p class="lead">Designed from the ground up — not a converted waiting room. Every detail from lighting to sterilisation flow is intentional.</p>
+      </div>
+
+      <!-- REPLACE placeholders with real <img> tags. Each needs alt text, loading="lazy", width, height -->
+      <div class="showcase-grid">
+        <div class="span2"><div class="placeholder" style="height:100%"><span>Reception · wide angle · 800×500</span></div></div>
+        <div><div class="placeholder" style="height:100%"><span>Treatment room 1 · 400×240</span></div></div>
+        <div><div class="placeholder" style="height:100%"><span>3D Scanner · close-up · 400×240</span></div></div>
+        <div><div class="placeholder" style="height:100%"><span>Waiting lounge · 400×240</span></div></div>
+        <div><div class="placeholder" style="height:100%"><span>Sterilisation unit · 400×240</span></div></div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- ============================================================
+         § 6 — EQUIPMENT
+    ============================================================ -->
+  <section class="section" aria-labelledby="equip-h2">
+    <div class="wrap">
+      <div class="section-header">
+        <div>
+          <h2 id="equip-h2" class="h2">Specialist tools,<br><em>patient-first results.</em></h2>
+        </div>
+        <p class="lead">We invested early in equipment most clinics wait years to buy. Better tools mean better outcomes — every time.</p>
+      </div>
+
+      <div class="equipment-grid">
+        <div class="equipment-card">
+          <span class="equipment-idx mono">01 / 05</span>
+          <h3 class="equipment-name">3D Intraoral Scanner</h3>
+          <p class="equipment-desc">Painless, digital impressions — no trays, no gag reflex. The foundation of every aligner plan.</p>
+        </div>
+        <div class="equipment-card">
+          <span class="equipment-idx mono">02 / 05</span>
+          <h3 class="equipment-name">Digital X-Ray</h3>
+          <p class="equipment-desc">Up to 90% less radiation than conventional X-rays. Instant, high-resolution diagnostic imaging.</p>
+        </div>
+        <div class="equipment-card">
+          <span class="equipment-idx mono">03 / 05</span>
+          <h3 class="equipment-name">Professional Whitening Unit</h3>
+          <p class="equipment-desc">Clinical-grade, single-session whitening. Safe for enamel with lasting results.</p>
+        </div>
+        <div class="equipment-card">
+          <span class="equipment-idx mono">04 / 05</span>
+          <h3 class="equipment-name">Smile Design Software</h3>
+          <p class="equipment-desc">Preview veneers and aligner outcomes digitally before any work begins. See your result first.</p>
+        </div>
+        <div class="equipment-card">
+          <span class="equipment-idx mono">05 / 05</span>
+          <h3 class="equipment-name">Autoclave Sterilisation</h3>
+          <p class="equipment-desc">Hospital-grade sterilisation on every instrument. Full compliance with dental safety protocols.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+    <!-- ============================================================
+         § 7 — PARTNER BRANDS
+    ============================================================ -->
   <section class="section" id="partners" aria-labelledby="partners-h2">
     <div class="wrap">
       <div class="section-header">
         <div>
-          <div class="eyebrow-row">
-            <span class="eyebrow-num">04</span>
-            <span class="eyebrow-rule" aria-hidden="true"></span>
-            <span class="eyebrow">Certified partners</span>
-          </div>
           <h2 id="partners-h2" class="h2">The brands we trust,<br><em>and are trusted by.</em></h2>
         </div>
         <p class="lead">We work directly with the world's leading aligner systems — not resellers. Every treatment is planned on the same software used by top clinics globally.</p>
@@ -259,77 +385,6 @@
     </div>
   </section>
 
-  <!-- § 5 CLINIC SHOWCASE -->
-  <section class="section section--paper" id="gallery" aria-labelledby="showcase-h2" style="scroll-margin-top:var(--nav-h)">
-    <div class="wrap">
-      <div class="section-header">
-        <div>
-          <div class="eyebrow-row">
-            <span class="eyebrow-num">05</span>
-            <span class="eyebrow-rule" aria-hidden="true"></span>
-            <span class="eyebrow">Inside the clinic</span>
-          </div>
-          <h2 id="showcase-h2" class="h2">A calm,<br><em>clinical space.</em></h2>
-        </div>
-        <p class="lead">Designed from the ground up — not a converted waiting room. Every detail from lighting to sterilisation flow is intentional.</p>
-      </div>
-
-      <!-- REPLACE placeholders with real <img> tags. Each needs alt text, loading="lazy", width, height -->
-      <div class="showcase-grid">
-        <div class="span2"><div class="placeholder" style="height:100%"><span>Reception · wide angle · 800×500</span></div></div>
-        <div><div class="placeholder" style="height:100%"><span>Treatment room 1 · 400×240</span></div></div>
-        <div><div class="placeholder" style="height:100%"><span>3D Scanner · close-up · 400×240</span></div></div>
-        <div><div class="placeholder" style="height:100%"><span>Waiting lounge · 400×240</span></div></div>
-        <div><div class="placeholder" style="height:100%"><span>Sterilisation unit · 400×240</span></div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- § 6 EQUIPMENT -->
-  <section class="section" aria-labelledby="equip-h2">
-    <div class="wrap">
-      <div class="section-header">
-        <div>
-          <div class="eyebrow-row">
-            <span class="eyebrow-num">06</span>
-            <span class="eyebrow-rule" aria-hidden="true"></span>
-            <span class="eyebrow">Technology</span>
-          </div>
-          <h2 id="equip-h2" class="h2">Specialist tools,<br><em>patient-first results.</em></h2>
-        </div>
-        <p class="lead">We invested early in equipment most clinics wait years to buy. Better tools mean better outcomes — every time.</p>
-      </div>
-
-      <div class="equipment-grid">
-        <div class="equipment-card">
-          <span class="equipment-idx mono">01 / 05</span>
-          <h3 class="equipment-name">3D Intraoral Scanner</h3>
-          <p class="equipment-desc">Painless, digital impressions — no trays, no gag reflex. The foundation of every aligner plan.</p>
-        </div>
-        <div class="equipment-card">
-          <span class="equipment-idx mono">02 / 05</span>
-          <h3 class="equipment-name">Digital X-Ray</h3>
-          <p class="equipment-desc">Up to 90% less radiation than conventional X-rays. Instant, high-resolution diagnostic imaging.</p>
-        </div>
-        <div class="equipment-card">
-          <span class="equipment-idx mono">03 / 05</span>
-          <h3 class="equipment-name">Professional Whitening Unit</h3>
-          <p class="equipment-desc">Clinical-grade, single-session whitening. Safe for enamel with lasting results.</p>
-        </div>
-        <div class="equipment-card">
-          <span class="equipment-idx mono">04 / 05</span>
-          <h3 class="equipment-name">Smile Design Software</h3>
-          <p class="equipment-desc">Preview veneers and aligner outcomes digitally before any work begins. See your result first.</p>
-        </div>
-        <div class="equipment-card">
-          <span class="equipment-idx mono">05 / 05</span>
-          <h3 class="equipment-name">Autoclave Sterilisation</h3>
-          <p class="equipment-desc">Hospital-grade sterilisation on every instrument. Full compliance with dental safety protocols.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA MOUNT — layout.js injects the standard CTA here -->
   <div id="fw-cta-mount"></div>
 
@@ -339,7 +394,9 @@
   <noscript><footer style="background:#f9f8f6;border-top:1px solid #e0e6e6;padding:40px 20px;font-size:13px;color:#3d4a4a"><strong>Flosswork Dental Clinic</strong><br>6, South Avenue, Opp. Dr. Bhagwat Hospital, Choubey Colony, Raipur 492001<br>Phone: <a href="tel:+918354088822">+91 83540 88822</a> | Hours: Mon–Sun 8:00 AM – 8:00 PM</footer></noscript>
 </div>
 
-<script defer src="js/components.js"></script>
+<script defer src="js/mobile-cta.js"></script>
+  <script defer src="js/components.js"></script>
+<script defer src="js/home.js"></script>
 <script defer src="js/floats.js"></script>
 <script defer src="js/tracking.js"></script>
 </body>

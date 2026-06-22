@@ -6,8 +6,10 @@
    RULES:
    ✓  Only change values BETWEEN the quotes " "
    ✓  Don't delete commas, colons, or brackets
-   ✓  For image paths: drop file in images/ folder,
-      update the path string e.g. "images/doctors/dr-priyesh.jpg"
+   ✓  Images are organised per page: images/home/, images/about/,
+      images/aligners/, images/services/, images/contact/ (shared
+      assets like the logo live in images/shared/). Drop the file
+      in the matching folder, e.g. "images/about/dr-priyesh.jpg"
    ✓  To hide a doctor: set active: false
    ✓  Prices, phone, hours, NAP — all live here
    ============================================================ */
@@ -52,20 +54,20 @@ const FW = {
 
   /* ── HOURS ───────────────────────────────────────────────── */
   hours: {
-    display:  "Mon – Sun · 8:00 AM – 8:00 PM",
-    short:    "8am – 8pm · 7 days",
-    open:     "08:00",
+    display:  "Mon – Sun · 10:00 AM – 8:00 PM",
+    short:    "10am – 8pm",
+    open:     "10:00",
     close:    "20:00",
-    lunch:    "2:00 PM – 3:00 PM",
-    note:     "Open all 7 days including Sundays",
+    lunch:    "2:00 PM – 4:00 PM",
+    note:     "Open all 7 days - Sundays till noon",
     emergency: "Call anytime for dental emergencies",
   },
 
   /* ── SOCIAL & REVIEW LINKS ───────────────────────────────── */
   social: {
     google:    "https://share.google/SbuT7Ec2s7Q5kgoFc",
-    instagram: "https://instagram.com/flossworkdental",   // <!-- UPDATE: add real handle -->
-    facebook:  "https://facebook.com/flossworkdental",    // <!-- UPDATE: add real URL -->
+    instagram: "https://www.instagram.com/helloflosswork?igsh=MTNnbWM2NXNobTA4dw%3D%3D&utm_source=qr",   // <!-- UPDATE: add real handle -->
+    facebook:  "https://www.facebook.com/share/1aPEa3Czvx/?mibextid=wwXIfr",    // <!-- UPDATE: add real URL -->
     youtube:   "https://youtube.com/@flossworkdental",    // <!-- UPDATE: add real URL -->
   },
 
@@ -73,10 +75,10 @@ const FW = {
   stats: {
     patients:   "5,000+",
     rating:     "4.9",
-    reviews:    "61",          // <!-- UPDATE: check Google reviews count -->
+    reviews:    "83",          // <!-- UPDATE: check Google reviews count -->
     avgPlan:    "14 months",
     specialists: "8",
-    years:      "2+",
+    years:      "3+",
   },
 
   /* ── PRICING ─────────────────────────────────────────────── */
@@ -90,7 +92,7 @@ const FW = {
       emiNote:  "18 months · 0% interest",
       featured: false,
       features: [
-        "Free 3D digital scan",
+        "3D digital scan",
         "Custom aligner sets",
         "Specialist monitoring",
         "1 set of refiners",
@@ -134,23 +136,23 @@ const FW = {
     {
       active:   true,
       name:     "Dr. Priyesh Gupta",
-      role:     "Lead Orthodontist",
-      qual:     "MDS Orthodontics · 10+ years",
-      img:      "images/doctors/dr-priyesh.jpg",   // <!-- REPLACE with real photo -->
-      imgAlt:   "Dr. Priyesh Gupta, Lead Orthodontist at Flosswork Dental Clinic Raipur",
-      badges:   ["MDS Certified", "Invisalign Certified"],
-      tags:     ["Clear Aligners", "Invisalign", "Smile Design"],
+      role:     "Lead Prosthodontist & Implantologist",
+      qual:     "MDS Prosthodontics · 10+ years",
+      img:      "images/about/dr-priyesh.jpg",   // <!-- REPLACE with real photo -->
+      imgAlt:   "Dr. Priyesh Gupta, Lead Prosthodontist & Implantologist at Flosswork Dental Clinic Raipur",
+      badges:   ["MDS Certified"],
+      tags:     ["Implants", "Veneers", "Smile Design"],
       waMsg:    "Hi, I'd like to book a consultation with Dr. Priyesh Gupta at Flosswork.",
     },
     {
       active:   true,
       name:     "Dr. Nehal Gupta",
-      role:     "Cosmetic & Restorative Specialist",
-      qual:     "MDS Prosthodontics · 8+ years",
-      img:      "images/doctors/dr-nehal.jpg",     // <!-- REPLACE with real photo -->
-      imgAlt:   "Dr. Nehal Gupta, Cosmetic Specialist at Flosswork Dental Clinic Raipur",
-      badges:   ["MDS Certified", "Smile Design Expert"],
-      tags:     ["Veneers", "Implants", "Smile Design"],
+      role:     "Lead Orthodontist",
+      qual:     "MDS Orthodontics · 10+ years",
+      img:      "images/about/dr-nehal.jpg",     // <!-- REPLACE with real photo -->
+      imgAlt:   "Dr. Nehal Gupta, Lead Orthodontist at Flosswork Dental Clinic Raipur",
+      badges:   ["MDS Certified", "Invisalign Certified"],
+      tags:     ["Clear Aligners", "Invisalign", "Smile Design"],
       waMsg:    "Hi, I'd like to book a consultation with Dr. Nehal Gupta at Flosswork.",
     },
     /* Add more doctors below. Set active: false to hide without deleting.
@@ -159,7 +161,7 @@ const FW = {
       name:     "Dr. Example Name",
       role:     "Specialty",
       qual:     "Qualification · X years",
-      img:      "images/doctors/dr-example.jpg",
+      img:      "images/about/dr-example.jpg",
       imgAlt:   "Alt text",
       badges:   ["MDS Certified"],
       tags:     ["Specialty 1"],
@@ -170,15 +172,15 @@ const FW = {
 
   /* ── SERVICES (homepage list + services page) ────────────── */
   services: [
-    { id: "aligners",   name: "Clear Aligners",      desc: "Nearly invisible, removable trays planned to sub-millimetre precision.",   price: "from ₹50,000", href: "aligners.html",          img: "images/services/aligners.jpg"  },
-    { id: "implants",   name: "Dental Implants",      desc: "Long-lasting tooth replacements placed with surgical precision.",         price: "from ₹35,000", href: "services.html#implants",  img: "images/services/implants.jpg"  },
-    { id: "smiledesign",name: "Smile Design",         desc: "Digitally planned smile makeovers — veneers, bonding, transformations.",  price: "from ₹45,000", href: "services.html#smiledesign",img: "images/services/smiledesign.jpg"},
-    { id: "whitening",  name: "Teeth Whitening",      desc: "Professional whitening for a noticeably brighter smile in one session.", price: "from ₹8,000",  href: "services.html#whitening", img: "images/services/whitening.jpg" },
-    { id: "rootcanal",  name: "Root Canal",           desc: "Pain-free treatment using rotary endodontic technology.",                price: "from ₹4,500",  href: "services.html#rootcanal", img: "images/services/rootcanal.jpg" },
-    { id: "braces",     name: "Orthodontic Braces",   desc: "Metal and ceramic braces for comprehensive correction.",                 price: "from ₹30,000", href: "services.html#braces",    img: "images/services/braces.jpg"    },
-    { id: "cleaning",   name: "Scaling & Cleaning",   desc: "Professional cleaning to remove tartar and protect gum health.",        price: "from ₹1,200",  href: "services.html#cleaning",  img: "images/services/cleaning.jpg"  },
-    { id: "extraction", name: "Extractions",          desc: "Simple and surgical extractions with minimal discomfort.",              price: "from ₹800",    href: "services.html#extraction", img: "images/services/extraction.jpg"},
-    { id: "pediatric",  name: "Paediatric Dentistry", desc: "Gentle, child-friendly care for patients aged 3 and above.",           price: "from ₹600",    href: "services.html#pediatric", img: "images/services/pediatric.jpg" },
+    { id: "aligners",   name: "Clear Aligners",      desc: "Nearly invisible, removable trays planned to sub-millimetre precision.",   href: "aligners.html",          img: "images/services/aligners.jpg"  },
+    { id: "implants",   name: "Dental Implants",      desc: "Long-lasting tooth replacements placed with surgical precision.",         href: "services.html#implants",  img: "images/services/implants.jpg"  },
+    { id: "smiledesign",name: "Smile Design",         desc: "Digitally planned smile makeovers — veneers, bonding, transformations.",  href: "services.html#smiledesign",img: "images/services/smiledesign.jpg"},
+    { id: "whitening",  name: "Teeth Whitening",      desc: "Professional whitening for a noticeably brighter smile in one session.", href: "services.html#whitening", img: "images/services/whitening.jpg" },
+    { id: "rootcanal",  name: "Root Canal",           desc: "Pain-free treatment using rotary endodontic technology.",                href: "services.html#rootcanal", img: "images/services/rootcanal.jpg" },
+    { id: "braces",     name: "Crowns & Bridges",     desc: "Durable, natural-looking restorations for damaged or missing teeth.",     href: "services.html#braces",    img: "images/services/braces.jpg"    },
+    { id: "cleaning",   name: "Scaling & Cleaning",   desc: "Professional cleaning to remove tartar and protect gum health.",        href: "services.html#cleaning",  img: "images/services/cleaning.jpg"  },
+    { id: "extraction", name: "Gum Disease Treatment",desc: "Treat bleeding gums, bad breath and gum infections.",                    href: "services.html#extraction", img: "images/services/extraction.jpg"},
+    { id: "pediatric",  name: "Dentures",             desc: "Comfortable, natural-looking dentures designed for everyday confidence.", href: "services.html#pediatric", img: "images/services/pediatric.jpg" },
   ],
 
   /* ── ANALYTICS ───────────────────────────────────────────── */
@@ -192,8 +194,9 @@ const FW = {
   /* Pre-filled messages for each CTA context                   */
   waMessages: {
     default:     "Hi, I'd like to book a consultation at Flosswork Dental Clinic.",
+    fab:         "Hi! I'd like to know more about treatments at Flosswork Dental Clinic.",
     aligners:    "Hi, I'd like to know more about clear aligners at Flosswork.",
-    booking:     "Hi, I'd like to book a free 3D scan consultation at Flosswork.",
+    booking:     "Hi, I'd like to book a 3D scan consultation at Flosswork.",
     emergency:   "Hi, I have a dental emergency and need urgent help.",
     callback:    "Hi, I requested a callback from Flosswork. My name is {name} and my number is {phone}.",
     pricing:     "Hi, I'd like to know more about aligner pricing and EMI options at Flosswork.",
