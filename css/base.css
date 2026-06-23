@@ -359,6 +359,15 @@ body.fw-nav-open { overflow:hidden; position:fixed; width:100%; }
 .advantage-desc  { font-size:13px; color:var(--ink-mute); line-height:1.55; margin-top:auto; }
 .advantage-meta  { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
 
+/* ── REASON LIST (divided rows, no cards) ──────────────────────── */
+.reason-list { border-top:1px solid var(--ink); }
+.reason-item { display:grid; grid-template-columns:220px 1fr; gap:56px;
+  padding:44px 0; border-bottom:1px solid var(--line); align-items:start; }
+.reason-item:last-child { border-bottom:none; }
+.reason-stat  { font-family:var(--serif); font-size:20px; letter-spacing:-.01em; line-height:1.4; color:var(--accent); }
+.reason-title { font-size:18px; font-weight:600; letter-spacing:-.01em; color:var(--ink); margin-bottom:8px; }
+.reason-desc  { font-size:14px; color:var(--ink-mute); line-height:1.65; max-width:56ch; }
+
 /* ── PRICING ────────────────────────────────────────────────── */
 .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 .pricing-card { padding:36px 28px 40px; display:flex; flex-direction:column; gap:18px;
@@ -823,6 +832,9 @@ body.fw-nav-open { overflow:hidden; position:fixed; width:100%; }
 
   /* Advantage */
   .advantage-grid  { grid-template-columns:1fr 1fr; }
+
+  /* Reason list → stack stat above title/desc */
+  .reason-item     { grid-template-columns:1fr; gap:12px; padding:32px 0; }
 
   /* Pricing */
   .pricing-grid    { grid-template-columns:1fr; }
