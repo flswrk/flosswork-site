@@ -12,6 +12,18 @@
       in the matching folder, e.g. "images/about/dr-priyesh.jpg"
    ✓  To hide a doctor: set active: false
    ✓  Prices, phone, hours, NAP — all live here
+
+   IMAGE SIZE GUIDE — export photos to these sizes before uploading,
+   so every page stays sharp on retina screens without being slow:
+     Hero photos (home/about/aligners/services)..1200×1500px, ~80% quality, <280KB
+     Doctor portraits..............................400×500px, ~78% quality, <150KB
+     Showcase gallery — big photo, before/afters..1200×900px,  ~76% quality, <220KB
+     Service cards, showcase — small photos........900×675px, ~72% quality, <130KB
+     Equipment icons (small square thumbnails)......240×240px, ~70% quality, <40KB
+     Logo (transparent background)..................240×60px, PNG
+   Free tool: squoosh.app — drag a photo in, set the size above, export.
+   A page will auto-detect and show any photo whose proportions are
+   off from this guide (check the browser console after uploading).
    ============================================================ */
 
 const FW = {
@@ -177,7 +189,7 @@ const FW = {
     { id: "smiledesign",name: "Smile Design",         desc: "Digitally planned smile makeovers — veneers, bonding, transformations.",  href: "services.html#smiledesign",img: "images/services/smiledesign.jpg"},
     { id: "whitening",  name: "Teeth Whitening",      desc: "Professional whitening for a noticeably brighter smile in one session.", href: "services.html#whitening", img: "images/services/whitening.jpg" },
     { id: "rootcanal",  name: "Root Canal",           desc: "Pain-free treatment using rotary endodontic technology.",                href: "services.html#rootcanal", img: "images/services/rootcanal.jpg" },
-    { id: "braces",     name: "Crowns & Bridges",     desc: "Durable, natural-looking restorations for damaged or missing teeth.",     href: "services.html#braces",    img: "images/services/braces.jpg"    },
+    { id: "braces",     name: "Crowns & Bridges",     desc: "Durable, natural-looking restorations for damaged or missing teeth.",     href: "services.html#braces",    img: "images/services/crown.jpg"    },
     { id: "cleaning",   name: "Scaling & Cleaning",   desc: "Professional cleaning to remove tartar and protect gum health.",        href: "services.html#cleaning",  img: "images/services/cleaning.jpg"  },
     { id: "extraction", name: "Gum Disease Treatment",desc: "Treat bleeding gums, bad breath and gum infections.",                    href: "services.html#extraction", img: "images/services/extraction.jpg"},
     { id: "pediatric",  name: "Dentures",             desc: "Comfortable, natural-looking dentures designed for everyday confidence.", href: "services.html#pediatric", img: "images/services/pediatric.jpg" },

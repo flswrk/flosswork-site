@@ -43,8 +43,8 @@
     phoneBtn.innerHTML = SVG_PHONE + '<span>Call</span>';
     phoneBtn.setAttribute('data-track', 'mobile_cta_call');
 
-    inner.appendChild(waBtn);
     inner.appendChild(phoneBtn);
+    inner.appendChild(waBtn);
 
     cta.appendChild(inner);
 

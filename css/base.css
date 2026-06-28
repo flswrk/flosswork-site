@@ -313,7 +313,7 @@ body.fw-nav-open { overflow:hidden; position:fixed; width:100%; }
   box-shadow:var(--shadow-lg);
 }
 .svc-card-img {
-  aspect-ratio:16/10;
+  aspect-ratio:4/3;
   overflow:hidden;
   background:var(--paper);
   flex-shrink:0;
@@ -359,14 +359,20 @@ body.fw-nav-open { overflow:hidden; position:fixed; width:100%; }
 .advantage-desc  { font-size:13px; color:var(--ink-mute); line-height:1.55; margin-top:auto; }
 .advantage-meta  { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px; }
 
-/* ── REASON LIST (divided rows, no cards) ──────────────────────── */
-.reason-list { border-top:1px solid var(--ink); }
-.reason-item { display:grid; grid-template-columns:220px 1fr; gap:56px;
-  padding:44px 0; border-bottom:1px solid var(--line); align-items:start; }
-.reason-item:last-child { border-bottom:none; }
-.reason-stat  { font-family:var(--serif); font-size:20px; letter-spacing:-.01em; line-height:1.4; color:var(--accent); }
+/* ── REASON CARDS (icon-led grid) ──────────────────────────────── */
+.reason-list { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.reason-item { padding:32px 28px 36px; background:var(--bg);
+  border-radius:var(--r-lg); border:1px solid var(--line); box-shadow:var(--shadow-sm);
+  display:flex; flex-direction:column;
+  transition:transform var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease); }
+.reason-item:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+.reason-icon  { width:44px; height:44px; border-radius:var(--r-full); margin-bottom:20px;
+  background:var(--accent-lt); color:var(--accent);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.reason-stat  { font-family:var(--mono); font-size:14px; font-weight:700; letter-spacing:.04em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
 .reason-title { font-size:18px; font-weight:600; letter-spacing:-.01em; color:var(--ink); margin-bottom:8px; }
-.reason-desc  { font-size:14px; color:var(--ink-mute); line-height:1.65; max-width:56ch; }
+.reason-desc  { font-size:14px; color:var(--ink-mute); line-height:1.6; margin-top:auto; }
 
 /* ── PRICING ────────────────────────────────────────────────── */
 .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
@@ -645,13 +651,13 @@ body.fw-nav-open { overflow:hidden; position:fixed; width:100%; }
 /* ── EQUIPMENT GRID ─────────────────────────────────────────── */
 .equipment-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; }
 .equipment-card { padding:28px 22px; border-radius:var(--r-lg); border:1px solid var(--line);
-  min-height:200px; display:flex; flex-direction:column; gap:12px;
+  min-height:200px; display:flex; flex-direction:column;
   background:var(--bg); box-shadow:var(--shadow-sm);
   transition:box-shadow var(--dur-base) var(--ease); }
 .equipment-card:hover { box-shadow:var(--shadow-lg); }
-.equipment-idx  { font-family:var(--mono); font-size:11px; color:var(--ink-mute); }
-.equipment-name { font-family:var(--serif); font-size:22px; letter-spacing:-.015em; line-height:1.2; margin-top:6px; color:var(--ink); }
-.equipment-desc { font-size:13px; color:var(--ink-mute); line-height:1.5; margin-top:auto; }
+.equipment-img  { width:96px; height:96px; border-radius:var(--r-lg); object-fit:cover;
+  background:var(--paper); margin-bottom:18px; flex-shrink:0; }
+.equipment-name { font-family:var(--serif); font-size:22px; letter-spacing:-.015em; line-height:1.2; color:var(--ink); }
 
 /* ── SERVICES PAGE GRID ─────────────────────────────────────── */
 .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
@@ -801,6 +807,7 @@ body.fw-nav-open { overflow:hidden; position:fixed; width:100%; }
   #nav-toggle { display:inline-flex; }
   .section-header  { grid-template-columns:1fr 1fr; gap:48px; }
   .svc-card-grid   { grid-template-columns:repeat(2,1fr); }
+  .reason-list     { grid-template-columns:repeat(2,1fr); }
   .equipment-grid  { grid-template-columns:repeat(3,1fr); }
   .footer-grid     { grid-template-columns:1.5fr 1fr 1fr; }
   .footer-grid > nav:last-child { display:none; }
@@ -833,8 +840,8 @@ body.fw-nav-open { overflow:hidden; position:fixed; width:100%; }
   /* Advantage */
   .advantage-grid  { grid-template-columns:1fr 1fr; }
 
-  /* Reason list → stack stat above title/desc */
-  .reason-item     { grid-template-columns:1fr; gap:12px; padding:32px 0; }
+  /* Reason cards → stack to single column */
+  .reason-list     { grid-template-columns:1fr; }
 
   /* Pricing */
   .pricing-grid    { grid-template-columns:1fr; }
