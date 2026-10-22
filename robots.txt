@@ -1,8 +1,20 @@
-# Flosswork Dental Clinic — robots.txt
 User-agent: *
 Allow: /
 
-Disallow: /images/
-Allow: /images/
+# Search and answer engines that produce citations
+User-agent: OAI-SearchBot
+Allow: /
 
-Sitemap: https://www.flossworkdental.com/sitemap.xml
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://flosswork.in/sitemap.xml
