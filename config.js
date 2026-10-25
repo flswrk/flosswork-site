@@ -19,6 +19,17 @@ window.FW = {
     reviewCount: "122"
   },
 
+  /* Trust strip shown on the home and About pages. Edit once, then run `node tools/build-site.js`.
+     { rating: true } shows clinic.rating and clinic.reviewCount; others use value + label. */
+  trust: [
+    { rating: true },
+    { value: "5,000+",   label: "Patients treated" },
+    { value: "200+",     label: "Aligner cases" },
+    { value: "MDS",      label: "Experts" },
+    { value: "Advanced", label: "3D scanning" },
+    { value: "Premium",  label: "Comfortable care" }
+  ],
+
   /* Paste your Google Apps Script web-app URL here (set up at the end).
      While empty, leads go to WhatsApp only. */
   leadEndpoint: "",
@@ -69,20 +80,20 @@ window.FW = {
   services: [
     { id: "love", title: "Love your smile", lead: "Straighten, reshape and brighten.", items: [
       { id: "aligners", name: "Clear aligners", desc: "Nearly invisible, removable trays planned to sub-millimetre precision.", img: "svc-aligner.jpg", href: "aligners.html" },
-      { id: "braces", name: "Braces", desc: "Metal and ceramic braces to straighten teeth and correct bite problems, planned by your doctor.", img: "" },
+      { id: "braces", name: "Braces", desc: "Metal and ceramic braces to straighten teeth and correct bite problems, planned by your doctor.", img: "braces.jpg" },
       { id: "smiledesign", name: "Smile design", desc: "Enhance the shape, proportion and appearance of your smile with a personalised plan.", img: "svc-smiledesign.jpg" },
       { id: "whitening", name: "Teeth whitening", desc: "Remove stains and brighten your smile safely with professional-grade whitening.", img: "svc-whitening.jpg" }
     ]},
     { id: "restore", title: "Restore your teeth", lead: "Eat, speak and smile with confidence again.", items: [
-      { id: "implants", name: "Dental implants", desc: "Replace missing teeth with implants that look, feel and function like natural teeth.", img: "svc-implant.jpg" },
-      { id: "fillings", name: "Dental fillings", desc: "Repair cavities and chipped teeth with tooth-coloured fillings that blend in.", img: "" },
+      { id: "implants", name: "Dental implants", desc: "Replace missing teeth with implants that look, feel and function like natural teeth.", img: "implant.jpg" },
+      { id: "fillings", name: "Dental fillings", desc: "Repair cavities and chipped teeth with tooth-coloured fillings that blend in.", img: "dental-filling.jpg" },
       { id: "rootcanal", name: "Root canal treatment", desc: "Save infected or damaged teeth with careful root canal treatment.", img: "svc-rootcanal.jpg" },
       { id: "crowns", name: "Crowns & bridges", desc: "Restore damaged or missing teeth with durable, natural-looking restorations.", img: "svc-crown.jpg" }
     ]},
     { id: "protect", title: "Protect your oral health", lead: "Prevention today, fewer problems tomorrow.", items: [
       { id: "cleaning", name: "Teeth cleaning", desc: "Remove plaque and tartar to keep teeth and gums healthy.", img: "svc-scaling.jpg", href: "cleaning.html" },
       { id: "gums", name: "Gum disease treatment", desc: "Treat bleeding gums, bad breath and gum infections before they cause permanent damage.", img: "svc-perio.jpg" },
-      { id: "badbreath", name: "Bad breath treatment", desc: "Find and treat the cause of persistent bad breath, from gum problems to plaque and decay.", img: "" },
+      { id: "badbreath", name: "Bad breath treatment", desc: "Find and treat the cause of persistent bad breath, from gum problems to plaque and decay.", img: "bad-breath.jpg" },
       { id: "dentures", name: "Dentures", desc: "Replace multiple missing teeth with comfortable, natural-looking dentures.", img: "svc-denture.jpg" }
     ]},
     { id: "sleep", title: "Sleep & comfort", lead: "Treatment for snoring and jaw problems.", items: [

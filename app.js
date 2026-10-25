@@ -23,11 +23,18 @@
             '<div class="pr"><button type="button" data-need="' + esc(t.key) + '">' + (need.price ? 'From ' + inr(need.price) : 'Get a quote') + ' →</button><a href="' + esc(t.href) + '">Learn more</a></div></article>';
         }).join('');
       },
+      trust: function () {
+        return FW.trust.map(function (t) {
+          return t.rating
+            ? '<div class="rate"><b><span data-rating>' + esc(FW.clinic.rating) + '</span><i aria-hidden="true">★</i></b><span><span data-reviews>' + esc(FW.clinic.reviewCount) + '</span>+ Google reviews</span></div>'
+            : '<div><b>' + esc(t.value) + '</b><span>' + esc(t.label) + '</span></div>';
+        }).join('');
+      },
       services: function () {
         return FW.services.map(function (g) {
           return '<div class="svg" id="' + g.id + '"><h2>' + esc(g.title) + '</h2><p class="lead">' + esc(g.lead) + '</p><div class="sc">' +
             g.items.map(function (s) {
-              var im = s.img ? '<div class="im"><img src="images/' + esc(s.img) + '" width="1100" height="825" alt="' + esc(s.name) + '" loading="lazy" decoding="async"></div>' : '<div class="im ph"><span>Image to add</span></div>';
+              var im = s.img ? '<div class="im"><img src="images/' + esc(s.img) + '" width="1200" height="896" alt="' + esc(s.name) + '" loading="lazy" decoding="async"></div>' : '<div class="im ph"><span>Image to add</span></div>';
               var key = needBy(s.id).key === s.id ? s.id : 'other';
               return '<article class="card" id="' + s.id + '">' + im + '<div class="tx"><h3>' + esc(s.name) + '</h3><p>' + esc(s.desc) + '</p><div class="act"><button type="button" data-need="' + key + '" data-item="' + esc(s.name) + '">Get a quote</button>' +
                 (s.href ? '<a href="' + esc(s.href) + '">Learn more</a>' : '') + '</div></div></article>';
@@ -57,7 +64,7 @@
   })(FW.analytics);
 
   var st;
-  function resetState() { st = { need: document.body.getAttribute('data-page-need') || 'aligners', when: FW.when[1], name: '', phone: '' }; }
+  function resetState() { st = { need: document.body.getAttribute('data-page-need') || 'other', when: FW.when[1], name: '', phone: '' }; }
   resetState();
 
   function waLink(text) { return 'https://wa.me/' + C.whatsapp + '?text=' + encodeURIComponent(text); }
@@ -151,11 +158,11 @@
 
   function renderAll() {
     /* pre-rendered by tools/build-site.js; only fill when empty (e.g. config edited without a rebuild) */
-    [['doctors', B.doctors], ['tiles', B.tiles], ['services', B.services]].forEach(function (p) {
+    [['doctors', B.doctors], ['tiles', B.tiles], ['services', B.services], ['trust', B.trust]].forEach(function (p) {
       $$('[data-' + p[0] + ']').forEach(function (n) { if (!n.firstElementChild) n.innerHTML = p[1](); });
     });
     $$('[data-more]').forEach(function (n) { n.innerHTML = FW.moreTreatments.map(function (t) { return '<button type="button" data-need="other">' + esc(t) + '</button>'; }).join(''); });
-    $$('[data-equipment]').forEach(function (n) { n.innerHTML = FW.equipment.map(function (e) { return '<div class="it">' + ph('Photo to add') + '<b>' + esc(e) + '</b></div>'; }).join(''); });
+    $$('[data-equipment]').forEach(function (n) { n.innerHTML = FW.equipment.map(function (e) { return '<span>' + esc(e) + '</span>'; }).join(''); });
     $$('[data-cases]').forEach(function (n) {
       n.innerHTML = FW.cases.map(function (c, i) {
         var has = c.before && c.after;
@@ -252,44 +259,22 @@
       if (!d.querySelector('.ok-ic')) d.insertAdjacentHTML('afterbegin', '<svg class="ok-ic" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l8 8 14-16"/></svg>');
     });
     solidNav = document.body.getAttribute('data-nav') === 'solid' || !!$('.shero');
-    buildRail(); onScroll();
+    onScroll();
   }
   window.FW_initPage = initPage;
 
   var nav, drawer, mb;
-  var prog, ticking = false, railLinks = [], solidNav = false;
+  var prog, ticking = false, solidNav = false;
   function onScroll() {
     if (nav) nav.classList.toggle('solid', solidNav || window.scrollY > 40);
     if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; trackScroll(); }); }
   }
-  /* reading-progress line under the header + "you are here" dot in the side rail */
+  /* reading-progress line under the header */
   function trackScroll() {
     if (prog) {
       var max = document.documentElement.scrollHeight - window.innerHeight, p = max > window.innerHeight * 0.5 ? Math.min(window.scrollY / max, 1) : 0;
       prog.style.setProperty('--p', p.toFixed(4)); prog.classList.toggle('on', p > 0.005);
     }
-    var cur = null, line = window.innerHeight * 0.4;
-    railLinks.forEach(function (r) { if (r.el.getBoundingClientRect().top <= line) cur = r; });
-    railLinks.forEach(function (r) { if (r === cur) r.a.setAttribute('aria-current', 'location'); else r.a.removeAttribute('aria-current'); });
-  }
-  function buildRail() {
-    var old = $('.rail'); if (old) old.remove();
-    railLinks = [];
-    var items = $$('main section[aria-labelledby], main .book').map(function (el, i) {
-      var h = el.getAttribute('aria-labelledby') && document.getElementById(el.getAttribute('aria-labelledby'));
-      var label = el.classList.contains('book') ? 'Book a visit' : (h ? h.textContent.trim() : '');
-      if (!label) return null;
-      if (!el.id) el.id = 'sec-' + i;
-      return { el: el, label: label };
-    }).filter(Boolean);
-    if (items.length < 3) return;
-    var rail = document.createElement('nav'); rail.className = 'rail'; rail.setAttribute('aria-label', 'On this page');
-    items.forEach(function (it) {
-      var a = document.createElement('a'); a.href = '#' + it.el.id; a.innerHTML = '<span>' + esc(it.label) + '</span>';
-      a.addEventListener('click', function (e) { e.preventDefault(); it.el.scrollIntoView({ behavior: calm() ? 'auto' : 'smooth', block: 'start' }); });
-      rail.appendChild(a); railLinks.push({ el: it.el, a: a });
-    });
-    document.body.appendChild(rail);
   }
   function closeDrawer(focusBack) {
     if (!drawer) return;
