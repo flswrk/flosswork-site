@@ -49,7 +49,6 @@ h1,h2,h3{font-weight:200;letter-spacing:-.01em;line-height:1.15}
 .nav.solid .btn,.nav .btn{background:#25d366;color:var(--ink)}
 .hdr-r{display:flex;align-items:center;gap:6px}
 .hdr-wa,.hdr-call{display:none}
-.nav .btn.hdr-call{background:var(--ink);color:#fff}
 .menu-btn{background:none;border:0;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;margin-right:-8px;color:inherit}
 .menu-btn span,.menu-btn span:before,.menu-btn span:after{display:block;width:20px;height:2px;background:currentColor;border-radius:2px;position:relative;content:""}
 .menu-btn span:before{position:absolute;top:-6px}.menu-btn span:after{position:absolute;top:6px}
@@ -322,7 +321,6 @@ select.in option{color:#111;background:#fff}
 /* sticky bar */
 .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;gap:8px;padding:12px max(22px,env(safe-area-inset-right)) calc(18px + env(safe-area-inset-bottom)) max(22px,env(safe-area-inset-left));background:#ffffffee;backdrop-filter:blur(12px);border-top:1px solid #0001}
 .stickybar .btn{flex:1;padding:12px 8px;font-size:15px;background:var(--ink);color:#fff}
-.stickybar .bar-wa{background:#25d366;color:var(--ink)}
 
 @media(min-width:760px){
   :root{--gut:40px}
@@ -399,13 +397,30 @@ select.in option{color:#111;background:#fff}
 .drawer.open:not(.closing) #close-menu span:after{top:0;transform:rotate(-45deg)}
 
 /* ---------- motion (all of it off under prefers-reduced-motion) ---------- */
+@media print{.rv{opacity:1!important}}
 @media(prefers-reduced-motion:no-preference){
 
   @keyframes rise{from{opacity:0;translate:0 18px}}
   @keyframes fade{from{opacity:0}}
+  @keyframes settle{from{scale:1.07}}
+  @keyframes barIn{from{translate:0 100%}}
   @keyframes swap{from{opacity:0;translate:0 8px}}
   @keyframes ring{0%{box-shadow:0 0 0 0 #9fe870cc}100%{box-shadow:0 0 0 14px #9fe87000}}
   @keyframes shake{20%,60%{translate:-6px 0}40%,80%{translate:6px 0}}
+
+  /* page-load entrance: hero text staggers in, photo settles */
+  .shero .txt>*,.phero .wrap>div:first-child>*{animation:rise .8s var(--ease) backwards}
+  .shero .txt>:nth-child(2),.phero .wrap>div:first-child>:nth-child(2){animation-delay:.07s}
+  .shero .txt>:nth-child(3),.phero .wrap>div:first-child>:nth-child(3){animation-delay:.14s}
+  .shero .txt>:nth-child(4),.phero .wrap>div:first-child>:nth-child(4){animation-delay:.21s}
+  .shero .img img,.phero .img img{animation:settle 1.6s var(--ease) backwards}
+  .shero .img .pill{animation:rise .7s var(--ease) .6s backwards}
+  .stickybar{animation:barIn .6s var(--ease) .6s backwards}
+
+  /* scroll reveal (classes added by app.js, removed again once played) */
+  .rv{opacity:0}
+  .rv.in{animation:rise .75s var(--ease) calc(var(--i,0) * 70ms) both}
+  .data b{font-variant-numeric:tabular-nums}
 
   /* planner result + form feedback */
   .res.bump{animation:swap .45s var(--ease)}
@@ -497,3 +512,35 @@ select.in option{color:#111;background:#fff}
 /* Rating item in the trust strip */
 .data .rate b{display:inline-flex;align-items:baseline;gap:5px}
 .data .rate i{font-style:normal;color:inherit;font-size:.9em}
+
+/* call = black, WhatsApp = WhatsApp green, on every page (kept last so it wins over .nav and .stickybar button rules) */
+.btn.btn--call.btn--call{background:var(--ink);color:#fff;border:0}
+.btn.btn--wa.btn--wa{background:#25d366;color:var(--ink);border:0}
+/* gallery tool pills: one horizontal line that scrolls with the photos on phones */
+@media(max-width:759px){.gal>.tools{flex-wrap:nowrap;width:max-content;padding-right:var(--gut)}.tools span{white-space:nowrap}
+
+  /* FAQ: smooth height where the browser supports it (Chrome/Edge), instant elsewhere */
+  @supports(interpolate-size:allow-keywords){
+    :root{interpolate-size:allow-keywords}
+    .faq details::details-content{block-size:0;overflow:clip;transition:block-size .4s var(--ease),content-visibility .4s allow-discrete}
+    .faq details[open]::details-content{block-size:auto}
+  }
+
+  /* mobile / touch */
+  @media(max-width:759px){
+    /* quick press feedback on cards (touch has no hover) */
+    .t,.card,.why-c,.d,.tap,.loc-card,.case{transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+    .t:active,.card:active,.why-c:active,.d:active,.tap:active,.loc-card:active,.case:active{transform:scale(.985)}
+    /* sticky Call bar tucks away while you read down, returns on scroll up */
+    .stickybar{transition:translate .35s var(--ease)}
+    .stickybar.away{translate:0 110%}
+    /* hero photo drifts slightly as you scroll past (scroll-driven, Chrome/Safari 26+) */
+    @supports(animation-timeline:view()){
+      @keyframes drift{from{translate:0 -4%}to{translate:0 4%}}
+      .shero .img img,.phero .img img,.band .pic img{scale:1.1;animation:drift linear both;animation-timeline:view();animation-range:cover}
+      /* swipe rows: the card at the edge shrinks and softens, the one in focus stays full size */
+      @keyframes edge{0%{scale:.94;opacity:.55}30%,70%{scale:1;opacity:1}100%{scale:.94;opacity:.55}}
+      .why>*,.gal>*,.eq>*,#treat .tr>*{animation:edge linear both;animation-timeline:view(inline);animation-range:cover}
+    }
+  }
+}
