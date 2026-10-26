@@ -198,6 +198,7 @@
     $$('[data-rating]').forEach(function (n) { n.textContent = C.rating; });
     $$('[data-reviews]').forEach(function (n) { n.textContent = C.reviewCount; });
     $$('[data-hours]').forEach(function (n) { n.textContent = C.hoursLong; });
+    $$('[data-call]').forEach(function (n) { n.href = 'tel:' + C.phoneRaw; });
     $$('[data-phone]').forEach(function (n) { n.textContent = C.phone; n.href = 'tel:' + C.phoneRaw; });
     $$('a[data-book]').forEach(function (n) { n.href = waLink(bookText(n.getAttribute('data-book'))); n.target = '_blank'; n.rel = 'noopener'; });
     $$('[data-tel]').forEach(function (n) { n.href = 'tel:' + C.phoneRaw; });

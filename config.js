@@ -79,26 +79,26 @@ window.FW = {
   /* Services page: groups of cards, then a chip list. img: file in images/ ("" shows an icon tile). */
   services: [
     { id: "love", title: "Love your smile", lead: "Straighten, reshape and brighten.", items: [
-      { id: "aligners", name: "Clear aligners", desc: "Nearly invisible, removable trays planned to sub-millimetre precision.", img: "svc-aligner.jpg", href: "aligners.html" },
-      { id: "braces", name: "Braces", desc: "Metal and ceramic braces to straighten teeth and correct bite problems, planned by your doctor.", img: "braces.jpg" },
-      { id: "smiledesign", name: "Smile design", desc: "Enhance the shape, proportion and appearance of your smile with a personalised plan.", img: "svc-smiledesign.jpg" },
+      { id: "aligners", name: "Clear aligners", desc: "Nearly invisible, removable trays planned to sub-millimetre precision.", img: "svc-aligners.jpg", href: "aligners.html" },
+      { id: "braces", name: "Braces", desc: "Metal and ceramic braces to straighten teeth and correct bite problems, planned by your doctor.", img: "svc-braces.jpg" },
+      { id: "smiledesign", name: "Smile design", desc: "Enhance the shape, proportion and appearance of your smile with a personalised plan.", img: "svc-smile-design.jpg" },
       { id: "whitening", name: "Teeth whitening", desc: "Remove stains and brighten your smile safely with professional-grade whitening.", img: "svc-whitening.jpg" }
     ]},
     { id: "restore", title: "Restore your teeth", lead: "Eat, speak and smile with confidence again.", items: [
-      { id: "implants", name: "Dental implants", desc: "Replace missing teeth with implants that look, feel and function like natural teeth.", img: "implant.jpg" },
-      { id: "fillings", name: "Dental fillings", desc: "Repair cavities and chipped teeth with tooth-coloured fillings that blend in.", img: "dental-filling.jpg" },
-      { id: "rootcanal", name: "Root canal treatment", desc: "Save infected or damaged teeth with careful root canal treatment.", img: "svc-rootcanal.jpg" },
-      { id: "crowns", name: "Crowns & bridges", desc: "Restore damaged or missing teeth with durable, natural-looking restorations.", img: "svc-crown.jpg" }
+      { id: "implants", name: "Dental implants", desc: "Replace missing teeth with implants that look, feel and function like natural teeth.", img: "svc-implants.jpg" },
+      { id: "fillings", name: "Dental fillings", desc: "Repair cavities and chipped teeth with tooth-coloured fillings that blend in.", img: "svc-fillings.jpg" },
+      { id: "rootcanal", name: "Root canal treatment", desc: "Save infected or damaged teeth with careful root canal treatment.", img: "svc-root-canal.jpg" },
+      { id: "crowns", name: "Crowns & bridges", desc: "Restore damaged or missing teeth with durable, natural-looking restorations.", img: "svc-crowns.jpg" }
     ]},
     { id: "protect", title: "Protect your oral health", lead: "Prevention today, fewer problems tomorrow.", items: [
-      { id: "cleaning", name: "Teeth cleaning", desc: "Remove plaque and tartar to keep teeth and gums healthy.", img: "svc-scaling.jpg", href: "cleaning.html" },
-      { id: "gums", name: "Gum disease treatment", desc: "Treat bleeding gums, bad breath and gum infections before they cause permanent damage.", img: "svc-perio.jpg" },
-      { id: "badbreath", name: "Bad breath treatment", desc: "Find and treat the cause of persistent bad breath, from gum problems to plaque and decay.", img: "bad-breath.jpg" },
-      { id: "dentures", name: "Dentures", desc: "Replace multiple missing teeth with comfortable, natural-looking dentures.", img: "svc-denture.jpg" }
+      { id: "cleaning", name: "Teeth cleaning", desc: "Remove plaque and tartar to keep teeth and gums healthy.", img: "svc-cleaning.jpg", href: "cleaning.html" },
+      { id: "gums", name: "Gum disease treatment", desc: "Treat bleeding gums, bad breath and gum infections before they cause permanent damage.", img: "svc-gums.jpg" },
+      { id: "badbreath", name: "Bad breath treatment", desc: "Find and treat the cause of persistent bad breath, from gum problems to plaque and decay.", img: "svc-bad-breath.jpg" },
+      { id: "dentures", name: "Dentures", desc: "Replace multiple missing teeth with comfortable, natural-looking dentures.", img: "svc-dentures.jpg" }
     ]},
     { id: "sleep", title: "Sleep & comfort", lead: "Treatment for snoring and jaw problems.", items: [
-      { id: "snoring", name: "Anti-snoring devices", desc: "Your doctor diagnoses, scans, makes and fits the device, then follows up with you.", img: "" },
-      { id: "nightguard", name: "Night guard", desc: "A custom-fitted guard that protects your teeth from grinding and clenching while you sleep.", img: "" }
+      { id: "snoring", name: "Anti-snoring devices", desc: "Your doctor diagnoses, scans, makes and fits the device, then follows up with you.", img: "svc-snoring.jpg" },
+      { id: "nightguard", name: "Night guard", desc: "A custom-fitted guard that protects your teeth from grinding and clenching while you sleep.", img: "svc-night-guard.jpg" }
     ]}
   ],
   moreTreatments: ["Wisdom tooth extraction", "Dental veneers", "Night guards", "TMJ treatment", "Fluoride treatment", "Oral cancer screening", "Sports mouthguards", "Sensitive teeth treatment", "Full mouth rehabilitation", "Kids dentistry", "Tooth diamond", "Others"],
