@@ -91,60 +91,6 @@
   var calm = function () { return reduceMQ.matches; };
   var restart = function (el, cls) { if (calm() || !el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
 
-  var io;
-  function show(el) {
-    el.classList.add('in');
-    el.addEventListener('animationend', function done(ev) {
-      if (ev.target !== el) return;
-      el.removeEventListener('animationend', done);
-      el.classList.remove('rv', 'in'); el.style.removeProperty('--i');
-    });
-    if (el.matches('.data')) countUp(el);
-  }
-  function arm(el, i) {
-    if (el.dataset.mo) return;
-    el.dataset.mo = '1'; el.classList.add('rv'); el.style.setProperty('--i', Math.min(i, 5)); io.observe(el);
-  }
-  function countUp(box) {
-    $$('b', box).forEach(function (b) {
-      var m = /^([\d,]+)(\+?)$/.exec(b.textContent.trim()); if (!m) return;
-      var end = parseInt(m[1].replace(/,/g, ''), 10), t0 = null;
-      (function tick(t) {
-        t0 = t0 || t;
-        var k = Math.min((t - t0) / 1100, 1), v = Math.round(end * (1 - Math.pow(1 - k, 3)));
-        b.textContent = v.toLocaleString('en-IN') + m[2];
-        if (k < 1) requestAnimationFrame(tick);
-      })(performance.now());
-    });
-  }
-  /* Scroll reveal. Cards in a horizontal carousel reveal together with their row, since off-screen ones never intersect. */
-  function motionInit() {
-    if (calm() || !('IntersectionObserver' in window)) return;
-    io = io || new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        var kids = e.target._kids || [e.target];
-        if (!e.isIntersecting && e.boundingClientRect.bottom < 0) {
-          io.unobserve(e.target); kids.forEach(function (k) { k.classList.remove('rv'); k.style.removeProperty('--i'); }); return; /* already scrolled past: no animation */
-        }
-        if (!e.isIntersecting) return;
-        io.unobserve(e.target);
-        kids.forEach(show);
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    $$('.sec:not(.band) h2,.sec:not(.band) .sub,.svg .lead,.band .txt,.band .pic,.price,.cmp,.data,.form,.clinic').forEach(function (el) { arm(el, 0); });
-    $$('.tr,.why,.dr,.steps,.sc,.cases,.gal,.eq,.taps,.locs,.faq,.brands,.chips,.partners').forEach(function (g) {
-      var kids = Array.prototype.slice.call(g.children).filter(function (k) { return !k.dataset.mo; });
-      if (!kids.length) return;
-      if (g.scrollWidth > g.clientWidth + 2) {
-        g._kids = kids; kids.forEach(function (k, i) { k.dataset.mo = '1'; k.classList.add('rv'); k.style.setProperty('--i', Math.min(i, 5)); });
-        io.observe(g);
-      } else {
-        var cols = kids.filter(function (k) { return k.offsetTop === kids[0].offsetTop; }).length || 1;
-        kids.forEach(function (k, i) { arm(k, i % cols); });
-      }
-    });
-  }
-
   /* Sliding highlight behind the selected pill. */
   var pillRO = window.ResizeObserver ? new ResizeObserver(function (es) { es.forEach(function (e) { glide(e.target); }); }) : null;
   function glide(g) {
@@ -314,26 +260,22 @@
       if (!d.querySelector('.ok-ic')) d.insertAdjacentHTML('afterbegin', '<svg class="ok-ic" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l8 8 14-16"/></svg>');
     });
     solidNav = document.body.getAttribute('data-nav') === 'solid' || !!$('.shero');
-    onScroll(); motionInit();
+    onScroll();
   }
   window.FW_initPage = initPage;
 
   var nav, drawer, mb;
-  var prog, ticking = false, solidNav = false, lastY = 0;
+  var ticking = false, solidNav = false, lastY = 0;
   function onScroll() {
     if (nav) nav.classList.toggle('solid', solidNav || window.scrollY > 40);
     if (!ticking) { ticking = true; requestAnimationFrame(function () { ticking = false; trackScroll(); }); }
   }
-  /* reading-progress line under the header */
+  /* mobile Call bar: tuck away on scroll down */
   function trackScroll() {
-    var bar = $('#bar'), y = window.scrollY;
-    if (bar && !calm()) { /* mobile Call bar tucks away while reading down, returns on scroll up */
-      if (y > lastY + 8 && y > 240) bar.classList.add('away'); else if (y < lastY - 8 || y < 240) bar.classList.remove('away');
-    }
+    var y = window.scrollY, lastPrev = lastY, bar = $('#bar');
     lastY = y;
-    if (prog) {
-      var max = document.documentElement.scrollHeight - window.innerHeight, p = max > window.innerHeight * 0.5 ? Math.min(window.scrollY / max, 1) : 0;
-      prog.style.setProperty('--p', p.toFixed(4)); prog.classList.toggle('on', p > 0.005);
+    if (bar && !calm()) { /* mobile Call bar: hide after ~48px of reading down, return after ~24px up */
+      if (y > lastPrev + 8 && y > 240) bar.classList.add('away'); else if (y < lastPrev - 8 || y < 240) bar.classList.remove('away');
     }
   }
   function closeDrawer(focusBack) {
@@ -350,7 +292,6 @@
   /* One-time setup: header, drawer and document-level handlers. */
   function init() {
     nav = $('#nav'); drawer = $('#drawer'); mb = $('#menu-btn');
-    prog = document.createElement('div'); prog.className = 'progress'; prog.setAttribute('aria-hidden', 'true'); nav.appendChild(prog);
     $('#close-menu').innerHTML = '<span></span>';
     window.addEventListener('resize', onScroll, { passive: true });
     document.addEventListener('click', function (e) {

@@ -376,8 +376,6 @@ select.in option{color:#111;background:#fff}
 
 
 /* ---------- microinteractions: static parts ---------- */
-.progress{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--green);transform:scaleX(var(--p,0));transform-origin:left;pointer-events:none;opacity:0}
-.progress.on{opacity:1}
 .pl{position:relative}
 .pl-ind{position:absolute;left:0;top:0;width:0;height:0;border-radius:99px;background:#fff;pointer-events:none;opacity:0}
 .pl.g .pl-ind{opacity:1}
@@ -397,7 +395,6 @@ select.in option{color:#111;background:#fff}
 .drawer.open:not(.closing) #close-menu span:after{top:0;transform:rotate(-45deg)}
 
 /* ---------- motion (all of it off under prefers-reduced-motion) ---------- */
-@media print{.rv{opacity:1!important}}
 @media(prefers-reduced-motion:no-preference){
 
   @keyframes rise{from{opacity:0;translate:0 18px}}
@@ -416,11 +413,6 @@ select.in option{color:#111;background:#fff}
   .shero .img img,.phero .img img{animation:settle 1.6s var(--ease) backwards}
   .shero .img .pill{animation:rise .7s var(--ease) .6s backwards}
   .stickybar{animation:barIn .6s var(--ease) .6s backwards}
-
-  /* scroll reveal (classes added by app.js, removed again once played) */
-  .rv{opacity:0}
-  .rv.in{animation:rise .75s var(--ease) calc(var(--i,0) * 70ms) both}
-  .data b{font-variant-numeric:tabular-nums}
 
   /* planner result + form feedback */
   .res.bump{animation:swap .45s var(--ease)}
@@ -518,13 +510,6 @@ select.in option{color:#111;background:#fff}
 .btn.btn--wa.btn--wa{background:#25d366;color:var(--ink);border:0}
 /* gallery tool pills: one horizontal line that scrolls with the photos on phones */
 @media(max-width:759px){.gal>.tools{flex-wrap:nowrap;width:max-content;padding-right:var(--gut)}.tools span{white-space:nowrap}
-
-  /* FAQ: smooth height where the browser supports it (Chrome/Edge), instant elsewhere */
-  @supports(interpolate-size:allow-keywords){
-    :root{interpolate-size:allow-keywords}
-    .faq details::details-content{block-size:0;overflow:clip;transition:block-size .4s var(--ease),content-visibility .4s allow-discrete}
-    .faq details[open]::details-content{block-size:auto}
-  }
 
   /* mobile / touch */
   @media(max-width:759px){
