@@ -369,3 +369,16 @@
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(true); });
 })();
+
+/* bottom bar: slide the indicator to the tapped tab, then open the page */
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.tabbar a.tab');
+    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+    var bar = a.closest('.tabbar'), tabs = bar.querySelectorAll('.tab'), i = Array.prototype.indexOf.call(tabs, a);
+    if (a.getAttribute('aria-current') === 'page' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    bar.removeAttribute('data-none'); bar.style.setProperty('--i', i);
+    setTimeout(function () { location.href = a.href; }, 260);
+  });
+})();
