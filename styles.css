@@ -46,7 +46,7 @@ h1,h2,h3{font-weight:200;letter-spacing:-.01em;line-height:1.15}
 .nav .l a:hover:after,.nav .l a:focus-visible:after,.nav .l a[aria-current=page]:after{transform:scaleX(1);transform-origin:left}
 .nav .l a[aria-current=page]{opacity:1}
 .nav .btn{background:#fff;color:var(--ink);padding:10px 20px}
-.nav.solid .btn,.nav .btn{background:#25d366;color:var(--ink)}
+.nav.solid .btn,.nav .btn{background:#25d366;color:#fff}
 .hdr-r{display:flex;align-items:center;gap:6px}
 .hdr-wa,.hdr-call{display:none}
 .menu-btn{background:none;border:0;width:44px;height:44px;display:grid;place-items:center;cursor:pointer;margin-right:-8px;color:inherit}
@@ -507,7 +507,7 @@ select.in option{color:#111;background:#fff}
 
 /* call = black, WhatsApp = WhatsApp green, on every page (kept last so it wins over .nav and .stickybar button rules) */
 .btn.btn--call.btn--call{background:var(--ink);color:#fff;border:0}
-.btn.btn--wa.btn--wa{background:#25d366;color:var(--ink);border:0}
+.btn.btn--wa.btn--wa{background:#25d366;color:#fff;border:0}
 /* gallery tool pills: one horizontal line that scrolls with the photos on phones */
 @media(max-width:759px){.gal>.tools{flex-wrap:nowrap;width:max-content;padding-right:var(--gut)}.tools span{white-space:nowrap}
 
@@ -529,3 +529,19 @@ select.in option{color:#111;background:#fff}
     }
   }
 }
+
+/* ===== Apple-palette recolor sample ===== */
+:root{--ink:#1d1d1f;--soft:#f5f5f7;--mute:#6e6e73;--line:#d2d2d7;--bg:#fff;
+--green:#0071e3;--greend:#1d1d1f;--tint:#eaf3fd;--link:#0066cc;--img:#f5f5f7;--dim:#d2d2d7}
+.btn--green,.send,.btn--ink{background:#0071e3;color:#fff}
+.btn--green:hover,.btn--ink:hover{background:#0077ed;filter:none}
+.st i,.q summary:after,.band li:before{color:#fff}
+.price .big,.price li:before,.cmp .h>div:first-child,.data b,.form .tag,.foot .brand em,.done .ok-ic{color:#2997ff}
+.done .ok-ic{stroke:#2997ff}
+.price li:before{color:#2997ff}
+.eyebrow,.t .pr button,.card .act button,.tap em,.why-c .k,.q .a a{color:#0066cc}
+.btn.btn--wa.btn--wa,.nav.solid .btn,.nav .btn{background:#25d366;color:#fff}
+@keyframes ring{0%{box-shadow:0 0 0 0 #0071e3cc}100%{box-shadow:0 0 0 14px #0071e300}}
+.stickybar .btn.btn--call.btn--call,.stickybar .btn.btn--wa.btn--wa,.nav .btn.btn--call.btn--call,.nav .btn.btn--wa.btn--wa,.nav.solid .btn.btn--call,.nav.solid .btn.btn--wa{background:#1d1d1f;color:#fff}
+.stickybar,.stickybar.away{translate:none}
+.btn.btn--wa.btn--wa.send{background:#25d366;color:#111}
