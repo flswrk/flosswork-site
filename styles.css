@@ -219,7 +219,8 @@ h1,h2,h3{font-weight:200;letter-spacing:-.01em;line-height:1.15}
 /* placeholders (replace with photos at the end) */
 .ph{display:grid;place-items:center;text-align:center;background:repeating-linear-gradient(45deg,var(--line),var(--line) 12px,var(--soft) 12px,var(--soft) 24px);color:var(--mute);font-size:13px;padding:12px;border-radius:16px;min-height:120px}
 .ba .ph{position:absolute;inset:0;border-radius:0}
-.ba .ph.second{clip-path:inset(0 50% 0 0);background:repeating-linear-gradient(45deg,var(--tint),var(--tint) 12px,#eef8e6 12px,#eef8e6 24px)}
+.ba .ph:not(.second){background:repeating-linear-gradient(45deg,#e6e6e6,#e6e6e6 12px,#f2f2f2 12px,#f2f2f2 24px)}
+.ba .ph.second{clip-path:inset(0 50% 0 0);background:repeating-linear-gradient(45deg,#d4d4d4,#d4d4d4 12px,#e6e6e6 12px,#e6e6e6 24px)}
 .gal{display:grid;gap:12px}
 .gal .ph{aspect-ratio:4/3}
 .gal img{border-radius:16px;aspect-ratio:4/3;object-fit:cover;width:100%}
@@ -545,3 +546,171 @@ select.in option{color:#111;background:#fff}
 .stickybar .btn.btn--call.btn--call,.stickybar .btn.btn--wa.btn--wa,.nav .btn.btn--call.btn--call,.nav .btn.btn--wa.btn--wa,.nav.solid .btn.btn--call,.nav.solid .btn.btn--wa{background:#1d1d1f;color:#fff}
 .stickybar,.stickybar.away{translate:none}
 .btn.btn--wa.btn--wa.send{background:#25d366;color:#111}
+
+/* mobile: bottom tab bar + Call/WhatsApp in header */
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:55;display:flex;padding:6px 6px calc(6px + env(safe-area-inset-bottom));background:#ffffffee;backdrop-filter:blur(16px);border-top:1px solid #0001}
+.tabbar .tab{flex:1;min-width:0;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:none;border:0;border-radius:14px;color:var(--mute);font:500 11px/1.1 Inter,system-ui,sans-serif;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tabbar .tab svg{width:24px;height:24px}
+.tabbar .tab[aria-current=page]{color:var(--greend)}
+.tabbar .tab[aria-current=page] svg{stroke-width:2.2}
+.tabbar .tab:active{transform:scale(.94)}
+.hdr-call,.hdr-wa{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.hdr-r .btn .ic{width:20px;height:20px;flex:none}
+.hdr-r .btn .lbl{display:none}
+.hdr-r .btn{width:44px;padding:0;border-radius:50%}
+@media(min-width:760px){
+  .tabbar{display:none}
+  .hdr-r .btn{width:auto;padding:10px 20px;border-radius:999px}
+  .hdr-r .btn .ic{display:none}.hdr-r .btn .lbl{display:inline}
+}
+
+/* mobile menu: bottom sheet */
+.drawer{background:#0008;padding:0;justify-content:flex-end;align-items:stretch;overflow:hidden}
+.drawer .sheet{background:#fff;border-radius:28px 28px 0 0;padding:20px var(--gut) calc(24px + env(safe-area-inset-bottom));max-height:86vh;overflow-y:auto;display:grid;gap:12px}
+.drawer .sheet-x{align-self:center;width:44px;height:44px;margin-bottom:12px;border:0;border-radius:50%;background:#555c;color:#fff;backdrop-filter:blur(8px);cursor:pointer;position:relative;display:block;flex:none;padding:0}
+.drawer .sheet-x span{position:absolute;inset:0;display:block;background:none!important;animation:none!important;transform:none!important}
+.drawer .sheet-x span:before,.drawer .sheet-x span:after{content:"";position:absolute;left:14px!important;top:21px!important;width:16px;height:2px;border-radius:2px;background:#fff!important;animation:none!important;transform:rotate(45deg)!important}
+.drawer .sheet-x span:after{transform:rotate(-45deg)!important}
+.drawer .sc{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--tint);border-radius:20px;padding:18px}
+.drawer .sc h2{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.25;color:var(--greend)}
+.drawer .sc p{font-size:14px;color:var(--mute);line-height:1.4;margin-top:2px}
+.drawer .pillb{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:#fff;color:var(--ink);font-size:15px;font-weight:500;text-decoration:none;flex:none}
+.drawer .pillb svg{width:18px;height:18px}
+.drawer .pillb.wa{background:#25d366;color:#fff}
+.drawer .sl{font-size:13px;font-weight:600;color:var(--mute);margin:8px 2px 0;letter-spacing:.02em}
+.drawer .rows{display:grid;gap:8px}
+.drawer .row{display:flex;align-items:center;gap:12px;min-height:60px;padding:8px 14px;background:var(--soft);border-radius:16px;text-decoration:none;font-size:16px;font-weight:500;border:1.5px solid transparent}
+.drawer .row .ti{width:36px;height:36px;border-radius:50%;background:var(--tint);color:var(--greend);display:grid;place-items:center;flex:none}
+.drawer .row .ti svg{width:20px;height:20px}
+.drawer .row .tl{flex:1}
+.drawer .row .go{width:20px;height:20px;color:var(--mute)}
+.drawer .row[aria-current]{border-color:var(--greend)}
+@media(prefers-reduced-motion:no-preference){
+  @keyframes sheetIn{from{translate:0 100%}}
+  .drawer.open .sheet{animation:sheetIn .38s cubic-bezier(.2,.8,.2,1) both}
+  .drawer.open .sheet-x{animation:fade .3s ease .15s backwards}
+  .drawer.open.closing .sheet{animation:sheetIn .2s ease reverse both}
+  .drawer.open.closing .sheet-x{animation:none;opacity:0}
+}
+/* header Call / WhatsApp: text pills on mobile too */
+.hdr-r .btn{width:auto;padding:0 13px;border-radius:999px;font-size:13px}
+.hdr-r .btn .ic{display:none}
+.hdr-r .btn .lbl{display:inline}
+
+/* mobile floating contact button */
+.fab{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:54;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.fab-btn{width:56px;height:56px;border-radius:50%;border:0;background:var(--ink);color:#fff;display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 20px #0003;-webkit-tap-highlight-color:transparent;position:relative}
+.fab-btn svg{width:26px;height:26px;grid-area:1/1;transition:opacity .2s,rotate .3s cubic-bezier(.2,.8,.2,1)}
+.fab-btn .c{opacity:0;rotate:-90deg}
+.fab.open .fab-btn .o{opacity:0;rotate:90deg}
+.fab.open .fab-btn .c{opacity:1;rotate:0deg}
+.fab-btn:active{transform:scale(.94)}
+.fab-list{display:flex;flex-direction:column;gap:10px;align-items:flex-end}
+.fab-act{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px 0 16px;border-radius:999px;background:#fff;color:var(--ink);font-size:15px;font-weight:500;text-decoration:none;box-shadow:0 6px 20px #0003;opacity:0;visibility:hidden;translate:0 24px;transition:opacity .22s,translate .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s}
+.fab-act svg{width:20px;height:20px}
+.fab-act.wa{background:#25d366;color:#fff}
+.fab.open .fab-act{opacity:1;visibility:visible;translate:0 0;transition:opacity .22s,translate .32s cubic-bezier(.2,.8,.2,1),visibility 0s}
+.fab.open .fab-act:nth-child(2){transition-delay:.04s}
+.fab-act:first-child{order:0}
+
+/* floating button opens a bottom sheet */
+.fab{display:block}
+.fab-btn svg{rotate:none!important;opacity:1!important}
+.csheet .sheet{gap:12px}
+.csheet .sheet-x span:before,.csheet .sheet-x span:after{left:14px!important;top:21px!important}
+
+/* contact button + sheet, in the site's own style */
+.fab-btn{width:auto;height:56px;border-radius:999px;padding:0 20px;display:flex;align-items:center;gap:14px}
+.fab-btn .fi{display:grid;place-items:center}
+.fab-btn .fi svg{width:22px;height:22px;grid-area:auto}
+.fab-btn .fi.w{color:#25d366}
+.fab-btn .fd{width:1px;height:22px;background:#fff4}
+.csheet .sheet{gap:10px;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+.csheet .sc{display:grid;gap:14px;background:var(--soft);border-radius:24px;padding:18px;justify-content:stretch;align-items:stretch}
+.csheet .sh{display:flex;align-items:center;gap:14px}
+.csheet .ti{width:44px;height:44px;border-radius:50%;background:var(--tint);color:var(--greend);display:grid;place-items:center;flex:none}
+.csheet .ti svg{width:22px;height:22px}
+.csheet .ti.w{background:#25d366;color:#fff}
+.csheet .sc h2{font-family:var(--head);font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.csheet .sc p{font-size:14px;color:var(--mute);margin-top:1px}
+.csheet .sc .btn{width:100%;min-height:48px;font-size:15px}
+.csheet .sc .btn--wa{background:#25d366;color:#fff}
+.csheet .sc .btn--ink{background:#1d1d1f;color:#fff}
+
+/* contact: labelled pill + two-tile sheet on mobile and tablet; header Call/WhatsApp only on desktop */
+.fab{bottom:calc(84px + env(safe-area-inset-bottom))}
+.fab-btn{gap:12px;padding:0 22px 0 18px}
+.fab-btn em{font-style:normal;font-weight:600;font-size:15px;margin-left:2px}
+.csheet .sheet{gap:12px;max-width:520px;width:100%;margin:0 auto}
+.csheet .hd{font-family:var(--head);font-size:18px;font-weight:700;text-transform:none;text-align:left;letter-spacing:-.01em;line-height:1.25;color:var(--ink);margin:0 2px 2px}
+.csheet .tiles2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.csheet .tile{display:flex;flex-direction:column;justify-content:space-between;gap:22px;min-height:112px;padding:16px 14px;border-radius:24px;text-decoration:none;font-family:Inter,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+.csheet .tile b{font-size:17px;font-weight:600}
+.csheet .tile .ti{width:44px;height:44px;border-radius:50%;display:grid;place-items:center}
+.csheet .tile .ti svg{width:22px;height:22px}
+.csheet .tile.blk{background:#1d1d1f;color:#fff}.csheet .tile.blk .ti{background:#ffffff26;color:#fff}
+.csheet .tile.grn{background:#25d366;color:#111}.csheet .tile.grn .ti{background:#ffffff59;color:#111}
+.csheet .tile:active{transform:scale(.97)}
+@media(min-width:760px){.fab{display:block;bottom:24px}.csheet{display:none}.csheet.open{display:flex}}
+@media(min-width:1024px){.fab,.csheet,.csheet.open{display:none!important}}
+@media(max-width:1023px){.hdr-r{display:none}}
+
+/* final: dual-icon pill without divider, 2c tiles */
+.fab-btn .fd{display:none}
+.fab-btn{gap:16px;padding:0 22px}
+.csheet .tile.blk,.csheet .tile{background:var(--soft);color:var(--ink)}
+.csheet .tile.gt{background:#e8f8ee}
+.csheet .tile .ti{background:var(--tint);color:var(--greend)}
+.csheet .tile .ti.blkic{background:#1d1d1f;color:#fff}
+.csheet .tile .ti.w{background:#25d366;color:#fff}
+
+/* sheet 2b: black call, green WhatsApp (black text) */
+.csheet .tile.blk{background:#1d1d1f;color:#fff}.csheet .tile.blk .ti{background:#ffffff26;color:#fff}
+.csheet .tile.grn{background:#25d366;color:#111}.csheet .tile.grn .ti{background:#ffffff59;color:#111}
+
+/* pill-to-sheet morph is driven from app.js */
+.csheet.open .sheet,.csheet.open.closing .sheet{animation:none}
+.csheet.open .sheet-x{animation:fade .3s ease .3s backwards}
+.csheet.open.closing .sheet-x{animation:none;opacity:0}
+.csheet .tile.grn{color:#fff}.csheet .tile.grn .ti{background:#ffffff40;color:#fff}
+
+/* sheet 2c (light): soft tiles, solid icon circles */
+.csheet .tile,.csheet .tile.blk{background:var(--soft);color:var(--ink)}
+.csheet .tile.gt{background:#e8f8ee;color:var(--ink)}
+.csheet .tile .ti{background:var(--tint);color:var(--greend)}
+.csheet .tile .ti.blkic{background:#1d1d1f;color:#fff}
+.csheet .tile .ti.w{background:#25d366;color:#fff}
+/* closing: keep the sheet visible while it shrinks into the pill; only the backdrop fades */
+.csheet{transition:background-color .35s ease}
+.csheet.open.closing{animation:none;background-color:#0000}
+
+/* tablet: the sheet is a card anchored above the pill, so the pill can morph into it */
+@media(min-width:760px){
+  .csheet .sheet{max-width:420px;margin:0 16px 24px auto;border-radius:24px}
+  .csheet .sheet-x{align-self:flex-end;margin-right:calc(16px + min(420px, 100vw - 32px) / 2 - 22px)}
+}
+
+/* menu sheet: slide down on close; only the backdrop fades */
+#drawer{transition:background-color .3s ease}
+#drawer.open.closing{animation:none;background-color:#0000}
+@keyframes menuOut{to{translate:0 100%}}
+@keyframes fadeOut{to{opacity:0}}
+#drawer.open.closing .sheet{animation:menuOut .3s cubic-bezier(.4,0,1,1) both}
+#drawer.open.closing .sheet-x{animation:fadeOut .15s ease both;opacity:1}
+
+/* mobile tab switch: page slides in the direction of the tab, the active pill glides to the new tab */
+@media(max-width:759px){
+  @view-transition{navigation:auto}
+  .tabbar{view-transition-name:tabbar}.nav{view-transition-name:nav}.fab{view-transition-name:fab}
+  .tabbar .tab{position:relative;isolation:isolate}
+  .tabbar .tab[aria-current=page]::before{content:"";position:absolute;z-index:-1;top:3px;left:50%;width:56px;height:32px;margin-left:-28px;border-radius:99px;background:var(--tint);view-transition-name:tab-ind}
+  ::view-transition-group(tab-ind){animation-duration:.38s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+  ::view-transition-old(root){animation:vtOut .2s ease both}
+  ::view-transition-new(root){animation:vtIn .32s cubic-bezier(.2,.8,.2,1) both}
+  .vt-fwd::view-transition-old(root){animation-name:vtOutL}.vt-fwd::view-transition-new(root){animation-name:vtInR}
+  .vt-back::view-transition-old(root){animation-name:vtOutR}.vt-back::view-transition-new(root){animation-name:vtInL}
+}
+@keyframes vtOut{to{opacity:0}}@keyframes vtIn{from{opacity:0}}
+@keyframes vtOutL{to{opacity:0;transform:translateX(-28px)}}@keyframes vtInR{from{opacity:0;transform:translateX(28px)}}
+@keyframes vtOutR{to{opacity:0;transform:translateX(28px)}}@keyframes vtInL{from{opacity:0;transform:translateX(-28px)}}
+@media(prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
