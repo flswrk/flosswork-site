@@ -69,8 +69,8 @@ window.FW = {
 
   /* Aligner before/after cases. Leave before/after empty until you have photos. */
   cases: [
-    { title: "Crowding correction", months: 14, before: "", after: "" },
-    { title: "Spacing & alignment", months: 10, before: "", after: "" },
+    { title: "Crowding correction", months: 14, before: "images/case-1-before.jpg", after: "images/case-1-after.jpg" },
+    { title: "Spacing & alignment", months: 10, before: "images/case-2-before.jpg", after: "images/case-2-after.jpg" },
     { title: "Overbite correction", months: 18, before: "", after: "" },
     { title: "Smile design",        months: 12, before: "", after: "" }
   ],
