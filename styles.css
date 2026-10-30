@@ -795,3 +795,59 @@ select.in option{color:#111;background:#fff}
   .faqban .btn{flex:none}
 }
 @media(min-width:1024px){.faqban{padding:8px 0 56px}.faqban .in{padding:32px 40px}.faqban h2{font-size:26px}.faqban p{font-size:16px}}
+/* footer logo: smaller on phones */
+@media(max-width:759px){.foot-mark{width:110px}.foot .brand em{margin-top:14px}}
+/* treatment tile and service card titles in semibold */
+.t h3,.card h3{font-weight:600}
+/* mobile: the Inside gallery scrolls only as far as its photos; the tool chips wrap and stay in view */
+@media(max-width:759px){
+  .gal>.tools{grid-column:1/-1;position:sticky;left:var(--gut);width:calc(100vw - 2 * var(--gut));max-width:100%;flex-wrap:wrap;padding-right:0}
+}
+/* mobile: tool pills sit in two rows under the photos and scroll with them */
+@media(max-width:759px){
+  .gal>.tools{position:static;width:auto;max-width:none;grid-column:1/-1;flex-wrap:wrap;padding-right:0}
+}
+
+/* no leftover outline on the floating button or tab bar after a tap; keyboard users still get a clear ring */
+.fab-btn:focus,.tabbar .tab:focus{outline:none}
+.fab-btn:focus-visible{outline:2px solid #0071e3;outline-offset:3px}
+.tabbar .tab:focus-visible{outline:2px solid #0071e3;outline-offset:-4px;border-radius:12px}
+/* booking form: Send on WhatsApp / Open WhatsApp in the accent blue */
+.btn.btn--wa.btn--wa.send{background:#0071e3;color:#fff}
+.btn.btn--wa.btn--wa.send:hover{background:#0077ed;opacity:1}
+/* Talk to us sheet: Call card light blue with a blue icon */
+.csheet .tile[data-call]{background:#e6f1fd;color:var(--ink)}
+.csheet .tile[data-call] .ti,.csheet .tile[data-call] .ti.blkic{background:#0071e3;color:#fff}
+/* Talk to us sheet: Call and WhatsApp as solid pills side by side (icon beside a centred label) */
+.csheet .tiles2{gap:10px}
+.csheet .tile,.csheet .tile[data-call],.csheet .tile.gt{flex-direction:row;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:8px 14px;border-radius:999px;color:#fff}
+.csheet .tile[data-call]{background:#0071e3}
+.csheet .tile.gt{background:#25d366}
+.csheet .tile .ti,.csheet .tile[data-call] .ti,.csheet .tile .ti.blkic,.csheet .tile .ti.w{width:auto;height:auto;background:none;border-radius:0;color:#fff;display:inline-flex}
+.csheet .tile .ti svg{width:20px;height:20px}
+.csheet .tile b{font-size:16px;font-weight:600}
+.csheet .tile:active{transform:scale(.97)}
+/* WhatsApp pill: the WhatsApp green used elsewhere on the site */
+.csheet .tile.gt{background:#25d366}
+
+/* split pill: floating contact button that opens sideways into Call | WhatsApp */
+.fabx{position:fixed;right:16px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:54}
+.fabx-pill{display:flex;align-items:stretch;height:56px;width:104px;border-radius:28px;background:#1d1d1f;color:#fff;overflow:hidden;box-shadow:0 8px 22px #0003;transition:width .5s cubic-bezier(.2,.8,.2,1),box-shadow .3s ease;cursor:pointer}
+.fabx.open .fabx-pill{width:min(280px,calc(100vw - 32px));cursor:default;box-shadow:0 10px 28px #0000004d}
+.fabx .seg{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;color:#fff;text-decoration:none;font:600 15px/1 Inter,system-ui,sans-serif;white-space:nowrap;background:transparent;transition:background-color .3s ease;-webkit-tap-highlight-color:transparent}
+.fabx .seg .ic{width:22px;height:22px;flex:none}
+.fabx .seg.wa .ic{color:#25d366;transition:color .3s ease}
+.fabx.open .seg.call{background:#0071e3}
+.fabx.open .seg.wa{background:#25d366}
+.fabx.open .seg.wa .ic{color:#fff}
+.fabx .lbl{max-width:0;opacity:0;overflow:hidden;transition:max-width .5s cubic-bezier(.2,.8,.2,1),opacity .2s ease}
+.fabx.open .lbl{max-width:96px;opacity:1;transition:max-width .5s cubic-bezier(.2,.8,.2,1),opacity .3s ease .15s}
+.fabx .seg:active{filter:brightness(.92)}
+.fabx .seg:focus{outline:none}.fabx .seg:focus-visible{outline:2px solid #fff;outline-offset:-5px;border-radius:28px}
+@media(min-width:760px){.fabx{bottom:24px}}
+@media(min-width:1024px){.fabx{display:none}}
+@media(prefers-reduced-motion:reduce){.fabx-pill,.fabx .lbl,.fabx .seg{transition:none}}
+/* footer: clinic hours get their own "Timings" heading, a line below the addresses */
+.foot b.tm{margin-top:1.6em}
+/* contact page: no double padding between "Find us" and the white section that follows it */
+section[aria-labelledby="vi-h"]{padding-bottom:0}

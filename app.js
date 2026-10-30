@@ -325,49 +325,24 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
 
-/* floating contact button: the pill morphs into the bottom sheet */
+/* browser-only additions (skipped when build-site.js loads this file in Node) */
+if (typeof document !== 'undefined') {
+/* floating contact button: a split pill that opens in place into Call | WhatsApp */
 (function () {
-  function sheet() { return document.getElementById('csheet'); }
-  function calm() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
-  var live = [];
-  function stop() { live.forEach(function (x) { x.cancel(); }); live = []; }
-  /* play the morph forwards (open) or backwards (close) */
-  function morph(reverse) {
-    var s = sheet().querySelector('.sheet'), p = document.getElementById('fab-btn').getBoundingClientRect(), r = s.getBoundingClientRect();
-    var inside = p.left >= r.left - 1 && p.right <= r.right + 1 && p.top >= r.top - 1 && p.bottom <= r.bottom + 1, rad = getComputedStyle(s).borderRadius;
-    var ease = 'cubic-bezier(.65,0,.2,1)', dur = reverse ? 380 : 500, dir = reverse ? 'reverse' : 'normal';
-    stop();
-    if (inside) {
-      var from = 'inset(' + (p.top - r.top) + 'px ' + (r.right - p.right) + 'px ' + (r.bottom - p.bottom) + 'px ' + (p.left - r.left) + 'px round ' + (p.height / 2) + 'px)';
-      live.push(s.animate([{ clipPath: from, backgroundColor: '#111' }, { clipPath: 'inset(0px 0px 0px 0px round ' + rad + ')', backgroundColor: '#fff' }], { duration: dur, easing: ease, direction: dir, fill: 'both' }));
-    } else {
-      s.style.transformOrigin = (p.left + p.width / 2 - r.left) + 'px ' + (p.top + p.height / 2 - r.top) + 'px';
-      live.push(s.animate([{ opacity: 0, scale: .2 }, { opacity: 1, scale: 1 }], { duration: dur, easing: ease, direction: dir, fill: 'both' }));
-    }
-    Array.prototype.forEach.call(s.children, function (k) {
-      live.push(k.animate([{ opacity: 0 }, { opacity: 1 }], reverse ? { duration: 140, direction: 'reverse', fill: 'both' } : { duration: 300, delay: 250, easing: 'ease', fill: 'backwards' }));
-    });
-  }
-  function open() {
-    var s = sheet(); if (!s) return;
-    s.classList.remove('closing'); s.classList.add('open'); document.body.style.overflow = 'hidden';
-    if (!calm()) morph(false);
-    document.getElementById('close-csheet').focus();
-  }
-  function close(focusBack) {
-    var s = sheet(); if (!s || !s.classList.contains('open')) return;
-    document.body.style.overflow = '';
-    var done = function () { stop(); s.classList.remove('open', 'closing'); };
-    if (calm()) done(); else { s.classList.add('closing'); morph(true); setTimeout(done, 390); }
-    if (focusBack === true) document.getElementById('fab-btn').focus();
-  }
+  var box = document.getElementById('fab'); if (!box) return;
+  var pill = box.querySelector('.fabx-pill'), timer;
+  function isOpen() { return box.classList.contains('open'); }
+  function set(v) { box.classList.toggle('open', v); box.setAttribute('aria-label', v ? 'Call or WhatsApp' : 'Contact us'); }
   document.addEventListener('click', function (e) {
-    var s = sheet(); if (!s) return;
-    if (e.target.closest('#fab-btn')) { open(); return; }
-    if (e.target === s || e.target.closest('#close-csheet')) { close(true); return; }
-    if (e.target.closest('#csheet a')) close();
-  });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(true); });
+    if (pill.contains(e.target)) {
+      if (!isOpen()) { e.preventDefault(); e.stopPropagation(); set(true); return; }
+      clearTimeout(timer); timer = setTimeout(function () { set(false); }, 350); return;
+    }
+    if (isOpen()) set(false);
+  }, true);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) { set(false); pill.querySelector('.seg').focus(); } });
+  var y = window.scrollY;
+  window.addEventListener('scroll', function () { if (isOpen() && Math.abs(window.scrollY - y) > 40) set(false); y = window.scrollY; }, { passive: true });
 })();
 
 /* bottom bar: slide the indicator to the tapped tab, then open the page */
@@ -382,3 +357,4 @@
     setTimeout(function () { location.href = a.href; }, 260);
   });
 })();
+}

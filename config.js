@@ -99,6 +99,9 @@ window.FW = {
     { id: "sleep", title: "Sleep & comfort", lead: "Treatment for snoring and jaw problems.", items: [
       { id: "snoring", name: "Anti-snoring devices", desc: "Your doctor diagnoses, scans, makes and fits the device, then follows up with you.", img: "svc-snoring.jpg" },
       { id: "nightguard", name: "Night guard", desc: "A custom-fitted guard that protects your teeth from grinding and clenching while you sleep.", img: "svc-night-guard.jpg" }
+    ]},
+    { id: "touches", title: "Finishing touches", lead: "Small details that make your smile your own.", items: [
+      { id: "toothjewel", name: "Tooth jewel", desc: "A small gem fixed to the surface of a tooth for a subtle sparkle, placed by your doctor.", img: "svc-tooth-jewel.jpg" }
     ]}
   ],
   moreTreatments: ["Wisdom tooth extraction", "Dental veneers", "Night guards", "TMJ treatment", "Fluoride treatment", "Oral cancer screening", "Sports mouthguards", "Sensitive teeth treatment", "Full mouth rehabilitation", "Kids dentistry", "Tooth diamond", "Others"],
