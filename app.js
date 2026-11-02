@@ -26,7 +26,7 @@
       trust: function () {
         return FW.trust.map(function (t) {
           return t.rating
-            ? '<div class="rate"><b><span data-rating>' + esc(FW.clinic.rating) + '</span><i aria-hidden="true">★</i></b><span><span data-reviews>' + esc(FW.clinic.reviewCount) + '</span>+ Google reviews</span></div>'
+            ? '<div class="rate"><b><span data-rating>' + esc(FW.clinic.rating) + '</span><i aria-hidden="true">★</i></b><span><span data-reviews>' + esc(FW.clinic.reviewCount) + '</span>+ reviews</span></div>'
             : '<div><b>' + esc(t.value) + '</b><span>' + esc(t.label) + '</span></div>';
         }).join('');
       },
@@ -345,16 +345,14 @@ if (typeof document !== 'undefined') {
   window.addEventListener('scroll', function () { if (isOpen() && Math.abs(window.scrollY - y) > 40) set(false); y = window.scrollY; }, { passive: true });
 })();
 
-/* bottom bar: slide the indicator to the tapped tab, then open the page */
+/* bottom bar: move the indicator the instant a tab is touched, open the page on click with no delay */
 (function () {
-  document.addEventListener('click', function (e) {
+  function move(e) {
     var a = e.target.closest && e.target.closest('.tabbar a.tab');
-    if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
-    var bar = a.closest('.tabbar'), tabs = bar.querySelectorAll('.tab'), i = Array.prototype.indexOf.call(tabs, a);
-    if (a.getAttribute('aria-current') === 'page' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    e.preventDefault();
-    bar.removeAttribute('data-none'); bar.style.setProperty('--i', i);
-    setTimeout(function () { location.href = a.href; }, 260);
-  });
+    if (!a || e.button) return;
+    var bar = a.closest('.tabbar'), tabs = bar.querySelectorAll('.tab');
+    bar.removeAttribute('data-none'); bar.style.setProperty('--i', Array.prototype.indexOf.call(tabs, a));
+  }
+  document.addEventListener('pointerdown', move, { passive: true });
 })();
 }
