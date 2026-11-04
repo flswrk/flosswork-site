@@ -52,7 +52,7 @@
 
   /* ---------- analytics: GTM (preferred) or direct GA4. Everything below pushes to dataLayer. ---------- */
   var dl = window.dataLayer = window.dataLayer || [];
-  var track = function (e, d) { dl.push(Object.assign({ event: e }, d || {})); };
+  var track = function (e, d) { dl.push(Object.assign({ event: e }, d || {})); if (window.gtag && !(FW.analytics && FW.analytics.gtmId)) window.gtag('event', e, d || {}); };
   /* GA4 recommended conversion event; mark generate_lead as a key event in GA4. */
   var lead = function (method, d) { track('generate_lead', Object.assign({ method: method, page_path: location.pathname }, d || {})); };
   (function loadAnalytics(a) {

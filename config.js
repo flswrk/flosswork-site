@@ -36,7 +36,7 @@ window.FW = {
 
   /* Analytics. Prefer gtmId (configure the GA4 tag inside Tag Manager). ga4Id loads gtag.js directly
      and is used only when gtmId is empty. Leave both empty to load nothing. */
-  analytics: { gtmId: "", ga4Id: "" },
+  analytics: { gtmId: "", ga4Id: "G-YFY4V84RYR" },
 
   /* Options in "Plan your visit" and the booking form.
      key: stable id; label: dropdown text; pill: short label;
