@@ -11,7 +11,7 @@ window.FW = {
     whatsapp: "918354088822",
     email: "helloflosswork@gmail.com",
     hoursLong: "Mon–Sat 10am–8pm · Sun 10am–2pm",
-    googleReviews: "https://share.google/SbuT7Ec2s7Q5kgoFc",
+    googleReviews: "https://share.google/FxXZNT7AcuzzEOvvb",
     instagram: "https://www.instagram.com/helloflosswork",
     facebook: "https://www.facebook.com/share/1aPEa3Czvx/",
     maps: "https://maps.google.com/?q=Flosswork+Dental+Clinic+Choubey+Colony+Raipur",
@@ -54,10 +54,10 @@ window.FW = {
 
   /* Four treatment tiles on the homepage (aligners have their own feature band). */
   tiles: [
-    { key: "cleaning",  icon: "✧", name: "Teeth cleaning",       blurb: "Scaling and polishing by your doctor, with a check-up.", href: "cleaning.html" },
-    { key: "implants",  icon: "◇", name: "Dental implants",      blurb: "Natural-looking, long-lasting replacement for missing teeth.", href: "services.html#implants" },
-    { key: "whitening", icon: "✦", name: "Teeth whitening",      blurb: "Professional whitening in clinic.", href: "services.html#whitening" },
-    { key: "snoring",   icon: "☾", name: "Anti-snoring devices", blurb: "Diagnosed, scanned, delivered and followed up by your doctor.", href: "services.html#snoring" }
+    { key: "cleaning",  icon: "✧", name: "Teeth cleaning",       blurb: "Scaling and polishing by your doctor, with a check-up.", href: "/cleaning" },
+    { key: "implants",  icon: "◇", name: "Dental implants",      blurb: "Natural-looking, long-lasting replacement for missing teeth.", href: "/services#implants" },
+    { key: "whitening", icon: "✦", name: "Teeth whitening",      blurb: "Professional whitening in clinic.", href: "/services#whitening" },
+    { key: "snoring",   icon: "☾", name: "Anti-snoring devices", blurb: "Diagnosed, scanned, delivered and followed up by your doctor.", href: "/services#snoring" }
   ],
 
   /* Doctors: active:false hides a card. Add a new object and a card appears everywhere.
@@ -79,7 +79,7 @@ window.FW = {
   /* Services page: groups of cards, then a chip list. img: file in images/ ("" shows an icon tile). */
   services: [
     { id: "love", title: "Love your smile", lead: "Straighten, reshape and brighten.", items: [
-      { id: "aligners", name: "Clear aligners", desc: "Nearly invisible, removable trays planned to sub-millimetre precision.", img: "svc-aligners.jpg", href: "aligners.html" },
+      { id: "aligners", name: "Clear aligners", desc: "Nearly invisible, removable trays planned to sub-millimetre precision.", img: "svc-aligners.jpg", href: "/aligners" },
       { id: "braces", name: "Braces", desc: "Metal and ceramic braces to straighten teeth and correct bite problems, planned by your doctor.", img: "svc-braces.jpg" },
       { id: "smiledesign", name: "Smile design", desc: "Enhance the shape, proportion and appearance of your smile with a personalised plan.", img: "svc-smile-design.jpg" },
       { id: "whitening", name: "Teeth whitening", desc: "Remove stains and brighten your smile safely with professional-grade whitening.", img: "svc-whitening.jpg" }
@@ -91,7 +91,7 @@ window.FW = {
       { id: "crowns", name: "Crowns & bridges", desc: "Restore damaged or missing teeth with durable, natural-looking restorations.", img: "svc-crowns.jpg" }
     ]},
     { id: "protect", title: "Protect your oral health", lead: "Prevention today, fewer problems tomorrow.", items: [
-      { id: "cleaning", name: "Teeth cleaning", desc: "Remove plaque and tartar to keep teeth and gums healthy.", img: "svc-cleaning.jpg", href: "cleaning.html" },
+      { id: "cleaning", name: "Teeth cleaning", desc: "Remove plaque and tartar to keep teeth and gums healthy.", img: "svc-cleaning.jpg", href: "/cleaning" },
       { id: "gums", name: "Gum disease treatment", desc: "Treat bleeding gums, bad breath and gum infections before they cause permanent damage.", img: "svc-gums.jpg" },
       { id: "badbreath", name: "Bad breath treatment", desc: "Find and treat the cause of persistent bad breath, from gum problems to plaque and decay.", img: "svc-bad-breath.jpg" },
       { id: "dentures", name: "Dentures", desc: "Replace multiple missing teeth with comfortable, natural-looking dentures.", img: "svc-dentures.jpg" }

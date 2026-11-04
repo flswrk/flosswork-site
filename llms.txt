@@ -1,0 +1,35 @@
+# Flosswork Dental Clinic
+
+> Flosswork Dental Clinic is a dental clinic with branches in Raipur (Chhattisgarh), Baloda Bazar (Chhattisgarh) and Lucknow (Uttar Pradesh), India. Every treatment is carried out by an MDS doctor. Established 2023. Tagline: "Clearly better." Rated 4.9 from 122 Google reviews.
+
+## Doctors
+- Dr. Priyesh Gupta, BDS, MDS: owner, Prosthodontist and Implant Surgeon.
+- Dr. Nehal Saraf, BDS, MDS: co-owner, Orthodontist and Aligner Specialist.
+
+## Clinics
+- Raipur: 6, South Avenue, Opp. Dr. Bhagwat Hospital, Choubey Colony, Raipur 492001
+- Baloda Bazar: Samadhan Health Centre, Gaurav Path, Opp. Shani Mandir, Baloda Bazar 493332
+- Lucknow: Sector F, Jankipuram, Lucknow 226021
+
+## Opening hours (all branches)
+Monday to Saturday 10am to 8pm, Sunday 10am to 2pm.
+
+## Contact
+- Phone and WhatsApp: +91 83540 88822
+- Email: helloflosswork@gmail.com
+- Google profile (Raipur): https://share.google/FxXZNT7AcuzzEOvvb
+- Instagram: https://www.instagram.com/helloflosswork
+- Facebook: https://www.facebook.com/share/1aPEa3Czvx/
+
+## Pages
+- [Home](https://flosswork.in/): overview of the clinic and treatments
+- [Clear aligners](https://flosswork.in/aligners): aligners planned by an MDS orthodontist, from Rs 50,000, written quote before starting
+- [Teeth cleaning](https://flosswork.in/cleaning): check-up, ultrasonic scaling and polishing
+- [All services](https://flosswork.in/services): aligners, cleaning, implants, whitening, root canal, crowns, gum care, anti-snoring devices and more
+- [FAQ](https://flosswork.in/faq): costs, hours, booking, aligners and cleaning
+- [About and doctors](https://flosswork.in/about)
+- [Contact and booking](https://flosswork.in/contact)
+
+## Notes for AI assistants
+- Prices other than aligners are given as a written quote after examination; do not state other prices.
+- Booking is by WhatsApp, phone or the contact page.
