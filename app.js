@@ -20,7 +20,7 @@
         return FW.tiles.map(function (t) {
           var need = needBy(t.key);
           return '<article class="t"><div><div class="ic" aria-hidden="true">' + t.icon + '</div><h3 style="margin-top:18px">' + esc(t.name) + '</h3><small>' + esc(t.blurb) + '</small></div>' +
-            '<div class="pr"><button type="button" data-need="' + esc(t.key) + '">' + (need.price ? 'From ' + inr(need.price) : 'Get a quote') + ' →</button><a href="' + esc(t.href) + '">Learn more</a></div></article>';
+            '<div class="pr"><button type="button" data-need="' + esc(t.key) + '">' + (need.price ? 'From ' + inr(need.price) : 'Get a quote') + ' →</button><a href="' + esc(t.href) + '">Learn more<span class="sr"> about ' + esc(t.name.toLowerCase()) + '</span></a></div></article>';
         }).join('');
       },
       trust: function () {
@@ -37,7 +37,7 @@
               var im = s.img ? '<div class="im"><img src="images/' + esc(s.img) + '" width="1200" height="896" alt="' + esc(s.name) + '" loading="lazy" decoding="async"></div>' : '<div class="im ph"><span>Image to add</span></div>';
               var key = needBy(s.id).key === s.id ? s.id : 'other';
               return '<article class="card" id="' + s.id + '">' + im + '<div class="tx"><h3>' + esc(s.name) + '</h3><p>' + esc(s.desc) + '</p><div class="act"><button type="button" data-need="' + key + '" data-item="' + esc(s.name) + '">Get a quote</button>' +
-                (s.href ? '<a href="' + esc(s.href) + '">Learn more</a>' : '') + '</div></div></article>';
+                (s.href ? '<a href="' + esc(s.href) + '">Learn more<span class="sr"> about ' + esc(s.name.toLowerCase()) + '</span></a>' : '') + '</div></div></article>';
             }).join('') + '</div></div>';
         }).join('');
       }
@@ -55,12 +55,22 @@
   var track = function (e, d) { dl.push(Object.assign({ event: e }, d || {})); if (window.gtag && !(FW.analytics && FW.analytics.gtmId)) window.gtag('event', e, d || {}); };
   /* GA4 recommended conversion event; mark generate_lead as a key event in GA4. */
   var lead = function (method, d) { track('generate_lead', Object.assign({ method: method, page_path: location.pathname }, d || {})); };
+  /* Analytics loads after the page has painted (idle, or the first touch/scroll/key), so it never competes with the hero image.
+     Events fired before it loads are queued in dataLayer and sent when it arrives. */
   (function loadAnalytics(a) {
     var id = a && (a.gtmId || a.ga4Id); if (!id) return;
-    var s = document.createElement('script'); s.async = true;
-    if (a.gtmId) { dl.push({ 'gtm.start': Date.now(), event: 'gtm.js' }); s.src = 'https://www.googletagmanager.com/gtm.js?id=' + a.gtmId; }
-    else { window.gtag = function () { dl.push(arguments); }; window.gtag('js', new Date()); window.gtag('config', a.ga4Id); s.src = 'https://www.googletagmanager.com/gtag/js?id=' + a.ga4Id; }
-    document.head.appendChild(s);
+    if (a.gtmId) dl.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
+    else { window.gtag = function () { dl.push(arguments); }; window.gtag('js', new Date()); window.gtag('config', a.ga4Id); }
+    var done = false;
+    function go() {
+      if (done) return; done = true;
+      var s = document.createElement('script'); s.async = true;
+      s.src = a.gtmId ? 'https://www.googletagmanager.com/gtm.js?id=' + a.gtmId : 'https://www.googletagmanager.com/gtag/js?id=' + a.ga4Id;
+      document.head.appendChild(s);
+    }
+    function later() { if (window.requestIdleCallback) requestIdleCallback(go, { timeout: 4000 }); else setTimeout(go, 3000); }
+    if (document.readyState === 'complete') later(); else addEventListener('load', later);
+    ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (e) { addEventListener(e, go, { once: true, passive: true }); });
   })(FW.analytics);
 
   var st;
