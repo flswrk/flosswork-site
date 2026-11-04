@@ -345,14 +345,27 @@ if (typeof document !== 'undefined') {
   window.addEventListener('scroll', function () { if (isOpen() && Math.abs(window.scrollY - y) > 40) set(false); y = window.scrollY; }, { passive: true });
 })();
 
-/* bottom bar: move the indicator the instant a tab is touched, open the page on click with no delay */
+/* bottom bar: on touch, move the indicator and the active tab colour immediately; the page opens on click */
 (function () {
-  function move(e) {
-    var a = e.target.closest && e.target.closest('.tabbar a.tab');
+  var prev = null;
+  function tabOf(e) { return e.target.closest && e.target.closest('.tabbar a.tab'); }
+  function set(a, on) { if (on) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); }
+  document.addEventListener('pointerdown', function (e) {
+    var a = tabOf(e);
     if (!a || e.button) return;
     var bar = a.closest('.tabbar'), tabs = bar.querySelectorAll('.tab');
+    prev = bar.querySelector('.tab[aria-current=page]');
+    if (prev === a) return;
+    if (prev) set(prev, false);
+    set(a, true);
     bar.removeAttribute('data-none'); bar.style.setProperty('--i', Array.prototype.indexOf.call(tabs, a));
-  }
-  document.addEventListener('pointerdown', move, { passive: true });
+  }, { passive: true });
+  document.addEventListener('pointercancel', function (e) {
+    var a = tabOf(e);
+    if (!a || !prev || prev === a) return;
+    var bar = a.closest('.tabbar'), tabs = bar.querySelectorAll('.tab');
+    set(a, false); set(prev, true);
+    bar.style.setProperty('--i', Array.prototype.indexOf.call(tabs, prev));
+  });
 })();
 }
