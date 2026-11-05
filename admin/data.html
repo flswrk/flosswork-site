@@ -27,6 +27,16 @@ summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-item
 summary::-webkit-details-marker{display:none}
 summary::after{content:"+";margin-left:auto;color:var(--mute);font-weight:400;font-size:20px;line-height:1}
 .tools{display:flex;gap:6px;flex-wrap:wrap}
+body.locked header.top,body.locked main{display:none}
+.gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:none;align-items:center;justify-content:center;padding:20px}
+body.locked .gate{display:flex}
+.gate form{width:100%;max-width:320px;display:grid;gap:12px;text-align:center}
+.gate h1{font-size:18px}
+.gate p{color:var(--mute);font-size:13px}
+.gate input{font:600 24px/1 ui-monospace,Menlo,monospace;letter-spacing:.4em;text-align:center;padding:14px 10px;border:1px solid var(--line);border-radius:14px;background:var(--soft);color:var(--ink);width:100%}
+.gate input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.gate button{padding:12px;font-size:15px}
+.gate .err{color:var(--err);min-height:1.3em;font-size:13px}
 .sws{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
 .swc{border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:11.5px;line-height:1.35}
 .swc i{display:block;height:46px}.swc span{display:block;padding:5px 8px}.swc b{display:block;font-weight:600}
@@ -71,11 +81,18 @@ h3:first-child{margin-top:0}
 @media (max-width:640px){summary{font-size:15px}.bar .meta{margin-left:0;width:100%}}
 </style>
 </head>
-<body>
+<body class="locked">
+<div class="gate"><form id="gate-form" autocomplete="off">
+  <h1>Flosswork · Site data</h1>
+  <p>Enter the PIN to continue.</p>
+  <input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="12" aria-label="PIN" required>
+  <button type="submit">Unlock</button>
+  <div class="err" id="gate-err" role="alert"></div>
+</form></div>
 <header class="top">
   <div class="bar">
     <h1>Flosswork · Site data</h1>
-    <span class="tools"><button id="reload" type="button">Reload from live site</button></span>
+    <span class="tools"><button id="reload" type="button">Reload from live site</button><button id="lock" type="button">Lock</button></span>
     <span class="meta" id="meta">Loading…</span>
   </div>
   <nav class="jump" id="jump"></nav>
@@ -177,12 +194,19 @@ h3:first-child{margin-top:0}
   }
   function src(files) { return h('p', { class: 'src' }, ['Read live from ', files.map(function (f, i) { return [i ? ', ' : '', h('code', null, f)]; })]); }
 
+  function activeNow() {
+    var F = X.fest, today = todayIST(), live = F && F.live, pairs = [];
+    var next = F && F.rows ? F.rows.filter(function (r) { return r.f.from > today; }).sort(function (a, b) { return a.f.from < b.f.from ? -1 : 1; })[0] : null;
+    pairs.push(['Active theme', live ? [live.label || live.id, ' ', pill('festival', 'info'), ' until ' + fmtDate(live.to)] : ['Original theme ', pill('everyday', 'ok'), F && F.sch && !F.sch.enabled ? ' (festival themes switched off)' : '']]);
+    pairs.push(['Next theme change', live ? 'Back to the original theme after ' + fmtDate(live.to) : next ? (next.f.label || next.f.id) + ' starts ' + fmtDate(next.f.from) + ' (' + next.status + ')' : pill('nothing scheduled', 'mute')]);
+    return h('div', { class: 'kv' }, pairs.map(function (p) { return h('div', null, [h('b', null, p[0]), h('span', null, p[1])]); }));
+  }
   function renderAttention() {
     var order = { err: 0, warn: 1, info: 2, ok: 3 };
     var list = issues.slice().sort(function (a, b) { return order[a.level] - order[b.level]; });
     var counts = { err: 0, warn: 0 };
     issues.forEach(function (i) { if (counts[i.level] !== undefined) counts[i.level]++; });
-    var nodes = [h('p', { class: 'note' }, 'Checks run every time this page loads. Errors and warnings need a decision; info is by design or optional.')];
+    var nodes = [h('h3', null, 'Active now'), activeNow(), h('h3', null, 'To review'), h('p', { class: 'note' }, 'Checks run every time this page loads. Errors and warnings need a decision; info is by design or optional.')];
     if (!list.length) nodes.push(h('div', { class: 'issue ok' }, [h('b', null, 'ok'), 'Nothing to flag.']));
     else nodes.push(h('div', { class: 'issues' }, list.map(function (i) { return h('div', { class: 'issue ' + i.level }, [h('b', null, i.level), h('span', null, [h('strong', null, i.area + ': '), i.msg])]); })));
     var badge = counts.err + counts.warn;
@@ -502,29 +526,49 @@ h3:first-child{margin-top:0}
 
   /* ---------- copy, download, print, change tracking, page weight ---------- */
   var last = null;
+  /* Size limits. Sources: web.dev performance budgets (170 KB of HTML/CSS/JS), HTTP Archive Web Almanac 2024
+     (median mobile page 2,311 KB; 75th percentile about 3.8 MB; largest image per page: median 135 KB, 75th percentile 404 KB). */
+  var IMG_WARN = 200 * 1024, IMG_ERR = 400 * 1024, PAGE_WARN = 2311 * 1024, PAGE_ERR = 3766 * 1024, CODE_WARN = 170 * 1024;
+  /* The image a phone most likely downloads: the 800px WebP when a <picture> offers one, else the default file. */
+  function servedUrl(im, base) {
+    var pic = im.parentNode && im.parentNode.tagName === 'PICTURE' ? im.parentNode : null, best = null;
+    if (pic) {
+      var s = pic.querySelector('source[type="image/webp"][srcset]');
+      if (s) {
+        var c = s.getAttribute('srcset').split(',').map(function (x) { var q = x.trim().split(/\s+/); return { u: q[0], w: parseInt(q[1], 10) || 0 }; });
+        best = c.filter(function (x) { return x.w === 800; })[0] || c.sort(function (a, b) { return b.w - a.w; })[0];
+      }
+    }
+    return { url: resolveAsset(best ? best.u : im.getAttribute('src'), base), webp: !!best };
+  }
   function collectPerf() {
     var by = {}; imgs.forEach(function (i) { by[i.url] = i; });
     var fixed = (extra.cssBytes || 0) + new Blob([extra.appjs || '']).size + (extra.cfgBytes || 0), rows = [];
     last.smRows.forEach(function (r) {
       var p = pages[r.path]; if (!p || !p.ok) return;
-      var seen = {}, n = 0, bytes = 0, big = null;
+      var seen = {}, n = 0, bytes = 0, big = null, nw = 0;
       [].forEach.call(p.doc.querySelectorAll('img[src]'), function (im) {
-        var u = resolveAsset(im.getAttribute('src'), p.url); if (!u || seen[u]) return; seen[u] = 1;
-        var e = by[u]; if (!e || !e.size) return; n++; bytes += e.size; if (!big || e.size > big.size) big = e;
+        var sv = servedUrl(im, p.url), u = sv.url; if (!u || seen[u]) return; seen[u] = 1;
+        var e = by[u]; if (!e || !e.size) return; n++; if (sv.webp) nw++; bytes += e.size; if (!big || e.size > big.size) big = e;
       });
       var html = new Blob([p.html]).size;
-      rows.push({ page: pgName(r.path), html: html, assets: fixed, n: n, imgBytes: bytes, total: html + fixed + bytes, big: big ? { name: big.name, size: big.size } : null });
+      rows.push({ page: pgName(r.path), html: html, assets: fixed, n: n, nw: nw, imgBytes: bytes, total: html + fixed + bytes, code: html + fixed, big: big ? { name: big.name, size: big.size } : null });
     });
-    rows.forEach(function (r) { if (r.total > 3145728) say('warn', 'Page weight ' + r.page, 'About ' + kb(r.total) + ' on a first visit (upper estimate: browsers usually load smaller WebP versions).'); });
+    rows.forEach(function (r) {
+      if (r.total > PAGE_ERR) say('err', 'Page weight ' + r.page, 'About ' + kb(r.total) + ' on a first visit, heavier than about 3 in 4 mobile pages (limit ' + kb(PAGE_ERR) + ').');
+      else if (r.total > PAGE_WARN) say('warn', 'Page weight ' + r.page, 'About ' + kb(r.total) + ' on a first visit, above the typical mobile page (' + kb(PAGE_WARN) + ').');
+      if (r.code > CODE_WARN) say('warn', 'Page weight ' + r.page, 'HTML + CSS + JS is ' + kb(r.code) + ' uncompressed, over the 170 KB budget web.dev suggests for compressed code.');
+      if (r.big && r.n && r.nw < r.n) say('info', 'Page weight ' + r.page, (r.n - r.nw) + ' image(s) have no WebP version in the markup, so phones download the larger JPEG.');
+    });
     return rows;
   }
   function renderPerf() {
     if (!X.perf) return sec('perf', 'Page weight', 'checking…', [h('p', { class: 'loading' }, 'Measuring…')]);
     return sec('perf', 'Page weight', X.perf.length + ' pages', [
       src(['every page, its CSS and JS, and the images it shows']),
-      h('p', { class: 'note' }, 'Uncompressed size of a first visit. Images are counted at each tag’s default file, so this is an upper estimate; browsers usually pick the smaller WebP versions. Fonts and analytics are not counted.'),
+      h('p', { class: 'note' }, 'Uncompressed size of a first visit. Each image is counted as the 800px WebP when the page offers one (what most phones download), otherwise the default file. Limits: page warn over ' + kb(PAGE_WARN) + ', error over ' + kb(PAGE_ERR) + '; HTML + CSS + JS warn over ' + kb(CODE_WARN) + '. Fonts and analytics are not counted.'),
       table(['Page', 'HTML', 'CSS + JS + config', 'Images', 'Biggest image', 'Estimated total'], X.perf.map(function (r) {
-        return [r.page, kb(r.html), kb(r.assets), r.n + ' · ' + kb(r.imgBytes), r.big ? r.big.name + ' (' + kb(r.big.size) + ')' : '', [kb(r.total), ' ', r.total > 3145728 ? pill('heavy', 'warn') : pill('ok', 'ok')]];
+        return [r.page, kb(r.html), kb(r.assets), r.n + ' · ' + kb(r.imgBytes), r.big ? r.big.name + ' (' + kb(r.big.size) + ')' : '', [kb(r.total), ' ', r.total > PAGE_ERR ? pill('too heavy', 'err') : r.total > PAGE_WARN ? pill('heavy', 'warn') : pill('ok', 'ok')]];
       }))
     ]);
   }
@@ -544,6 +588,10 @@ h3:first-child{margin-top:0}
   function todayIST() { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date()); }
   function dayDiff(a, b) { return Math.round((Date.parse(b + 'T00:00:00Z') - Date.parse(a + 'T00:00:00Z')) / 864e5); }
   function fmtDate(s) { try { return new Date(s + 'T00:00:00Z').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }); } catch (e) { return s; } }
+  /* Festivals whose date changes every year (lunar or regional calendars). A "movable" field in schedule.json overrides this guess. */
+  var MOVING = /diwali|deepavali|dipavali|dhanteras|bhai.?dooj|holi|eid|ramzan|ramadan|bakri|muharram|dussehra|dasara|dusshera|navratri|durga|ganesh|chaturthi|raksha|rakhi|janmashtami|karwa|chhath|onam|ugadi|gudi|shivratri|buddha|mahavir|guru.?nanak|teej|diwali|pooja|puja/i;
+  function isMovable(f) { if (typeof f.movable === 'boolean') return f.movable; return MOVING.test((f.label || '') + ' ' + (f.id || '')); }
+  function shiftYear(d, n) { var p = d.split('-'); return (+p[0] + n) + '-' + p[1] + '-' + p[2]; }
   function collectFestivals() {
     var sch = extra.fest, F = { sch: sch, rows: [], today: todayIST(), loaderPages: 0, totalPages: 0, synced: null };
     Object.keys(pages).forEach(function (k) { var p = pages[k]; if (!p.ok) return; F.totalPages++; if (p.html.indexOf('<!--fw-festival-->') > -1) F.loaderPages++; });
@@ -558,13 +606,18 @@ h3:first-child{margin-top:0}
     if (!sch.enabled) say('info', 'Festival themes', 'The kill switch is on (enabled: false), so no festival theme shows to visitors.');
     var list = (sch.festivals || []), live = null, upcoming = 0;
     list.forEach(function (f) {
-      var st, kind;
+      var st, kind, todo = '';
       if (!f.from || !f.to || f.from > f.to) { st = 'bad dates'; kind = 'err'; say('err', 'Festival themes', (f.label || f.id) + ' has invalid dates (' + f.from + ' to ' + f.to + ').'); }
       else if (F.today < f.from) { var n = dayDiff(F.today, f.from); st = 'starts in ' + n + ' day' + (n === 1 ? '' : 's'); kind = 'info'; upcoming++; }
-      else if (F.today > f.to) { st = 'ended'; kind = 'mute'; }
+      else if (F.today > f.to) {
+        var ago = dayDiff(f.to, F.today), mv = isMovable(f), nm = f.label || f.id;
+        st = 'ended ' + ago + ' day' + (ago === 1 ? '' : 's') + ' ago'; kind = mv ? 'warn' : 'info';
+        todo = mv ? 'Update the dates: this festival moves every year' : 'Same dates next year: ' + fmtDate(shiftYear(f.from, 1)) + ' to ' + fmtDate(shiftYear(f.to, 1));
+        say(mv ? 'warn' : 'info', 'Festival themes', nm + ' ended ' + ago + ' day' + (ago === 1 ? '' : 's') + ' ago. ' + (mv ? 'Its date changes every year: set next year’s dates in festival-themes/schedule.json (or remove it), then run node tools/build-site.js and upload.' : 'Its date repeats: copy the entry to ' + fmtDate(shiftYear(f.from, 1)) + ' to ' + fmtDate(shiftYear(f.to, 1)) + ', rebuild and upload.'));
+      }
       else { st = sch.enabled ? 'LIVE now' : 'in window, switched off'; kind = sch.enabled ? 'ok' : 'warn'; if (sch.enabled) { live = f; say('info', 'Festival themes', (f.label || f.id) + ' is live on the site now (until ' + fmtDate(f.to) + ').'); } }
       if (!(f.banner && f.banner.text)) say('warn', 'Festival themes', (f.label || f.id) + ' has no banner text.');
-      F.rows.push({ f: f, status: st, kind: kind, days: f.from && f.to && f.from <= f.to ? dayDiff(f.from, f.to) + 1 : null });
+      F.rows.push({ f: f, status: st, kind: kind, todo: todo, moves: isMovable(f), days: f.from && f.to && f.from <= f.to ? dayDiff(f.from, f.to) + 1 : null });
     });
     for (var a = 0; a < list.length; a++) for (var b = a + 1; b < list.length; b++) if (list[a].from <= list[b].to && list[b].from <= list[a].to) say('warn', 'Festival themes', (list[a].label || list[a].id) + ' and ' + (list[b].label || list[b].id) + ' overlap; the later one wins.');
     if (sch.enabled && !live && !upcoming) say('info', 'Festival themes', 'No festival theme is live or scheduled after today. Add next festival to festival-themes/schedule.json.');
@@ -578,8 +631,6 @@ h3:first-child{margin-top:0}
       function one(ext) { return get(new URL('festival-themes/' + id + '.' + ext, BASE).href).then(function (res) { return res.ok ? res.text() : null; }).catch(function () { return null; }); }
       return Promise.all([one('css'), one('js')]).then(function (v) {
         out.css = v[0]; out.js = v[1]; out.cssKb = v[0] === null ? null : new Blob([v[0]]).size; out.jsKb = v[1] === null ? null : new Blob([v[1]]).size;
-        if (v[0] === null) say('err', 'Festival themes', id + '.css is missing in festival-themes/.');
-        if (v[1] === null) say('err', 'Festival themes', id + '.js is missing in festival-themes/.');
         out.tokens = [];
         if (v[0]) { var m = v[0].match(new RegExp('html\\[data-fw-festival="' + id + '"\\]\\s*\\{([^}]*)\\}')); if (m) m[1].replace(/(--[\w-]+)\s*:\s*([^;]+)/g, function (_, k, val) { out.tokens.push({ name: k, value: val.trim() }); }); }
       });
@@ -593,23 +644,46 @@ h3:first-child{margin-top:0}
     return sec('festivals', 'Festival themes', badge, [
       src(['festival-themes/schedule.json', 'festival-themes/<id>.css and .js', 'each page’s built-in schedule']),
       kv([['Kill switch', sch.enabled ? pill('on: themes switch by date', 'ok') : pill('off: no festival theme shows', 'warn')], ['Today (India time)', fmtDate(F.today)],
-        ['Live right now', live ? [pill('LIVE', 'ok'), ' ', live.label || live.id] : pill('none', 'mute')],
+        ['Live right now', live ? [pill('LIVE', 'ok'), ' ', live.label || live.id] : [pill('LIVE', 'ok'), ' Original theme']],
         ['Pages with the loader', F.loaderPages + ' of ' + F.totalPages], ['Pages match schedule.json', F.synced === null ? pill('could not tell', 'warn') : F.synced ? pill('in sync', 'ok') : pill('out of sync: rebuild', 'err')]]),
       h('h3', null, 'Schedule'),
-      F.rows.length ? table(['Festival', 'Id', 'From', 'To', 'Days', 'Status', 'Banner', 'Files', 'Preview'], F.rows.map(function (r) {
+      table(['Festival', 'Id', 'From', 'To', 'Days', 'Dates', 'Status', 'Banner', 'Files', 'Preview'], [[
+        [h('strong', null, 'Original theme'), h('br'), h('span', { style: 'color:var(--mute)' }, 'the everyday look')], h('span', { class: 'mono' }, 'original'), 'always', 'always', '', pill('no dates', 'mute'), 
+        live ? pill('paused during ' + (live.label || live.id), 'mute') : (sch.enabled ? pill('LIVE now', 'ok') : pill('LIVE now (festivals off)', 'ok')),
+        pill('none', 'mute'), ['styles.css ', extra.cssBytes ? kb(extra.cssBytes) : ''], link(new URL('index.html?festival=off', BASE).href, 'Preview')]].concat(F.rows.length ? F.rows.map(function (r) {
         var f = r.f, pv = new URL('index.html?festival=' + encodeURIComponent(f.id), BASE).href;
-        return [f.label || f.id, h('span', { class: 'mono' }, f.id), fmtDate(f.from), fmtDate(f.to), r.days === null ? '' : r.days, pill(r.status, r.kind),
+        return [f.label || f.id, h('span', { class: 'mono' }, f.id), fmtDate(f.from), fmtDate(f.to), r.days === null ? '' : r.days, r.moves ? pill('moves yearly', 'warn') : pill('fixed date', 'ok'),
+          [pill(r.status, r.kind), r.todo ? [h('br'), h('span', { style: 'font-size:12px;color:var(--mute)' }, r.todo)] : ''],
           [(f.banner || {}).text || pill('none', 'warn'), (f.banner || {}).more ? [h('br'), h('span', { style: 'color:var(--mute)' }, f.banner.more)] : ''],
-          r.cssKb === undefined ? 'checking…' : [r.cssKb === null ? pill('css missing', 'err') : 'css ' + kb(r.cssKb), h('br'), r.jsKb === null ? pill('js missing', 'err') : 'js ' + kb(r.jsKb)],
+          r.cssKb === undefined ? 'checking…' : [r.cssKb === null ? pill('css not found', 'mute') : 'css ' + kb(r.cssKb), h('br'), r.jsKb === null ? pill('js not found', 'mute') : 'js ' + kb(r.jsKb)],
           link(pv, 'Preview')];
-      })) : h('p', { class: 'note' }, 'No festivals in the schedule.'),
-      h('p', { class: 'note', style: 'margin-top:8px' }, 'Dates are inclusive and read in India time. Preview opens the home page with the theme forced on, even outside its dates (add ?festival=off to clear). To change the schedule, edit festival-themes/schedule.json, run node tools/build-site.js, and upload.'),
-      F.rows.filter(function (r) { return r.tokens && r.tokens.length; }).map(function (r) {
-        return [h('h3', null, (r.f.label || r.f.id) + ': colours'), h('div', { class: 'sws' }, r.tokens.filter(function (t2) { return /^#[0-9a-f]{3,8}$/i.test(t2.value); }).map(function (t2) {
-          return h('div', { class: 'swc' }, [h('i', { style: 'background:' + t2.value }), h('span', null, [h('b', null, t2.name), t2.value])]);
-        }))];
-      })
+      }) : [])),
+      h('p', { class: 'note', style: 'margin-top:8px' }, 'Dates are inclusive and read in India time. Preview opens the home page with the theme forced on, even outside its dates (add ?festival=off to clear). The original theme is what visitors see outside every festival window. Colours for all themes are in the Theme section. To change the schedule, edit festival-themes/schedule.json, run node tools/build-site.js, and upload.'),
     ]);
+  }
+
+  /* ---------- integrations and freshness checks (run once per load) ---------- */
+  function integrationChecks() {
+    var a = FW.analytics || {};
+    if (a.ga4Id && !/^G-[A-Z0-9]{6,}$/.test(a.ga4Id)) say('err', 'Integrations', 'GA4 ID “' + a.ga4Id + '” does not look valid (it should be like G-XXXXXXXXXX).');
+    if (a.gtmId && !/^GTM-[A-Z0-9]{4,}$/.test(a.gtmId)) say('err', 'Integrations', 'Tag Manager ID “' + a.gtmId + '” does not look valid (it should be like GTM-XXXXXXX).');
+    if (!a.gtmId && a.ga4Id) say('info', 'Integrations', 'Tag Manager is not set, so GA4 loads directly. That works; Tag Manager only adds easier event changes later.');
+    if (!extra.verification) say('info', 'Integrations', 'No Google Search Console token on the home page. Fine if you verified by DNS or Analytics; otherwise paste the token into SEARCH_CONSOLE_TOKEN in tools/build-site.js and rebuild.');
+    if (FW.leadEndpoint && !/^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(FW.leadEndpoint)) say('warn', 'Integrations', 'leadEndpoint is set but is not a Google Apps Script web-app address (…/macros/s/…/exec). Check it.');
+    if (!extra.robots) say('err', 'Integrations', 'robots.txt is missing.');
+    if (!extra.sitemap) say('err', 'Integrations', 'sitemap.xml is missing.');
+    if (!extra.llms) say('info', 'Integrations', 'llms.txt is missing (it helps AI assistants describe the clinic correctly).');
+    if (!extra.headers) say('warn', 'Integrations', '_headers is missing, so the caching and noindex rules for /admin are not in place.');
+  }
+  function freshnessChecks(smRows) {
+    var today = todayIST(), dated = smRows.filter(function (r) { return /^\d{4}-\d\d-\d\d/.test(r.lastmod || ''); });
+    if (!dated.length) return say('info', 'Freshness', 'The site map has no last-modified dates, so content age cannot be checked.');
+    var ages = dated.map(function (r) { return { page: pgName(r.path), days: dayDiff(r.lastmod.slice(0, 10), today) }; }).sort(function (a, b) { return a.days - b.days; });
+    var newest = ages[0];
+    if (newest.days > 90) say('warn', 'Freshness', 'No page has changed in ' + newest.days + ' days (newest: ' + newest.page + '). Check prices, offers, hours and the review count.');
+    else if (newest.days > 30) say('info', 'Freshness', 'No page has changed in ' + newest.days + ' days. Worth a quick check of prices, hours and offers.');
+    if (newest.days > 30) say('info', 'Freshness', 'Rating ' + FW.clinic.rating + ' from ' + FW.clinic.reviewCount + ' reviews is typed by hand in config.js. Compare with your Google profile and update it if it has moved.');
+    if (newest.days <= 90) ages.filter(function (a2) { return a2.days > 180; }).forEach(function (a2) { say('info', 'Freshness', a2.page + ' has not changed in ' + a2.days + ' days.'); });
   }
 
   function lum(hex) {
@@ -698,10 +772,10 @@ h3:first-child{margin-top:0}
     var list = imgs.slice().sort(function (a, b) { return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }); });
     return sec('images', 'Images', list.length + ' in use', [
       src(['every image referenced by config.js and the pages']),
-      h('p', { class: 'note' }, 'Sorted by file name. Over 300 KB is flagged; images that fail to load are errors.'),
+      h('p', { class: 'note' }, 'Sorted by file name. Over ' + kb(IMG_WARN) + ' is a warning and over ' + kb(IMG_ERR) + ' an error; images that fail to load are errors.'),
       table(['', 'File', 'Type', 'Size', 'Dimensions', 'Used on'], list.map(function (i) {
         return [i.ok ? h('img', { class: 'thumb', src: i.thumb, alt: '' }) : '', link(i.url, i.name), i.type || '',
-          i.ok ? [kb(i.size), ' ', i.size > 307200 ? pill('large', 'warn') : ''] : pill('missing', 'err'), i.w ? i.w + '×' + i.h : '', i.pages.join(', ')];
+          i.ok ? [kb(i.size), ' ', i.size > IMG_ERR ? pill('too large', 'err') : i.size > IMG_WARN ? pill('large', 'warn') : ''] : pill('missing', 'err'), i.w ? i.w + '×' + i.h : '', i.pages.join(', ')];
       }), [3])
     ]);
   }
@@ -880,8 +954,10 @@ h3:first-child{margin-top:0}
       seoImageChecks();
       imgs.forEach(function (im) {
         if (im.ok === false) say('err', 'Images', im.name + ' is referenced (' + im.pages[0] + ') but does not load.');
-        else if (im.size > 307200) say('warn', 'Images', im.name + ' is ' + kb(im.size) + ' (over 300 KB).');
+        else if (im.size > IMG_ERR) say('err', 'Images', im.name + ' is ' + kb(im.size) + ' (over ' + kb(IMG_ERR) + ').');
+        else if (im.size > IMG_WARN) say('warn', 'Images', im.name + ' is ' + kb(im.size) + ' (over ' + kb(IMG_WARN) + ').');
       });
+      integrationChecks(); freshnessChecks(smRows);
       X.perf = collectPerf();
       draw(smRows, theme, faq, extra, sm);
       document.getElementById('meta').textContent = 'Loaded ' + new Date().toLocaleTimeString() + ' · ' + sm.length + ' pages · ' + imgs.length + ' images';
@@ -910,7 +986,26 @@ h3:first-child{margin-top:0}
     jump.appendChild(a);
   });
   document.getElementById('reload').addEventListener('click', function () { run(); });
-  run();
+  /* PIN gate. Convenience only: it runs in the browser, so it keeps casual visitors out but is not real security.
+     Only a hash of the PIN is stored here. */
+  var PIN_HASH = 'f384e8f49727e688740acffa539265ddba51d65e0ad785580f3b446c4d841809', GATE_KEY = 'fw-admin-ok', started = false, fails = 0, lockedUntil = 0;
+  function sha(s) { return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(function (b) { return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join(''); }); }
+  function unlock() { document.body.classList.remove('locked'); if (!started) { started = true; run(); } }
+  function lockNow() { try { sessionStorage.removeItem(GATE_KEY); } catch (e) {} location.reload(); }
+  var gateForm = document.getElementById('gate-form'), pinEl = document.getElementById('pin'), errEl = document.getElementById('gate-err');
+  document.getElementById('lock').addEventListener('click', lockNow);
+  gateForm.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (!(window.crypto && crypto.subtle)) { errEl.textContent = 'This page must be opened over https or localhost.'; return; }
+    var wait = Math.ceil((lockedUntil - Date.now()) / 1000);
+    if (wait > 0) { errEl.textContent = 'Too many tries. Wait ' + wait + 's.'; return; }
+    sha('flosswork-admin:' + pinEl.value.trim()).then(function (hx) {
+      if (hx === PIN_HASH) { try { sessionStorage.setItem(GATE_KEY, hx); } catch (e) {} pinEl.value = ''; errEl.textContent = ''; unlock(); }
+      else { fails++; pinEl.value = ''; errEl.textContent = 'Wrong PIN.'; if (fails >= 5) { lockedUntil = Date.now() + 30000; fails = 0; errEl.textContent = 'Too many tries. Wait 30s.'; } pinEl.focus(); }
+    });
+  });
+  var remembered = false; try { remembered = sessionStorage.getItem(GATE_KEY) === PIN_HASH; } catch (e) {}
+  if (remembered) unlock(); else setTimeout(function () { pinEl.focus(); }, 50);
 })();
 </script>
 </body>
