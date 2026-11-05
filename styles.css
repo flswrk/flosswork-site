@@ -91,7 +91,7 @@ h1,h2,h3{font-weight:200;letter-spacing:-.01em;line-height:1.15}
 .phero .img img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 /* plan your visit */
 .calc{background:#fff;border-radius:28px;padding:20px;display:grid;gap:12px;box-shadow:0 22px 60px #0003;border:1px solid #1111;margin-top:-70px}
-.calc h3{font-family:var(--head);font-weight:900;text-transform:uppercase;letter-spacing:-.015em;font-size:19px}
+.calc h2,.calc h3{font-family:var(--head);font-weight:900;text-transform:uppercase;letter-spacing:-.015em;font-size:19px}
 .fld{position:relative;display:block;border:1.5px solid #1112;border-radius:14px;padding:10px 14px;cursor:pointer;background:#fff;min-width:0}
 .fld{transition:border-color .2s,box-shadow .2s}
 .fld:focus-within{border-color:var(--ink);box-shadow:0 0 0 4px #11111414}
@@ -304,7 +304,7 @@ select.in option{color:#111;background:#fff}
   .shero{padding:calc(64px + 56px) 0 40px}
   .shero .hrow{grid-template-columns:1.05fr .95fr;gap:56px}
   .calc{margin-top:-86px;grid-template-columns:repeat(2,1fr) auto;align-items:end;padding:26px 28px}
-  .calc h3,.calc .res{grid-column:1/-1}
+  .calc h2,.calc h3,.calc .res{grid-column:1/-1}
   .calc .go{width:auto;padding:16px 28px}
   .res b{font-size:40px}
   .res.ok{grid-template-columns:auto auto 1fr;align-items:baseline;gap:6px 18px}
