@@ -1,9 +1,9 @@
-/* Flosswork — V2 Immersive (Wise booking × Withings UI), Wise green */
+/* Flosswork — V2 Immersive (Wise booking × Withings UI), blue accent */
 :root{
-  --ink:#111;--soft:#f3f2ef;--mute:#5b5b57;--line:#e4e3df;--bg:#fff;
-  --green:#9fe870;--greend:#163300;--tint:#e2f6d5;--link:#2d6a0a;
+  --ink:#1d1d1f;--soft:#f5f5f7;--mute:#6e6e73;--line:#d2d2d7;--bg:#fff;
+  --green:#0071e3;--greend:#1d1d1f;--tint:#eaf3fd;--link:#0066cc;
   --head:'Archivo',Inter,system-ui,sans-serif;
-  --img:#e9e8e4;--dim:#b5b5b1;--warn:#fff2e5;--warn-ink:#5a2d00;--err:#ffb4ab;
+  --img:#f5f5f7;--dim:#d2d2d7;--warn:#fff2e5;--warn-ink:#5a2d00;--err:#ffb4ab;
   --gut:20px;--max:1280px;--ease:cubic-bezier(.22,1,.36,1)
 }
 *{box-sizing:border-box;margin:0}
@@ -482,9 +482,7 @@ select.in option{color:#111;background:#fff}
     }
   }
 }
-/* ===== Apple-palette recolor sample ===== */
-:root{--ink:#1d1d1f;--soft:#f5f5f7;--mute:#6e6e73;--line:#d2d2d7;--bg:#fff;
---green:#0071e3;--greend:#1d1d1f;--tint:#eaf3fd;--link:#0066cc;--img:#f5f5f7;--dim:#d2d2d7}
+/* ===== Blue accent theme (colour tokens are in :root at the top) ===== */
 .btn--green,.send,.btn--ink{background:#0071e3;color:#fff}
 .btn--green:hover,.btn--ink:hover{background:#0077ed;filter:none}
 .st i,.q summary:after,.band li:before{color:#fff}
@@ -696,3 +694,6 @@ select.in option{color:#111;background:#fff}
 /* contact page: no double padding between "Find us" and the white section that follows it */
 section[aria-labelledby="vi-h"]{padding-bottom:0}
 .tabbar .tab{touch-action:manipulation}
+
+/* footer copyright line: hidden 5-tap entry to the data page, so no text selection or double-tap zoom on fast taps */
+.foot .copy{-webkit-user-select:none;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}

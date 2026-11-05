@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Flosswork Site Data</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@800;900&family=Inter:wght@300;400;500;600;700&display=swap">
+<style>
+:root{--ink:#161614;--mute:#63635e;--line:#e4e3df;--bg:#fff;--soft:#f5f4f1;--accent:#163300;--ok:#2d6a0a;--okbg:#e2f6d5;--warn:#8a4a00;--warnbg:#fff2e5;--err:#9b1c12;--errbg:#fde8e5;--info:#2c4f7c;--infobg:#e8f0fa;--r:14px}
+@media (prefers-color-scheme:dark){:root{--ink:#f1f0ec;--mute:#a3a29b;--line:#2f2f2b;--bg:#111110;--soft:#1b1b19;--accent:#9fe870;--ok:#9fe870;--okbg:#1f3310;--warn:#ffc58a;--warnbg:#3a2a12;--err:#ffb4ab;--errbg:#3d1a16;--info:#a9c8f2;--infobg:#17283d}}
+*{box-sizing:border-box;margin:0}
+body{font:15px/1.55 Inter,system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+header.top{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.bar h1{font-size:16px;font-weight:700;letter-spacing:-.01em}
+.bar .meta{color:var(--mute);font-size:12px;margin-left:auto}
+button{font:inherit;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--soft);color:var(--ink);padding:6px 12px;border-radius:99px;cursor:pointer}
+nav.jump{max-width:1200px;margin:0 auto;padding:0 16px 10px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.jump a{flex:none;font-size:12.5px;text-decoration:none;color:var(--mute);border:1px solid var(--line);padding:4px 11px;border-radius:99px}
+nav.jump a:hover{color:var(--ink);border-color:var(--ink)}
+main{max-width:1200px;margin:0 auto;padding:16px}
+section{margin:0 0 14px;border:1px solid var(--line);border-radius:var(--r);background:var(--bg);scroll-margin-top:96px}
+summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";margin-left:auto;color:var(--mute);font-weight:400;font-size:20px;line-height:1}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.sws{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.swc{border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:11.5px;line-height:1.35}
+.swc i{display:block;height:46px}.swc span{display:block;padding:5px 8px}.swc b{display:block;font-weight:600}
+.spec{border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:12px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sb{border:0;border-radius:99px;padding:11px 22px;font:600 14px Inter,system-ui,sans-serif}
+details[open]>summary::after{content:"–"}
+.count{font-size:12px;font-weight:600;color:var(--mute);background:var(--soft);padding:2px 9px;border-radius:99px}
+.body{padding:0 16px 16px}
+.note{color:var(--mute);font-size:13px;margin:0 0 10px}
+.src{font-size:12px;color:var(--mute);margin:0 0 10px}
+.src code{background:var(--soft);padding:1px 6px;border-radius:6px}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);background:var(--soft);white-space:nowrap;font-weight:600}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;white-space:nowrap}
+h3{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin:18px 0 8px;font-weight:600}
+h3:first-child{margin-top:0}
+.kv{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.kv div{border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.kv b{display:block;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mute);font-weight:600}
+.kv span{word-break:break-word}
+.pill{display:inline-block;font-size:11.5px;font-weight:600;padding:1px 9px;border-radius:99px;white-space:nowrap}
+.p-ok{background:var(--okbg);color:var(--ok)}.p-warn{background:var(--warnbg);color:var(--warn)}.p-err{background:var(--errbg);color:var(--err)}.p-info{background:var(--infobg);color:var(--info)}.p-mute{background:var(--soft);color:var(--mute)}
+.issues{display:grid;gap:6px}
+.issue{display:flex;gap:10px;align-items:flex-start;border-radius:10px;padding:9px 12px;font-size:13.5px}
+.issue.warn{background:var(--warnbg);color:var(--warn)}.issue.err{background:var(--errbg);color:var(--err)}.issue.info{background:var(--infobg);color:var(--info)}.issue.ok{background:var(--okbg);color:var(--ok)}
+.issue b{flex:none;text-transform:uppercase;font-size:11px;letter-spacing:.05em;padding-top:2px;min-width:44px}
+.sw{display:inline-block;width:18px;height:18px;border-radius:5px;border:1px solid var(--line);vertical-align:-4px;margin-right:8px}
+.thumb{width:56px;height:42px;object-fit:cover;border-radius:6px;background:var(--soft);display:block}
+.tags span{display:inline-block;background:var(--soft);padding:1px 8px;border-radius:99px;font-size:12px;margin:0 4px 4px 0}
+.faqs details{border-bottom:1px solid var(--line);padding:8px 0}
+.faqs details:last-child{border-bottom:0}
+.faqs summary{padding:0;font-size:14px;font-weight:600}
+.faqs summary::after{content:none}
+.faqs p{color:var(--mute);font-size:13.5px;margin:6px 0 0}
+.chips span{display:inline-block;background:var(--soft);border:1px solid var(--line);padding:2px 10px;border-radius:99px;font-size:13px;margin:0 6px 6px 0}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+.loading{color:var(--mute);font-size:13px}
+@media (max-width:640px){summary{font-size:15px}.bar .meta{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="bar">
+    <h1>Flosswork · Site data</h1>
+    <span class="tools"><button id="reload" type="button">Reload from live site</button></span>
+    <span class="meta" id="meta">Loading…</span>
+  </div>
+  <nav class="jump" id="jump"></nav>
+</header>
+<main id="main"><p class="loading">Reading the site…</p></main>
+
+<script>
+(function () {
+  'use strict';
+  var BASE = new URL('../', location.href);           // site root, whatever the host
+  var SECTIONS = [
+    ['attention', 'Needs attention'], ['festivals', 'Festival themes'],
+    ['clinic', 'Clinic'], ['consistency', 'Consistency'], ['doctors', 'Doctors'], ['faq', 'FAQ'], ['images', 'Images'],
+    ['integrations', 'Integrations'], ['links', 'Links'], ['locations', 'Locations'], ['perf', 'Page weight'], ['seo', 'SEO'],
+    ['sitemap', 'Site map'], ['theme', 'Theme'], ['treatments', 'Treatments & prices'], ['whatsapp', 'WhatsApp']
+  ];
+
+  /* ---------- tiny helpers ---------- */
+  function h(tag, attrs, kids) {
+    var e = document.createElement(tag);
+    if (attrs) for (var k in attrs) { if (k === 'class') e.className = attrs[k]; else e.setAttribute(k, attrs[k]); }
+    (function add(c) {
+      if (c === null || c === false || c === undefined) return;
+      if (Array.isArray(c)) return c.forEach(add);
+      e.appendChild(typeof c === 'object' ? c : document.createTextNode(String(c)));
+    })(kids);
+    return e;
+  }
+  function pill(text, kind) { return h('span', { class: 'pill p-' + (kind || 'mute') }, text); }
+  function money(p) { return p === null || p === undefined ? pill('Get a quote', 'mute') : '₹' + Number(p).toLocaleString('en-IN'); }
+  function kb(n) { return n < 1024 ? n + ' B' : n < 1048576 ? (n / 1024).toFixed(0) + ' KB' : (n / 1048576).toFixed(1) + ' MB'; }
+  function table(head, rows, numCols) {
+    numCols = numCols || [];
+    var t = h('table', null, [
+      h('thead', null, h('tr', null, head.map(function (c, i) { return h('th', numCols.indexOf(i) > -1 ? { class: 'num' } : null, c); }))),
+      h('tbody', null, rows.map(function (r) { return h('tr', null, r.map(function (c, i) { return h('td', numCols.indexOf(i) > -1 ? { class: 'num' } : null, c); })); }))
+    ]);
+    return h('div', { class: 'tw' }, t);
+  }
+  function kv(pairs) { return h('div', { class: 'kv' }, pairs.map(function (p) { return h('div', null, [h('b', null, p[0]), h('span', null, p[1] === '' || p[1] == null ? pill('empty', 'warn') : p[1])]); })); }
+  function link(href, text) { return h('a', { href: href, target: '_blank', rel: 'noopener' }, text || href); }
+  function get(url, opts) { return fetch(url + (url.indexOf('?') > -1 ? '&' : '?') + '_=' + Date.now(), Object.assign({ cache: 'no-store' }, opts || {})); }
+  function pool(items, n, fn) {
+    var i = 0, out = new Array(items.length);
+    return Promise.all(Array.from({ length: n }, function () {
+      return (function next() { if (i >= items.length) return Promise.resolve(); var k = i++; return Promise.resolve(fn(items[k], k)).then(function (r) { out[k] = r; return next(); }); })();
+    })).then(function () { return out; });
+  }
+
+  /* ---------- state ---------- */
+  var FW, issues, pages, imgs, waRows = [], extra = {}, openState = {};
+  function say(level, area, msg) { issues.push({ level: level, area: area, msg: msg }); }
+
+  /* ---------- load ---------- */
+  function loadConfig() {
+    return new Promise(function (res, rej) {
+      delete window.FW;
+      var s = document.createElement('script');
+      s.src = new URL('config.js', BASE).href + '?_=' + Date.now();
+      s.onload = function () { s.remove(); window.FW ? res(window.FW) : rej(new Error('config.js loaded but window.FW is missing')); };
+      s.onerror = function () { rej(new Error('Could not load config.js')); };
+      document.head.appendChild(s);
+    });
+  }
+  function fetchPage(path) {
+    var clean = path.replace(/^\/+/, '');
+    var tries = clean ? [clean, clean + '.html'] : ['index.html'];
+    function attempt(i) {
+      if (i >= tries.length) return Promise.resolve({ path: path, ok: false, status: 404 });
+      var u = new URL(tries[i], BASE).href;
+      return get(u).then(function (r) {
+        if (!r.ok) return attempt(i + 1);
+        return r.text().then(function (t) {
+          if (/<title>404/i.test(t.slice(0, 2000)) && tries[i] !== '404.html') return attempt(i + 1);
+          var doc = new DOMParser().parseFromString(t, 'text/html');
+          return { path: path, url: u, ok: true, status: r.status, html: t, doc: doc, text: doc.body ? doc.body.textContent.replace(/\s+/g, ' ') : '' };
+        });
+      }).catch(function () { return attempt(i + 1); });
+    }
+    return attempt(0);
+  }
+  function resolveAsset(src, pageUrl) {
+    try {
+      var u = new URL(src, pageUrl);
+      if (u.hostname === 'flosswork.in') u = new URL(u.pathname.replace(/^\//, ''), BASE);
+      return u.origin === BASE.origin ? u.href.split('#')[0].split('?')[0] : null;
+    } catch (e) { return null; }
+  }
+  function textOf(p, sel) { var n = p.doc && p.doc.querySelector(sel); return n ? n.textContent.replace(/\s+/g, ' ').trim() : ''; }
+  function metaOf(p, name) { var n = p.doc && p.doc.querySelector('meta[name="' + name + '"],meta[property="' + name + '"]'); return n ? (n.getAttribute('content') || '') : ''; }
+
+  /* ---------- sections ---------- */
+  function sec(id, title, count, nodes) {
+    var d = h('details', { id: id }, [h('summary', null, [title, count != null ? h('span', { class: 'count' }, count) : null]), h('div', { class: 'body' }, nodes)]);
+    d.open = openState[id] !== undefined ? openState[id] : (innerWidth > 700 || id === 'attention' || id === 'theme');
+    d.addEventListener('toggle', function () { openState[id] = d.open; });
+    var s = h('section', null, d);
+    return s;
+  }
+  function src(files) { return h('p', { class: 'src' }, ['Read live from ', files.map(function (f, i) { return [i ? ', ' : '', h('code', null, f)]; })]); }
+
+  function renderAttention() {
+    var order = { err: 0, warn: 1, info: 2, ok: 3 };
+    var list = issues.slice().sort(function (a, b) { return order[a.level] - order[b.level]; });
+    var counts = { err: 0, warn: 0 };
+    issues.forEach(function (i) { if (counts[i.level] !== undefined) counts[i.level]++; });
+    var nodes = [h('p', { class: 'note' }, 'Checks run every time this page loads. Errors and warnings need a decision; info is by design or optional.')];
+    if (!list.length) nodes.push(h('div', { class: 'issue ok' }, [h('b', null, 'ok'), 'Nothing to flag.']));
+    else nodes.push(h('div', { class: 'issues' }, list.map(function (i) { return h('div', { class: 'issue ' + i.level }, [h('b', null, i.level), h('span', null, [h('strong', null, i.area + ': '), i.msg])]); })));
+    var badge = counts.err + counts.warn;
+    return sec('attention', 'Needs attention', badge ? badge + ' to review' : 'all clear', nodes);
+  }
+
+  function renderClinic() {
+    var c = FW.clinic;
+    return sec('clinic', 'Clinic', null, [
+      src(['config.js → clinic, trust']),
+      kv([['Name', c.name], ['Tagline', c.tagline], ['Phone', c.phone], ['Phone 2', c.phone2], ['WhatsApp', c.whatsapp], ['Email', c.email],
+          ['Hours', c.hoursLong], ['Google rating', c.rating + ' ★ · ' + c.reviewCount + ' reviews'], ['Google reviews', link(c.googleReviews)],
+          ['Instagram', link(c.instagram)], ['Facebook', link(c.facebook)], ['Maps', link(c.maps)]]),
+      h('h3', null, 'Trust strip'),
+      table(['Value', 'Label'], (FW.trust || []).map(function (t) { return t.rating ? [c.rating + ' ★', 'Google rating (' + c.reviewCount + ' reviews)'] : [t.value, t.label]; })),
+      h('h3', null, 'Equipment'),
+      h('div', { class: 'chips' }, (FW.equipment || []).map(function (e) { return h('span', null, e); }))
+    ]);
+  }
+
+  function renderTreatments() {
+    var needs = {}; (FW.needs || []).forEach(function (n) { needs[n.key] = n; });
+    var tiles = {}; (FW.tiles || []).forEach(function (t) { tiles[t.key] = t; });
+    var rows = [], total = 0;
+    (FW.services || []).forEach(function (g) {
+      g.items.forEach(function (it) {
+        total++;
+        var n = needs[it.id];
+        var onPage = pages.services && pages.services.ok ? pages.services.text.indexOf(it.name) > -1 : null;
+        rows.push([it.name, g.title, n ? money(n.price) : pill('not in form', 'mute'), tiles[it.id] ? pill('home tile', 'info') : '', it.href || ('/services#' + it.id),
+          it.img || pill('icon only', 'mute'), onPage === null ? '—' : onPage ? pill('shown', 'ok') : pill('missing on page', 'err')]);
+      });
+    });
+    return sec('treatments', 'Treatments & prices', total + ' services', [
+      src(['config.js → services, needs, tiles, moreTreatments', 'services.html']),
+      h('p', { class: 'note' }, 'A price of “Get a quote” means price is null in config.js, which is deliberate for everything except aligners.'),
+      table(['Treatment', 'Group', 'Price', 'Home', 'Links to', 'Image', 'On services page'], rows),
+      h('h3', null, 'Booking form options (Plan your visit)'),
+      table(['Key', 'Label', 'Pill', 'Price', 'Mode'], (FW.needs || []).map(function (n) { return [n.key, n.label, n.pill, money(n.price), n.mode ? pill(n.mode, 'warn') : '']; })),
+      h('p', { class: 'note', style: 'margin-top:8px' }, 'Time options: ' + (FW.when || []).join(' · ')),
+      h('h3', null, 'More treatments (chip list)'),
+      h('div', { class: 'chips' }, (FW.moreTreatments || []).map(function (e) { return h('span', null, e); }))
+    ]);
+  }
+
+  /* WhatsApp wording. These mirror bookText()/waText() in app.js; the check in collectWA() warns if app.js changes. */
+  function lc(s) { return String(s).toLowerCase(); }
+  function needBy(key) { return (FW.needs || []).filter(function (n) { return n.key === key; })[0]; }
+  function bookMsg(key) {
+    if (!key) return "Hi Flosswork, I'd like to book a consultation.";
+    var n = needBy(key); if (!n) return "Hi Flosswork, I'd like to book a consultation.";
+    if (n.mode === 'emergency') return 'Hi, I have a dental emergency and need urgent help.';
+    if (n.key === 'other') return "Hi Flosswork, I'd like to book a consultation.";
+    return "Hi Flosswork, I'd like to book a consultation for " + lc(n.label) + '.';
+  }
+  function planMsg(n, when) {
+    if (n.mode === 'emergency') return 'Hi, I have a dental emergency and need urgent help.';
+    if (n.key === 'other') return "Hi Flosswork, I'd like to book a consultation (" + lc(when) + ').';
+    return "Hi Flosswork, I'd like to book a consultation for " + lc(n.label) + ' (' + lc(when) + ').';
+  }
+  function collectWA() {
+    var rows = [], seen = {}, num = String(FW.clinic.whatsapp);
+    Object.keys(pages).forEach(function (k) {
+      var p = pages[k]; if (!p.ok) return; var nm = k || 'home';
+      var pageNeed = (p.doc.body && p.doc.body.getAttribute('data-page-need')) || '';
+      [].forEach.call(p.doc.querySelectorAll('a[data-wa], a[data-book], a[href*="wa.me/"]'), function (a) {
+        var msg, kind, href = a.getAttribute('href') || '';
+        if (a.hasAttribute('data-wa')) { msg = a.getAttribute('data-wa'); kind = 'Fixed message'; }
+        else if (a.hasAttribute('data-book')) { msg = bookMsg(a.getAttribute('data-book') || pageNeed); kind = 'Book button'; }
+        else {
+          var m = href.match(/[?&]text=([^&#]*)/); try { msg = m ? decodeURIComponent(m[1]) : ''; } catch (e) { msg = m ? m[1] : ''; } kind = 'Fixed message';
+          var wn = (href.match(/wa\.me\/(\d+)/) || [])[1]; if (wn && wn !== num) say('err', 'WhatsApp', nm + ' links to wa.me/' + wn + ', which is not the number in config.js.');
+        }
+        var label = (a.querySelector('b') || a).textContent.replace(/\s+/g, ' ').trim().slice(0, 60);
+        var id = nm + '|' + kind + '|' + label + '|' + msg; if (seen[id]) return; seen[id] = 1;
+        rows.push({ page: nm, label: label || '(icon)', msg: msg || '(none)', kind: kind });
+      });
+    });
+    var order = Object.keys(pages);
+    rows.sort(function (a, b) { return order.indexOf(a.page === 'home' ? '' : a.page) - order.indexOf(b.page === 'home' ? '' : b.page); });
+    if (extra.appjs && (extra.appjs.indexOf("I'd like to book a consultation for") < 0 || extra.appjs.indexOf('dental emergency and need urgent help') < 0))
+      say('warn', 'WhatsApp', 'The booking wording in app.js has changed. The “Booking form messages” table here may no longer match; update this page.');
+    return rows;
+  }
+  function renderWhatsApp(rows) {
+    var form = [];
+    (FW.needs || []).forEach(function (n) {
+      if (n.mode === 'emergency') form.push([n.label, '—', planMsg(n), 'Opens WhatsApp or call-now panel']);
+      else (FW.when || []).forEach(function (w, i) { form.push([i ? '' : n.label, w, planMsg(n, w), i ? '' : 'Plan your visit / booking form']); });
+    });
+    return sec('whatsapp', 'WhatsApp messages', rows.length + ' buttons', [
+      src(['config.js → clinic.whatsapp, needs, when', 'every page’s WhatsApp buttons', 'app.js (wording check)']),
+      kv([['Number', '+' + FW.clinic.whatsapp], ['Chat link', link('https://wa.me/' + FW.clinic.whatsapp)]]),
+      h('h3', null, 'Buttons on pages'),
+      h('p', { class: 'note' }, '“Book button” messages are built by the site from config.js; “Fixed message” text is written into the page.'),
+      table(['Page', 'Button', 'Type', 'Message sent'], rows.map(function (r) { return [r.page, r.label, pill(r.kind, r.kind === 'Book button' ? 'info' : 'mute'), r.msg]; })),
+      h('h3', null, 'Booking form messages (need × time)'),
+      table(['Need', 'When', 'Message sent', 'Where'], form)
+    ]);
+  }
+
+  /* ---------- locations, consistency, SEO, links ---------- */
+  var X = { locs: [], cons: null, seo: [], links: null };
+  function d10(s) { return String(s).replace(/\D/g, '').slice(-10); }
+  function pgName(k) { return k || 'home'; }
+  function vis(p) {
+    if (p._vis === undefined) {
+      var c = p.doc.body.cloneNode(true);
+      [].forEach.call(c.querySelectorAll('script,style,noscript,template'), function (n) { n.remove(); });
+      [].forEach.call(c.querySelectorAll('*'), function (n) { n.insertAdjacentText('beforebegin', ' '); n.insertAdjacentText('afterend', ' '); });
+      p._vis = c.textContent.replace(/\s+/g, ' ');
+    }
+    return p._vis;
+  }
+  function ldOf(p) {
+    var out = { nodes: [], errors: 0 };
+    [].forEach.call(p.doc.querySelectorAll('script[type="application/ld+json"]'), function (s) {
+      try { (function w(x) { if (Array.isArray(x)) return x.forEach(w); if (x && typeof x === 'object') { if (x['@type']) out.nodes.push(x); if (x['@graph']) w(x['@graph']); } })(JSON.parse(s.textContent)); }
+      catch (e) { out.errors++; }
+    });
+    return out;
+  }
+  function types(n) { return [].concat(n['@type']).join('/'); }
+  function t12(t) { var m = String(t).match(/^(\d{1,2}):(\d\d)/); if (!m) return t; var hh = +m[1], ap = hh >= 12 ? 'pm' : 'am'; hh = hh % 12 || 12; return hh + (m[2] === '00' ? '' : ':' + m[2]) + ap; }
+  function dayShort(d) { return String(d).slice(0, 3); }
+  function hoursOf(n) {
+    return [].concat(n.openingHoursSpecification || []).map(function (s) {
+      var days = [].concat(s.dayOfWeek || []).map(dayShort);
+      return (days.length > 1 ? days[0] + '–' + days[days.length - 1] : days[0]) + ' ' + t12(s.opens) + '–' + t12(s.closes);
+    });
+  }
+  function normHours(s) { return s.replace(/\s+/g, '').toLowerCase().replace(/sunday/g, 'sun').replace(/(mon|tue|wed|thu|fri|sat|sun)[a-z]*/g, '$1').replace(/-/g, '–'); }
+
+  function collectLocs() {
+    var cp = pages.contact && pages.contact.ok ? pages.contact : (pages[''] && pages[''].ok ? pages[''] : null), rows = [];
+    if (!cp) return rows;
+    var ld = ldOf(cp), faq = pages.faq && pages.faq.ok ? vis(pages.faq) : '', cfgH = normHours(FW.clinic.hoursLong || '');
+    ld.nodes.filter(function (n) { return /Dentist|LocalBusiness|MedicalBusiness/.test(types(n)); }).forEach(function (n) {
+      var a = n.address || {}, id = String(n.url || '').split('#')[1] || '', street = String(a.streetAddress || ''), city = (a.addressLocality && (a.addressLocality.name || a.addressLocality)) || '';
+      var hrs = hoursOf(n), geo = n.geo || {}, vtext = vis(cp);
+      var r = { name: String(n.name || '').replace(/^Flosswork Dental Clinic,?\s*/, '') || n.name, street: street, city: city, zip: a.postalCode || '', hours: hrs, phone: n.telephone || '', geo: geo.latitude ? geo.latitude + ', ' + geo.longitude : '',
+        onPage: id ? !!cp.doc.getElementById(id) : false, addrOnPage: street ? vtext.indexOf(street.split(',')[0]) > -1 : false, inFaq: !!faq && city && faq.indexOf(city) > -1 };
+      rows.push(r);
+      if (!r.onPage) say('warn', 'Locations', r.name + ' has no matching card (#' + (id || '?') + ') on the contact page.');
+      if (!r.addrOnPage) say('warn', 'Locations', r.name + ': address in the schema is not shown on the page.');
+      if (faq && !r.inFaq) say('warn', 'Locations', r.name + ' is not mentioned in the FAQ.');
+      hrs.forEach(function (h2) { if (cfgH && cfgH.indexOf(normHours(h2)) < 0) say('warn', 'Locations', r.name + ' hours “' + h2 + '” differ from config.js (“' + FW.clinic.hoursLong + '”).'); });
+      if (!hrs.length) say('warn', 'Locations', r.name + ' has no opening hours in the schema.');
+      if (!r.geo) say('info', 'Locations', r.name + ' has no map coordinates in the schema.');
+      if (r.phone && d10(r.phone) !== d10(FW.clinic.phone) && d10(r.phone) !== d10(FW.clinic.phone2)) say('warn', 'Locations', r.name + ' phone ' + r.phone + ' is not in config.js.');
+    });
+    if (rows.length < 1) say('warn', 'Locations', 'No clinic locations found in the page schema.');
+    return rows;
+  }
+  function renderLocations() {
+    var L = X.locs;
+    return sec('locations', 'Locations', L.length + ' clinics', [
+      src(['contact.html → schema (JSON-LD) and location cards', 'faq.html']),
+      h('p', { class: 'note' }, 'Each clinic is read from the structured data Google sees, then checked against what the page and FAQ actually show.'),
+      L.length ? table(['Clinic', 'Address', 'Hours', 'Phone', 'Map point', 'Card on page', 'Address shown', 'In FAQ'], L.map(function (r) {
+        return [r.name, [r.street, h('br'), r.city + ' ' + r.zip], r.hours.length ? r.hours.map(function (x) { return h('div', null, x); }) : pill('missing', 'warn'), r.phone, r.geo || pill('none', 'mute'),
+          r.onPage ? pill('yes', 'ok') : pill('no', 'warn'), r.addrOnPage ? pill('yes', 'ok') : pill('no', 'warn'), r.inFaq ? pill('yes', 'ok') : pill('no', 'warn')];
+      })) : h('p', { class: 'note' }, 'No locations found.')
+    ]);
+  }
+
+  function collectConsistency() {
+    var C = FW.clinic, ok = [d10(C.phone), d10(C.phone2)], phones = {}, mails = {}, hours = {}, prices = {}, cfgPrices = (FW.needs || []).map(function (n) { return n.price; }).filter(Boolean).map(function (v) { return '₹' + Number(v).toLocaleString('en-IN'); });
+    var cfgHours = normHours(C.hoursLong || '');
+    function bump(o, k, pg) { (o[k] = o[k] || []); if (o[k].indexOf(pg) < 0) o[k].push(pg); }
+    Object.keys(pages).forEach(function (k) {
+      var p = pages[k]; if (!p.ok) return; var nm = pgName(k), t = vis(p);
+      (t.match(/(?:\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}\b/g) || []).forEach(function (m) { bump(phones, d10(m), nm); });
+      [].forEach.call(p.doc.querySelectorAll('a[href^="tel:"]'), function (a) { bump(phones, d10(a.getAttribute('href')), nm); });
+      (t.match(/[\w.+-]+@[\w-]+(?:\.[\w-]+)*\.[a-z]{2,}/gi) || []).forEach(function (m) { bump(mails, m.toLowerCase(), nm); });
+      [].forEach.call(p.doc.querySelectorAll('a[href^="mailto:"]'), function (a) { bump(mails, a.getAttribute('href').replace(/^mailto:/, '').split('?')[0].toLowerCase(), nm); });
+      var re = /((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*(?:\s*[–-]\s*(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*)?)[\s:,·]*(\d{1,2}(?::\d\d)?\s?[ap]m)\s*[–-]\s*(\d{1,2}(?::\d\d)?\s?[ap]m)/gi, m;
+      while ((m = re.exec(t))) bump(hours, normHours(m[0]), nm);
+      (t.match(/₹\s?\d[\d,]*/g) || []).forEach(function (m) { bump(prices, m.replace(/\s/g, '').replace(/,$/, ''), nm); });
+    });
+    var rows = [];
+    Object.keys(phones).forEach(function (v) { var good = ok.indexOf(v) > -1; rows.push(['Phone', v.replace(/(\d{5})(\d{5})/, '+91 $1 $2'), phones[v], good ? 'ok' : 'err']); if (!good) say('err', 'Consistency', 'Phone ' + v + ' appears on ' + phones[v].join(', ') + ' but is not in config.js.'); });
+    Object.keys(mails).forEach(function (v) { var good = v === String(C.email).toLowerCase(); rows.push(['Email', v, mails[v], good ? 'ok' : 'err']); if (!good) say('err', 'Consistency', 'Email ' + v + ' appears on ' + mails[v].join(', ') + ' but config.js has ' + C.email + '.'); });
+    Object.keys(hours).forEach(function (v) { var good = cfgHours.indexOf(v) > -1; rows.push(['Hours', v, hours[v], good ? 'ok' : 'warn']); if (!good) say('warn', 'Consistency', 'Hours “' + v + '” on ' + hours[v].join(', ') + ' do not match config.js (“' + C.hoursLong + '”).'); });
+    Object.keys(prices).forEach(function (v) { var good = cfgPrices.indexOf(v) > -1; rows.push(['Price', v, prices[v], good ? 'ok' : 'info']); if (!good) say('info', 'Consistency', v + ' appears on ' + prices[v].join(', ') + ' but is not a price in config.js (fine if it is an EMI or other figure).'); });
+    var cities = {};
+    return rows;
+  }
+  function renderConsistency() {
+    var R = X.cons || [], bad = R.filter(function (r) { return r[3] === 'err' || r[3] === 'warn'; }).length;
+    var order = { err: 0, warn: 1, info: 2, ok: 3 };
+    R = R.slice().sort(function (a, b) { return order[a[3]] - order[b[3]]; });
+    return sec('consistency', 'Consistency', bad ? bad + ' to review' : 'all match', [
+      src(['visible text and tel:/mailto: links on every page', 'config.js → clinic, needs']),
+      h('p', { class: 'note' }, 'Every phone number, email, opening-hours line and ₹ amount found on the pages, and where it appears. Each is compared with config.js.'),
+      table(['Type', 'Value', 'Found on', 'Matches config'], R.map(function (r) { return [r[0], r[1], r[2].join(', '), pill(r[3] === 'ok' ? 'yes' : r[3] === 'info' ? 'not in config' : 'no', r[3] === 'ok' ? 'ok' : r[3] === 'info' ? 'info' : r[3])]; }))
+    ]);
+  }
+
+  function collectSeo(smRows) {
+    var rows = [];
+    smRows.forEach(function (r) {
+      var p = pages[r.path]; if (!p || !p.ok) return;
+      var canon = (p.doc.querySelector('link[rel="canonical"]') || {}).href || '', ld = ldOf(p), nm = pgName(r.path);
+      var og = { title: metaOf(p, 'og:title'), img: metaOf(p, 'og:image'), desc: metaOf(p, 'og:description'), tw: metaOf(p, 'twitter:card') };
+      var norm = function (u) { return String(u).replace(/\/+$/, '').replace(/\.html$/, ''); };
+      var row = { page: nm, loc: r.loc, canon: canon, og: og, ld: ld, types: ld.nodes.map(types).filter(function (v, i, a) { return a.indexOf(v) === i; }), path: r.path };
+      rows.push(row);
+      if (!canon) say('err', 'SEO ' + nm, 'No canonical link.');
+      else if (norm(canon) !== norm(r.loc)) say('warn', 'SEO ' + nm, 'Canonical (' + canon + ') differs from the site map URL (' + r.loc + ').');
+      if (!og.title) say('warn', 'SEO ' + nm, 'No og:title (social share title).');
+      if (!og.img) say('warn', 'SEO ' + nm, 'No og:image (social share picture).');
+      if (!og.tw) say('info', 'SEO ' + nm, 'No twitter:card tag.');
+      if (ld.errors) say('err', 'SEO ' + nm, ld.errors + ' structured-data block(s) are not valid JSON, so Google ignores them.');
+      if (!ld.nodes.length) say('warn', 'SEO ' + nm, 'No structured data (schema) on this page.');
+      if (!(p.doc.documentElement.getAttribute('lang'))) say('info', 'SEO ' + nm, 'No lang attribute on <html>.');
+      var fq = ld.nodes.filter(function (n) { return types(n) === 'FAQPage'; })[0];
+      if (fq) {
+        var sc = [].concat(fq.mainEntity || []).length, vc = p.doc.querySelectorAll('details.q').length;
+        row.faqCounts = sc + ' in schema / ' + vc + ' on page';
+        if (sc !== vc) say('warn', 'SEO ' + nm, 'FAQ schema has ' + sc + ' questions but the page shows ' + vc + '. Re-run node tools/build-site.js.');
+      }
+    });
+    return rows;
+  }
+  function seoImageChecks() {
+    X.seo.forEach(function (r) {
+      if (!r.og.img) return;
+      var u = resolveAsset(r.og.img, BASE.href), e = imgs.filter(function (i) { return i.url === u; })[0];
+      r.ogOk = e ? e.ok !== false : null;
+      if (e && e.ok === false) say('err', 'SEO ' + r.page, 'og:image does not load (' + e.name + ').');
+      else if (e && e.w && (e.w < 1200 || e.h < 630)) say('info', 'SEO ' + r.page, 'og:image is ' + e.w + '×' + e.h + '; 1200×630 is the usual size.');
+    });
+  }
+  function renderSeo() {
+    var S = X.seo;
+    return sec('seo', 'SEO details', S.length + ' pages', [
+      src(['each page’s <head> and structured data']),
+      h('p', { class: 'note' }, 'Canonical must match the site map URL. “Schema” is the structured data Google reads for the clinic, doctors, FAQ and ratings.'),
+      table(['Page', 'Canonical', 'Share picture', 'Share title', 'Schema types', 'Valid', 'Notes'], S.map(function (r) {
+        var canonOk = r.canon && String(r.canon).replace(/\/+$/, '').replace(/\.html$/, '') === String(r.loc).replace(/\/+$/, '').replace(/\.html$/, '');
+        return [r.page, r.canon ? [r.canon, ' ', canonOk ? pill('matches', 'ok') : pill('differs', 'warn')] : pill('missing', 'err'),
+          r.og.img ? [r.og.img.split('/').pop(), ' ', r.ogOk === false ? pill('missing', 'err') : r.ogOk ? pill('ok', 'ok') : ''] : pill('missing', 'warn'),
+          r.og.title ? pill('set', 'ok') : pill('missing', 'warn'), r.types.join(', ') || pill('none', 'warn'), r.ld.errors ? pill(r.ld.errors + ' broken', 'err') : pill('valid', 'ok'), r.faqCounts || ''];
+      }))
+    ]);
+  }
+
+  function checkLinks() {
+    var map = {}, allowedPhones = [d10(FW.clinic.phone), d10(FW.clinic.phone2)];
+    Object.keys(pages).forEach(function (k) {
+      var p = pages[k]; if (!p.ok) return;
+      [].forEach.call(p.doc.querySelectorAll('a[href]'), function (a) {
+        var raw = a.getAttribute('href').trim(); if (!raw || raw === '#' || /^javascript:/i.test(raw)) return;
+        var u; try { u = new URL(raw, p.url); } catch (e) { return; }
+        var key = u.href; var e = map[key] || (map[key] = { u: u, raw: raw, pages: [] });
+        if (e.pages.indexOf(pgName(k)) < 0) e.pages.push(pgName(k));
+      });
+    });
+    var entries = Object.keys(map).map(function (k) { return map[k]; }), rows = [], need = {};
+    entries.forEach(function (e) {
+      var u = e.u;
+      if (u.protocol === 'tel:') { e.kind = 'phone'; var good = allowedPhones.indexOf(d10(u.pathname)) > -1; e.status = good ? 'ok' : 'warn'; e.note = good ? 'matches config' : 'number not in config.js'; }
+      else if (u.protocol === 'mailto:') { e.kind = 'email'; var gm = u.pathname.toLowerCase() === String(FW.clinic.email).toLowerCase(); e.status = gm ? 'ok' : 'warn'; e.note = gm ? 'matches config' : 'address not in config.js'; }
+      else if (u.hostname === 'wa.me') { e.kind = 'whatsapp'; var gw = u.pathname.replace(/\//g, '') === String(FW.clinic.whatsapp); e.status = gw ? 'ok' : 'err'; e.note = gw ? 'matches config' : 'number differs from config.js'; }
+      else if (u.protocol.indexOf('http') === 0 && u.origin !== BASE.origin && u.hostname !== 'flosswork.in') { e.kind = 'external'; }
+      else if (u.protocol.indexOf('http') === 0) {
+        e.kind = 'internal';
+        var path = u.hostname === 'flosswork.in' ? u.pathname : u.pathname.slice(BASE.pathname.length - 1);
+        path = path.replace(/^\/+/, '').replace(/\/+$/, '').replace(/\.html$/, '').replace(/^index$/, '');
+        e.target = path; if (pages[path] === undefined && !/\.[a-z0-9]{2,4}$/i.test(path)) need[path] = 1;
+        if (/\.[a-z0-9]{2,4}$/i.test(path)) { need[path] = 2; }
+      } else { e.kind = 'other'; e.status = 'info'; e.note = u.protocol; }
+    });
+    var extra = Object.keys(need).filter(function (p) { return pages[p] === undefined; });
+    return pool(extra, 6, function (p) { return need[p] === 2 ? get(new URL(p, BASE).href).then(function (r) { return { path: p, ok: r.ok, asset: true }; }).catch(function () { return { path: p, ok: false, asset: true }; }) : fetchPage(p); })
+      .then(function (res) {
+        var found = {}; res.forEach(function (r) { found[r.path] = r; });
+        entries.forEach(function (e) {
+          if (e.kind !== 'internal') return;
+          var t = pages[e.target] || found[e.target];
+          if (!t || !t.ok) { e.status = 'err'; e.note = 'page not found'; return; }
+          var hash = e.u.hash.replace(/^#/, '');
+          if (hash && t.doc) { try { hash = decodeURIComponent(hash); } catch (x) {} var hit = t.doc.getElementById(hash) || t.doc.querySelector('[name="' + hash.replace(/"/g, '') + '"]'); e.status = hit ? 'ok' : 'warn'; e.note = hit ? 'page and section found' : 'section #' + hash + ' not found on the page'; }
+          else { e.status = 'ok'; e.note = 'found'; }
+        });
+        var ext = entries.filter(function (e) { return e.kind === 'external'; });
+        return pool(ext, 6, function (e) {
+          var ctl = window.AbortController ? new AbortController() : null, to = ctl && setTimeout(function () { ctl.abort(); }, 8000);
+          return fetch(e.u.href, { mode: 'no-cors', cache: 'no-store', signal: ctl ? ctl.signal : undefined }).then(function () { e.status = 'info'; e.note = 'reachable (the browser cannot read its status)'; })
+            .catch(function () { e.status = 'warn'; e.note = 'did not respond'; }).then(function () { if (to) clearTimeout(to); });
+        });
+      }).then(function () {
+        entries.forEach(function (e) {
+          rows.push(e);
+          var where = e.pages.slice(0, 3).join(', ') + (e.pages.length > 3 ? ' +' + (e.pages.length - 3) : '');
+          if (e.status === 'err') say('err', 'Links', e.raw + ' (' + e.note + ') on ' + where);
+          else if (e.status === 'warn') say('warn', 'Links', e.raw + ' (' + e.note + ') on ' + where);
+        });
+        X.links = rows;
+      });
+  }
+  function renderLinks() {
+    var R = X.links;
+    if (!R) return sec('links', 'Links', 'checking…', [h('p', { class: 'loading' }, 'Checking every link on every page…')]);
+    var order = { err: 0, warn: 1, info: 2, ok: 3 }, c = { err: 0, warn: 0 };
+    R.forEach(function (e) { if (c[e.status] !== undefined) c[e.status]++; });
+    var list = R.slice().sort(function (a, b) { return order[a.status] - order[b.status] || a.kind.localeCompare(b.kind); });
+    return sec('links', 'Links', R.length + ' unique · ' + (c.err + c.warn ? (c.err + c.warn) + ' to review' : 'all fine'), [
+      src(['every link on every page']),
+      h('p', { class: 'note' }, 'Pages, sections (#anchors), phone, email and WhatsApp links are fully checked. Links to other sites (Instagram, Google, Maps) can only be tested for “responds”, because browsers hide the real status of other sites.'),
+      table(['Link', 'Type', 'Result', 'Found on'], list.map(function (e) {
+        return [h('span', { class: 'mono' }, e.raw.length > 70 ? e.raw.slice(0, 68) + '…' : e.raw), e.kind, [pill(e.status === 'ok' ? 'ok' : e.status === 'err' ? 'broken' : e.status === 'warn' ? 'check' : 'info', e.status), ' ', e.note || ''], e.pages.join(', ')];
+      }))
+    ]);
+  }
+
+  /* ---------- copy, download, print, change tracking, page weight ---------- */
+  var last = null;
+  function collectPerf() {
+    var by = {}; imgs.forEach(function (i) { by[i.url] = i; });
+    var fixed = (extra.cssBytes || 0) + new Blob([extra.appjs || '']).size + (extra.cfgBytes || 0), rows = [];
+    last.smRows.forEach(function (r) {
+      var p = pages[r.path]; if (!p || !p.ok) return;
+      var seen = {}, n = 0, bytes = 0, big = null;
+      [].forEach.call(p.doc.querySelectorAll('img[src]'), function (im) {
+        var u = resolveAsset(im.getAttribute('src'), p.url); if (!u || seen[u]) return; seen[u] = 1;
+        var e = by[u]; if (!e || !e.size) return; n++; bytes += e.size; if (!big || e.size > big.size) big = e;
+      });
+      var html = new Blob([p.html]).size;
+      rows.push({ page: pgName(r.path), html: html, assets: fixed, n: n, imgBytes: bytes, total: html + fixed + bytes, big: big ? { name: big.name, size: big.size } : null });
+    });
+    rows.forEach(function (r) { if (r.total > 3145728) say('warn', 'Page weight ' + r.page, 'About ' + kb(r.total) + ' on a first visit (upper estimate: browsers usually load smaller WebP versions).'); });
+    return rows;
+  }
+  function renderPerf() {
+    if (!X.perf) return sec('perf', 'Page weight', 'checking…', [h('p', { class: 'loading' }, 'Measuring…')]);
+    return sec('perf', 'Page weight', X.perf.length + ' pages', [
+      src(['every page, its CSS and JS, and the images it shows']),
+      h('p', { class: 'note' }, 'Uncompressed size of a first visit. Images are counted at each tag’s default file, so this is an upper estimate; browsers usually pick the smaller WebP versions. Fonts and analytics are not counted.'),
+      table(['Page', 'HTML', 'CSS + JS + config', 'Images', 'Biggest image', 'Estimated total'], X.perf.map(function (r) {
+        return [r.page, kb(r.html), kb(r.assets), r.n + ' · ' + kb(r.imgBytes), r.big ? r.big.name + ' (' + kb(r.big.size) + ')' : '', [kb(r.total), ' ', r.total > 3145728 ? pill('heavy', 'warn') : pill('ok', 'ok')]];
+      }))
+    ]);
+  }
+  function renderDoctors() {
+    var docs = FW.doctors || [];
+    return sec('doctors', 'Doctors', docs.length, [
+      src(['config.js → doctors, cases']),
+      table(['Name', 'Role', 'Qualification', 'Focus', 'Photo', 'Shown'], docs.map(function (d) {
+        return [d.name, d.role, d.qual, h('div', { class: 'tags' }, (d.tags || []).map(function (t) { return h('span', null, t); })), d.photo || pill('initials “' + d.initials + '”', 'warn'), d.active ? pill('active', 'ok') : pill('hidden', 'mute')];
+      })),
+      h('h3', null, 'Aligner before/after cases'),
+      table(['Case', 'Months', 'Before', 'After'], (FW.cases || []).map(function (c) { return [c.title, c.months, c.before || pill('no photo', 'mute'), c.after || pill('no photo', 'mute')]; }), [1])
+    ]);
+  }
+
+  /* ---------- festival themes ---------- */
+  function todayIST() { return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(new Date()); }
+  function dayDiff(a, b) { return Math.round((Date.parse(b + 'T00:00:00Z') - Date.parse(a + 'T00:00:00Z')) / 864e5); }
+  function fmtDate(s) { try { return new Date(s + 'T00:00:00Z').toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }); } catch (e) { return s; } }
+  function collectFestivals() {
+    var sch = extra.fest, F = { sch: sch, rows: [], today: todayIST(), loaderPages: 0, totalPages: 0, synced: null };
+    Object.keys(pages).forEach(function (k) { var p = pages[k]; if (!p.ok) return; F.totalPages++; if (p.html.indexOf('<!--fw-festival-->') > -1) F.loaderPages++; });
+    if (!sch) { X.fest = F; return F.sch === null ? say('info', 'Festival themes', 'No festival-themes/schedule.json found, so no festival themes are set up.') : null; }
+    var emb = null, home = pages[''];
+    if (home && home.ok) { var m = home.html.match(/var S=(\{[\s\S]*?\}),d=document/); try { emb = m ? JSON.parse(m[1]) : null; } catch (e) { emb = null; } }
+    var norm = function (s) { return JSON.stringify({ e: !!s.enabled, f: (s.festivals || []).map(function (f) { return [f.id, f.from, f.to, (f.banner || {}).text || '', (f.banner || {}).more || '']; }) }); };
+    F.synced = emb ? norm(emb) === norm(sch) : null;
+    if (F.synced === false) say('warn', 'Festival themes', 'schedule.json differs from the schedule built into the pages. Run node tools/build-site.js and upload, or visitors see the old schedule.');
+    if (F.synced === null && home && home.ok) say('warn', 'Festival themes', 'The home page has no festival loader. Run node tools/build-site.js.');
+    if (F.totalPages && F.loaderPages < F.totalPages) say('warn', 'Festival themes', 'Only ' + F.loaderPages + ' of ' + F.totalPages + ' pages carry the festival loader. Run node tools/build-site.js.');
+    if (!sch.enabled) say('info', 'Festival themes', 'The kill switch is on (enabled: false), so no festival theme shows to visitors.');
+    var list = (sch.festivals || []), live = null, upcoming = 0;
+    list.forEach(function (f) {
+      var st, kind;
+      if (!f.from || !f.to || f.from > f.to) { st = 'bad dates'; kind = 'err'; say('err', 'Festival themes', (f.label || f.id) + ' has invalid dates (' + f.from + ' to ' + f.to + ').'); }
+      else if (F.today < f.from) { var n = dayDiff(F.today, f.from); st = 'starts in ' + n + ' day' + (n === 1 ? '' : 's'); kind = 'info'; upcoming++; }
+      else if (F.today > f.to) { st = 'ended'; kind = 'mute'; }
+      else { st = sch.enabled ? 'LIVE now' : 'in window, switched off'; kind = sch.enabled ? 'ok' : 'warn'; if (sch.enabled) { live = f; say('info', 'Festival themes', (f.label || f.id) + ' is live on the site now (until ' + fmtDate(f.to) + ').'); } }
+      if (!(f.banner && f.banner.text)) say('warn', 'Festival themes', (f.label || f.id) + ' has no banner text.');
+      F.rows.push({ f: f, status: st, kind: kind, days: f.from && f.to && f.from <= f.to ? dayDiff(f.from, f.to) + 1 : null });
+    });
+    for (var a = 0; a < list.length; a++) for (var b = a + 1; b < list.length; b++) if (list[a].from <= list[b].to && list[b].from <= list[a].to) say('warn', 'Festival themes', (list[a].label || list[a].id) + ' and ' + (list[b].label || list[b].id) + ' overlap; the later one wins.');
+    if (sch.enabled && !live && !upcoming) say('info', 'Festival themes', 'No festival theme is live or scheduled after today. Add next festival to festival-themes/schedule.json.');
+    F.live = live;
+    X.fest = F;
+  }
+  function checkFestFiles() {
+    var F = X.fest; if (!F || !F.rows.length) return Promise.resolve();
+    return pool(F.rows, 3, function (r) {
+      var id = r.f.id, out = r;
+      function one(ext) { return get(new URL('festival-themes/' + id + '.' + ext, BASE).href).then(function (res) { return res.ok ? res.text() : null; }).catch(function () { return null; }); }
+      return Promise.all([one('css'), one('js')]).then(function (v) {
+        out.css = v[0]; out.js = v[1]; out.cssKb = v[0] === null ? null : new Blob([v[0]]).size; out.jsKb = v[1] === null ? null : new Blob([v[1]]).size;
+        if (v[0] === null) say('err', 'Festival themes', id + '.css is missing in festival-themes/.');
+        if (v[1] === null) say('err', 'Festival themes', id + '.js is missing in festival-themes/.');
+        out.tokens = [];
+        if (v[0]) { var m = v[0].match(new RegExp('html\\[data-fw-festival="' + id + '"\\]\\s*\\{([^}]*)\\}')); if (m) m[1].replace(/(--[\w-]+)\s*:\s*([^;]+)/g, function (_, k, val) { out.tokens.push({ name: k, value: val.trim() }); }); }
+      });
+    });
+  }
+  function renderFestivals() {
+    var F = X.fest;
+    if (!F || F.sch === null || F.sch === undefined) return sec('festivals', 'Festival themes', 'none set up', [src(['festival-themes/schedule.json']), h('p', { class: 'note' }, 'No schedule file found. Festival themes need festival-themes/schedule.json.')]);
+    var sch = F.sch, live = F.live;
+    var badge = live ? 'live: ' + (live.label || live.id) : sch.enabled ? F.rows.length + ' scheduled' : 'switched off';
+    return sec('festivals', 'Festival themes', badge, [
+      src(['festival-themes/schedule.json', 'festival-themes/<id>.css and .js', 'each page’s built-in schedule']),
+      kv([['Kill switch', sch.enabled ? pill('on: themes switch by date', 'ok') : pill('off: no festival theme shows', 'warn')], ['Today (India time)', fmtDate(F.today)],
+        ['Live right now', live ? [pill('LIVE', 'ok'), ' ', live.label || live.id] : pill('none', 'mute')],
+        ['Pages with the loader', F.loaderPages + ' of ' + F.totalPages], ['Pages match schedule.json', F.synced === null ? pill('could not tell', 'warn') : F.synced ? pill('in sync', 'ok') : pill('out of sync: rebuild', 'err')]]),
+      h('h3', null, 'Schedule'),
+      F.rows.length ? table(['Festival', 'Id', 'From', 'To', 'Days', 'Status', 'Banner', 'Files', 'Preview'], F.rows.map(function (r) {
+        var f = r.f, pv = new URL('index.html?festival=' + encodeURIComponent(f.id), BASE).href;
+        return [f.label || f.id, h('span', { class: 'mono' }, f.id), fmtDate(f.from), fmtDate(f.to), r.days === null ? '' : r.days, pill(r.status, r.kind),
+          [(f.banner || {}).text || pill('none', 'warn'), (f.banner || {}).more ? [h('br'), h('span', { style: 'color:var(--mute)' }, f.banner.more)] : ''],
+          r.cssKb === undefined ? 'checking…' : [r.cssKb === null ? pill('css missing', 'err') : 'css ' + kb(r.cssKb), h('br'), r.jsKb === null ? pill('js missing', 'err') : 'js ' + kb(r.jsKb)],
+          link(pv, 'Preview')];
+      })) : h('p', { class: 'note' }, 'No festivals in the schedule.'),
+      h('p', { class: 'note', style: 'margin-top:8px' }, 'Dates are inclusive and read in India time. Preview opens the home page with the theme forced on, even outside its dates (add ?festival=off to clear). To change the schedule, edit festival-themes/schedule.json, run node tools/build-site.js, and upload.'),
+      F.rows.filter(function (r) { return r.tokens && r.tokens.length; }).map(function (r) {
+        return [h('h3', null, (r.f.label || r.f.id) + ': colours'), h('div', { class: 'sws' }, r.tokens.filter(function (t2) { return /^#[0-9a-f]{3,8}$/i.test(t2.value); }).map(function (t2) {
+          return h('div', { class: 'swc' }, [h('i', { style: 'background:' + t2.value }), h('span', null, [h('b', null, t2.name), t2.value])]);
+        }))];
+      })
+    ]);
+  }
+
+  function lum(hex) {
+    var m = String(hex).replace('#', ''); if (m.length === 3) m = m.replace(/./g, '$&$&');
+    var c = [0, 2, 4].map(function (i) { var v = parseInt(m.substr(i, 2), 16) / 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); });
+    return .2126 * c[0] + .7152 * c[1] + .0722 * c[2];
+  }
+  function contrast(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); }
+  function themePreview(theme) {
+    var T = {}; theme.tokens.forEach(function (t) { T[t.name] = t.final; });
+    var hex = function (k, d) { return /^#[0-9a-f]{3,6}$/i.test(T[k] || '') ? T[k] : d; };
+    var ink = hex('--ink', '#111'), bg = hex('--bg', '#fff'), soft = hex('--soft', '#f3f3f3'), mute = hex('--mute', '#666'), green = hex('--green', '#0a0'), greend = hex('--greend', '#111'), tint = hex('--tint', '#eee'), link = hex('--link', '#06c'), line = hex('--line', '#ddd');
+    var colours = theme.tokens.filter(function (t) { return /^#[0-9a-f]{3,6}$/i.test(t.final); });
+    var pairs = [['Body text', ink, bg], ['Muted text', mute, bg], ['Muted text on soft panels', mute, soft], ['Links', link, bg], ['Primary button text', '#ffffff', green], ['Dark button text', '#ffffff', ink], ['Accent text on tinted panels', green, tint], ['Dark text on tinted panels', greend, tint], ['Accent as text on white', green, bg]];
+    return [
+      h('h3', null, 'Palette'),
+      h('div', { class: 'sws' }, colours.map(function (c) { return h('div', { class: 'swc' }, [h('i', { style: 'background:' + c.final }), h('span', null, [h('b', null, c.name), c.final])]); })),
+      h('h3', null, 'Preview with the live tokens'),
+      h('div', { class: 'spec', style: 'background:' + bg + ';color:' + ink + ';border-color:' + line }, [
+        h('div', { style: 'font:900 34px/1.1 ' + (theme.head || 'Archivo,sans-serif') + ';letter-spacing:-.02em' }, 'Clearly better.'),
+        h('div', { style: 'font:300 16px/1.6 Inter,system-ui,sans-serif;max-width:56ch' }, 'Complete dental care, done properly, by MDS doctors in Raipur, Baloda Bazar and Lucknow.'),
+        h('div', { style: 'font:400 14px Inter,system-ui,sans-serif;color:' + mute }, 'Muted text for captions and helper lines · ', h('span', { style: 'color:' + link }, 'A link looks like this')),
+        h('div', { class: 'btns' }, [
+          h('span', { class: 'sb', style: 'background:' + green + ';color:#fff' }, 'Book a consultation'),
+          h('span', { class: 'sb', style: 'background:' + ink + ';color:#fff' }, 'Call now'),
+          h('span', { class: 'sb', style: 'background:transparent;color:' + link + ';box-shadow:inset 0 0 0 1.5px ' + link }, 'Learn more'),
+          h('span', { class: 'sb', style: 'background:' + tint + ';color:' + greend }, 'Soft tile')
+        ]),
+        h('div', { style: 'background:' + soft + ';border-radius:16px;padding:14px 16px;font:400 14px Inter,system-ui,sans-serif' }, 'Soft panel: ' + soft)
+      ]),
+      h('h3', null, 'Contrast check (WCAG AA needs 4.5 for normal text)'),
+      table(['Pair', 'Text', 'Background', 'Ratio', 'AA'], pairs.map(function (p) {
+        var r = contrast(p[1], p[2]);
+        return [p[0], [h('span', { class: 'sw', style: 'background:' + p[1] }), p[1]], [h('span', { class: 'sw', style: 'background:' + p[2] }), p[2]], r.toFixed(2) + ' : 1', r >= 4.5 ? pill('pass', 'ok') : r >= 3 ? pill('large text only', 'warn') : pill('fail', 'err')];
+      }), [3])
+    ];
+  }
+  function renderTheme(theme) {
+    if (!theme) return sec('theme', 'Theme', null, [h('p', { class: 'note' }, 'styles.css could not be read.')]);
+    var real = theme.blocks.filter(function (b) { return !b.media; }).length, hasOvr = theme.tokens.some(function (t) { return t.base !== t.final; });
+    var rows = theme.tokens.map(function (t) {
+      var isColor = /^#|^rgb|^hsl/i.test(t.final);
+      var cells = [h('span', { class: 'mono' }, t.name), isColor ? [h('span', { class: 'sw', style: 'background:' + t.final }), t.final] : t.final];
+      if (hasOvr) cells.push(t.base !== t.final ? [h('span', { class: 'sw', style: 'background:' + t.base }), t.base] : pill('same', 'mute'), t.base !== t.final ? pill('overridden', 'warn') : '');
+      return cells;
+    });
+    return sec('theme', 'Theme', theme.tokens.length + ' tokens', [
+      src(['styles.css → :root blocks', 'index.html → fonts']),
+      h('p', { class: 'note' }, real > 1
+        ? 'styles.css has ' + real + ' colour blocks. The last one wins, so the “Active” column is what visitors see.'
+        : 'One colour block at the top of styles.css, so there is nothing overridden. Change a value there and it changes everywhere.'),
+      themePreview(theme),
+      h('h3', null, 'All tokens'),
+      table(hasOvr ? ['Token', 'Active', 'Earlier', ''] : ['Token', 'Value'], rows),
+      h('h3', null, 'Blocks found'),
+      table(['#', 'Label', 'Sets'], theme.blocks.map(function (b, i) { return [i + 1, b.label, b.names.join(', ')]; })),
+      h('h3', null, 'Fonts'),
+      kv([['Body font', theme.body || ''], ['Heading font', theme.head || ''], ['Loaded from', theme.fonts.length ? theme.fonts.join(', ') : 'none']])
+    ]);
+  }
+
+  function renderSitemap(rows, sm) {
+    return sec('sitemap', 'Site map', rows.length + ' pages', [
+      src(['sitemap.xml', 'each page’s HTML']),
+      table(['Page', 'Title', 'Chars', 'Description', 'Chars', 'H1', 'Last modified', 'Status'], rows.map(function (r) {
+        var st = !r.ok ? pill('not found', 'err') : r.noindex ? pill('noindex', 'warn') : pill('live', 'ok');
+        return [link(r.loc, r.path || '/'), r.title || pill('missing', 'err'), r.title ? r.title.length : '', r.desc || pill('missing', 'err'), r.desc ? r.desc.length : '', r.h1 || pill('missing', 'warn'), r.lastmod || '', st];
+      }), [2, 4]),
+      h('p', { class: 'note', style: 'margin-top:8px' }, 'Good lengths: title up to 60 characters, description 70 to 160.')
+    ]);
+  }
+
+  function renderFaq(groups) {
+    var total = groups.reduce(function (n, g) { return n + g.items.length; }, 0);
+    return sec('faq', 'FAQ', total + ' questions', [
+      src(['faq.html']),
+      groups.length ? h('div', { class: 'faqs' }, groups.map(function (g) {
+        return h('div', null, [h('h3', null, g.title + ' (' + g.items.length + ')')].concat(g.items.map(function (q) {
+          return h('details', null, [h('summary', null, q.q), h('p', null, q.a)]);
+        })));
+      })) : h('p', { class: 'note' }, 'faq.html could not be read.')
+    ]);
+  }
+
+  function renderImages() {
+    var list = imgs.slice().sort(function (a, b) { return a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }); });
+    return sec('images', 'Images', list.length + ' in use', [
+      src(['every image referenced by config.js and the pages']),
+      h('p', { class: 'note' }, 'Sorted by file name. Over 300 KB is flagged; images that fail to load are errors.'),
+      table(['', 'File', 'Type', 'Size', 'Dimensions', 'Used on'], list.map(function (i) {
+        return [i.ok ? h('img', { class: 'thumb', src: i.thumb, alt: '' }) : '', link(i.url, i.name), i.type || '',
+          i.ok ? [kb(i.size), ' ', i.size > 307200 ? pill('large', 'warn') : ''] : pill('missing', 'err'), i.w ? i.w + '×' + i.h : '', i.pages.join(', ')];
+      }), [3])
+    ]);
+  }
+
+  function renderIntegrations(extra) {
+    var a = FW.analytics || {};
+    function st(v, label) { return v ? [v, ' ', pill('set', 'ok')] : pill(label || 'not set', 'warn'); }
+    return sec('integrations', 'Integrations', null, [
+      src(['config.js', 'index.html', 'robots.txt', 'llms.txt']),
+      kv([['Google Analytics 4 ID', st(a.ga4Id)], ['Google Tag Manager ID', a.gtmId ? st(a.gtmId) : pill('not set (GA4 loads directly)', 'info')],
+          ['Lead endpoint (form → sheet)', FW.leadEndpoint ? st(FW.leadEndpoint) : pill('empty: leads go to WhatsApp only', 'warn')],
+          ['Search Console token', extra.verification ? st(extra.verification) : pill('not found on home page', 'warn')],
+          ['robots.txt', extra.robots ? pill('found', 'ok') : pill('missing', 'err')], ['llms.txt', extra.llms ? pill('found', 'ok') : pill('missing', 'warn')],
+          ['sitemap.xml', extra.sitemap ? pill('found', 'ok') : pill('missing', 'err')], ['Hosting headers (_headers)', extra.headers ? pill('found', 'ok') : pill('missing', 'warn')]])
+    ]);
+  }
+
+  /* ---------- analysis ---------- */
+  function parseTheme(css) {
+    var blocks = [], re = /:root\s*\{([^}]*)\}/g, m;
+    while ((m = re.exec(css))) {
+      var before = css.slice(Math.max(0, m.index - 400), m.index), label = 'Base';
+      var med = before.match(/@media[^{]*\{\s*$/);
+      var cm = before.match(/\/\*\s*=*\s*([^*=]+?)\s*=*\s*\*\/\s*$/);
+      if (med) label = med[0].replace(/\s*\{\s*$/, '');
+      else if (cm) label = cm[1];
+      else if (blocks.length) label = 'Override';
+      var vars = {}, names = [];
+      m[1].replace(/(--[\w-]+)\s*:\s*([^;]+)/g, function (_, k, v) { vars[k] = v.trim(); names.push(k); });
+      blocks.push({ label: label, vars: vars, names: names, media: !!med });
+    }
+    var base = {}, fin = {}, order = [];
+    blocks.forEach(function (b) {
+      if (b.media) return;
+      b.names.forEach(function (k) { if (!(k in base)) { base[k] = b.vars[k]; order.push(k); } fin[k] = b.vars[k]; });
+    });
+    var bodyM = css.match(/body\s*\{[^}]*font-family:\s*([^;}]+)/);
+    return { blocks: blocks, tokens: order.map(function (k) { return { name: k, base: base[k], final: fin[k] }; }),
+      body: bodyM ? bodyM[1].trim() : '', head: fin['--head'] || base['--head'] || '', fonts: [] };
+  }
+
+  function crossChecks() {
+    var P = pages, home = P[''] || P['/'] || {}, contact = P.contact || {}, aligners = P.aligners || {}, about = P.about || {};
+    var c = FW.clinic, digits = function (s) { return String(s).replace(/\D/g, ''); };
+    function has(p, s) { return p && p.ok && (p.text.indexOf(s) > -1 || p.html.indexOf(s) > -1); }
+    if (contact.ok && !has(contact, c.phone) && !has(contact, digits(c.phone).slice(-10))) say('err', 'Out of sync', 'Phone ' + c.phone + ' from config.js is not on the contact page. Re-run node tools/build-site.js.');
+    if (contact.ok && !has(contact, c.whatsapp)) say('warn', 'Out of sync', 'WhatsApp number from config.js is not on the contact page.');
+    if (home.ok && !has(home, c.reviewCount)) say('warn', 'Out of sync', 'Review count ' + c.reviewCount + ' from config.js is not on the home page.');
+    (FW.doctors || []).filter(function (d) { return d.active; }).forEach(function (d) {
+      var shown = Object.keys(P).some(function (k) { return has(P[k], d.name) || has(P[k], d.short); });
+      if (!shown && Object.keys(P).length) say('err', 'Out of sync', d.name + ' is active in config.js but appears on no page. Re-run node tools/build-site.js.');
+    });
+    var al = (FW.needs || []).filter(function (n) { return n.key === 'aligners'; })[0];
+    if (al && al.price && aligners.ok && !has(aligners, Number(al.price).toLocaleString('en-IN'))) say('warn', 'Out of sync', 'Aligner price ₹' + Number(al.price).toLocaleString('en-IN') + ' from config.js is not on the aligners page.');
+    var sv = P.services;
+    if (sv && sv.ok) (FW.services || []).forEach(function (g) { g.items.forEach(function (it) { if (sv.text.indexOf(it.name) < 0) say('err', 'Out of sync', '“' + it.name + '” is in config.js but not on the services page.'); }); });
+    var paths = Object.keys(P);
+    (FW.tiles || []).forEach(function (t) {
+      var base = (t.href || '').split('#')[0].replace(/^\//, '');
+      if (base && paths.indexOf(base) < 0) say('warn', 'Links', 'Home tile “' + t.name + '” links to /' + base + ', which is not in the site map.');
+    });
+    var nq = (FW.needs || []).filter(function (n) { return n.price === null; }).length;
+    if (nq) say('info', 'Prices', nq + ' of ' + FW.needs.length + ' booking options have no price and show “Get a quote”.');
+    (FW.doctors || []).forEach(function (d) { if (d.active && !d.photo) say('warn', 'Doctors', d.name + ' has no photo; the card shows initials.'); });
+    var nopic = (FW.cases || []).filter(function (x) { return !x.before || !x.after; }).length;
+    if (nopic) say('info', 'Cases', nopic + ' of ' + FW.cases.length + ' aligner cases have no before/after photos yet.');
+    if (!FW.leadEndpoint) say('warn', 'Leads', 'leadEndpoint is empty, so booking-form leads are not saved anywhere.');
+    if (!(FW.analytics || {}).ga4Id && !(FW.analytics || {}).gtmId) say('warn', 'Analytics', 'No GA4 or GTM ID is set.');
+  }
+
+  function pageChecks(rows) {
+    rows.forEach(function (r) {
+      var n = r.path || '/';
+      if (!r.ok) return say('err', 'Site map', n + ' is in sitemap.xml but could not be loaded.');
+      if (!r.title) say('err', n, 'No <title>.'); else if (r.title.length > 60) say('warn', n, 'Title is ' + r.title.length + ' characters (aim for 60 or less).');
+      if (!r.desc) say('err', n, 'No meta description.'); else if (r.desc.length > 160 || r.desc.length < 70) say('warn', n, 'Description is ' + r.desc.length + ' characters (aim for 70 to 160).');
+      if (!r.h1) say('warn', n, 'No <h1>.'); else if (r.h1count > 1) say('warn', n, r.h1count + ' <h1> tags (use one).');
+      if (r.noindex) say('warn', n, 'Page is marked noindex but is in the site map.');
+      if (r.noalt) say('warn', n, r.noalt + ' image(s) without alt text.');
+    });
+  }
+
+  /* ---------- run ---------- */
+  function run() {
+    issues = []; pages = {}; imgs = [];
+    var main = document.getElementById('main');
+    document.getElementById('meta').textContent = 'Loading…';
+    extra = {}; waRows = [];
+    var theme = null, sm = null, faq = [], smRows = [];
+
+    return loadConfig().then(function (cfg) {
+      FW = cfg;
+      return Promise.all([
+        get(new URL('sitemap.xml', BASE).href).then(function (r) { extra.sitemap = r.ok; return r.ok ? r.text() : ''; }).catch(function () { return ''; }),
+        get(new URL('styles.css', BASE).href).then(function (r) { return r.ok ? r.text() : ''; }).catch(function () { return ''; }),
+        get(new URL('robots.txt', BASE).href).then(function (r) { extra.robots = r.ok; }).catch(function () {}),
+        get(new URL('llms.txt', BASE).href).then(function (r) { extra.llms = r.ok; }).catch(function () {}),
+        get(new URL('_headers', BASE).href).then(function (r) { extra.headers = r.ok; }).catch(function () {}),
+        get(new URL('app.js', BASE).href).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) { extra.appjs = t; }).catch(function () {}),
+        get(new URL('config.js', BASE).href).then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) { extra.cfgBytes = new Blob([t]).size; }).catch(function () {}),
+        get(new URL('festival-themes/schedule.json', BASE).href).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) { extra.fest = j; }).catch(function () { extra.fest = null; })
+      ]);
+    }).then(function (res) {
+      var xml = new DOMParser().parseFromString(res[0] || '<x/>', 'application/xml');
+      sm = [].map.call(xml.getElementsByTagName('url'), function (u) {
+        var loc = (u.getElementsByTagName('loc')[0] || {}).textContent || '', lm = (u.getElementsByTagName('lastmod')[0] || {}).textContent || '';
+        var path; try { path = new URL(loc).pathname.replace(/^\/+|\/+$/g, ''); } catch (e) { path = loc; }
+        return { loc: loc, path: path, lastmod: lm };
+      });
+      if (res[1]) { theme = parseTheme(res[1]); extra.cssBytes = new Blob([res[1]]).size; }
+      return pool(sm, 6, function (s) { return fetchPage(s.path).then(function (p) { pages[s.path] = p; return p; }); });
+    }).then(function (list) {
+      list.forEach(function (p, i) {
+        var s = sm[i], row = { loc: s.loc, path: s.path, lastmod: s.lastmod, ok: p.ok };
+        if (p.ok) {
+          row.title = textOf(p, 'title'); row.desc = metaOf(p, 'description'); row.h1 = textOf(p, 'h1');
+          row.h1count = p.doc.querySelectorAll('h1').length; row.noindex = /noindex/i.test(metaOf(p, 'robots'));
+          row.noalt = [].filter.call(p.doc.querySelectorAll('img'), function (im) { return !im.hasAttribute('alt'); }).length;
+          if (s.path === '' ) {
+            var v = p.doc.querySelector('meta[name="google-site-verification"]'); if (v) extra.verification = v.getAttribute('content');
+            if (theme) theme.fonts = [].map.call(p.doc.querySelectorAll('link[href*="fonts.googleapis"]'), function (l) { var m = (l.href.match(/family=([^:&]+)/) || [])[1]; return m ? decodeURIComponent(m).replace(/\+/g, ' ') : ''; }).filter(Boolean);
+          }
+        }
+        smRows.push(row);
+      });
+      var fp = pages.faq;
+      if (fp && fp.ok) {
+        var cur = { title: 'Questions', items: [] };
+        [].forEach.call(fp.doc.querySelectorAll('h2, details.q'), function (n) {
+          if (n.tagName === 'H2') { cur = { title: n.textContent.replace(/\s+/g, ' ').trim(), items: [] }; faq.push(cur); }
+          else {
+            if (!faq.length) faq.push(cur);
+            var q = n.querySelector('summary'), a = n.querySelector('.a');
+            cur.items.push({ q: q ? q.textContent.replace(/\s+/g, ' ').trim() : '', a: a ? a.textContent.replace(/\s+/g, ' ').trim() : '' });
+          }
+        });
+      }
+      pageChecks(smRows); crossChecks(); waRows = collectWA();
+      X = { locs: collectLocs(), cons: collectConsistency(), seo: collectSeo(smRows), links: null };
+      collectFestivals();
+
+      // collect images
+      var seen = {};
+      function add(u, pg) { if (!u) return; var e = seen[u]; if (!e) { e = seen[u] = { url: u, name: u.split('/').pop(), pages: [] }; imgs.push(e); } if (pg && e.pages.indexOf(pg) < 0) e.pages.push(pg); }
+      function cfgImg(f, where) { if (f) add(new URL(f.indexOf('/') > -1 ? f : 'images/' + f, BASE).href, where); }
+      (FW.services || []).forEach(function (g) { g.items.forEach(function (it) { cfgImg(it.img, 'config: ' + it.name); }); });
+      (FW.cases || []).forEach(function (c) { cfgImg(c.before, 'config: cases'); cfgImg(c.after, 'config: cases'); });
+      (FW.doctors || []).forEach(function (d) { cfgImg(d.photo, 'config: ' + d.short); });
+      Object.keys(pages).forEach(function (k) {
+        var p = pages[k]; if (!p.ok) return; var nm = k || 'home';
+        [].forEach.call(p.doc.querySelectorAll('img[src],source[srcset],img[srcset],meta[property="og:image"]'), function (n) {
+          var cands = [];
+          if (n.getAttribute('src')) cands.push(n.getAttribute('src'));
+          if (n.getAttribute('content')) cands.push(n.getAttribute('content'));
+          (n.getAttribute('srcset') || '').split(',').forEach(function (s) { s = s.trim().split(/\s+/)[0]; if (s) cands.push(s); });
+          cands.forEach(function (c) { if (/^data:/.test(c)) return; add(resolveAsset(c, p.url), nm); });
+        });
+      });
+
+      // render everything but the image table first
+      draw(smRows, theme, faq, extra, sm);
+      document.getElementById('meta').textContent = 'Checking ' + imgs.length + ' images…';
+      var linksDone = checkLinks().catch(function (e) { X.links = []; say('warn', 'Links', 'Link check failed: ' + e.message); });
+      var festDone = checkFestFiles();
+      return Promise.all([linksDone, festDone, pool(imgs, 8, function (im) {
+        return get(im.url).catch(function () { return get(im.url); }).then(function (r) { return r.ok ? r : get(im.url); }).then(function (r) {
+          if (!r.ok) { im.ok = false; return; }
+          return r.blob().then(function (b) {
+            im.ok = true; im.size = b.size; im.type = (b.type || '').replace('image/', '');
+            im.thumb = URL.createObjectURL(b);
+            return new Promise(function (done) { var i = new Image(); i.onload = function () { im.w = i.naturalWidth; im.h = i.naturalHeight; done(); }; i.onerror = done; i.src = im.thumb; });
+          });
+        }).catch(function () { im.ok = false; });
+      })]);
+    }).then(function () {
+      seoImageChecks();
+      imgs.forEach(function (im) {
+        if (im.ok === false) say('err', 'Images', im.name + ' is referenced (' + im.pages[0] + ') but does not load.');
+        else if (im.size > 307200) say('warn', 'Images', im.name + ' is ' + kb(im.size) + ' (over 300 KB).');
+      });
+      X.perf = collectPerf();
+      draw(smRows, theme, faq, extra, sm);
+      document.getElementById('meta').textContent = 'Loaded ' + new Date().toLocaleTimeString() + ' · ' + sm.length + ' pages · ' + imgs.length + ' images';
+    }).catch(function (e) {
+      main.replaceChildren(h('div', { class: 'issue err' }, [h('b', null, 'error'), 'Could not read the site: ' + e.message + '. Open this page from the site itself (https://…/admin/data.html or a local server), not as a file.']));
+      document.getElementById('meta').textContent = 'Failed';
+    });
+  }
+
+  function draw(smRows, theme, faq, extra, sm) {
+    var main = document.getElementById('main'), y = scrollY;
+    last = { smRows: smRows, theme: theme, faq: faq, extra: extra, sm: sm };
+    main.replaceChildren(renderAttention(), renderFestivals(), renderClinic(), renderConsistency(), renderDoctors(), renderFaq(faq), renderImages(),
+      renderIntegrations(extra), renderLinks(), renderLocations(), renderPerf(), renderSeo(), renderSitemap(smRows, sm), renderTheme(theme), renderTreatments(), renderWhatsApp(waRows));
+    scrollTo(0, y);
+  }
+
+  /* nav */
+  var jump = document.getElementById('jump');
+  SECTIONS.forEach(function (s) {
+    var a = h('a', { href: '#' + s[0] }, s[1]);
+    a.addEventListener('click', function (ev) {
+      ev.preventDefault(); var d = document.getElementById(s[0]); if (!d) return; d.open = true;
+      d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    jump.appendChild(a);
+  });
+  document.getElementById('reload').addEventListener('click', function () { run(); });
+  run();
+})();
+</script>
+</body>
+</html>

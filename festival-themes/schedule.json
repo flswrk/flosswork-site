@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "festivals": [
+    {
+      "id": "diwali-d",
+      "label": "Diwali 2026",
+      "from": "2026-11-04",
+      "to": "2026-11-12",
+      "banner": {
+        "text": "Shubh Deepavali from Flosswork",
+        "more": "wishing you a bright, healthy smile"
+      }
+    }
+  ]
+}

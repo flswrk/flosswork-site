@@ -1,0 +1,40 @@
+/* Festival theme: Diwali, "Night of Diyas". Deep plum night sky, stars, a row of lit diyas, rising sparks. */
+html[data-fw-festival="diwali-d"]{
+  --fa:#f5b82e;--fo:#2a0f45;--fg:#ffd36b;
+  --green:#f5b82e;--greend:#2a0f45;--tint:#ffecc4;--link:#8a3b00;--soft:#fff6e6;--img:#ead7bd;--bn:40px
+}
+@media(max-width:759px){html[data-fw-festival="diwali-d"]{--bn:36px}}
+
+/* banner */
+html[data-fw-festival="diwali-d"] .fw-fest{background:linear-gradient(90deg,#1a0a36,#3a1255,#1a0a36);color:#ffd36b;border-bottom:1px solid #ffd36b55}
+
+/* hero (home and inner pages): night sky */
+html[data-fw-festival="diwali-d"] .shero,html[data-fw-festival="diwali-d"] .phero{position:relative;overflow:hidden;padding-bottom:78px;
+  background:radial-gradient(70% 60% at 78% 0%,#6a2a8a88,transparent 62%),linear-gradient(180deg,#140a30 0%,#2a0f45 62%,#5a1f3d 100%)}
+html[data-fw-festival="diwali-d"] .shero>.wrap,html[data-fw-festival="diwali-d"] .phero>.wrap{position:relative;z-index:2}
+html[data-fw-festival="diwali-d"] .shero h1,html[data-fw-festival="diwali-d"] .phero h1{color:#fff}
+html[data-fw-festival="diwali-d"] .shero h1 strong,html[data-fw-festival="diwali-d"] .phero h1 strong{color:#ffd36b}
+html[data-fw-festival="diwali-d"] .shero p,html[data-fw-festival="diwali-d"] .phero p{color:#e4daf0}
+html[data-fw-festival="diwali-d"] .shero .eyebrow,html[data-fw-festival="diwali-d"] .phero .eyebrow{color:#ffd36b}
+html[data-fw-festival="diwali-d"] .shero .btn--line,html[data-fw-festival="diwali-d"] .phero .btn--line{border-color:#ffd36b99;color:#ffd36b}
+html[data-fw-festival="diwali-d"] .data{background:#1a0a36}
+
+/* stars */
+.fw-stars{position:absolute;inset:0;pointer-events:none;z-index:0}
+.fw-stars i{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);border-radius:50%;background:#fff;opacity:.2;animation:fwTw var(--d) ease-in-out var(--dl) infinite}
+@keyframes fwTw{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:.95;transform:scale(1.3)}}
+
+/* diya row along the bottom of the hero */
+.fw-diyas{position:absolute;left:0;right:0;bottom:6px;height:60px;display:flex;justify-content:space-around;align-items:flex-end;padding:0 10px;pointer-events:none;z-index:3}
+.fw-dy{position:relative;width:46px;height:44px;display:block}
+.fw-dy svg{position:absolute;left:0;bottom:0;width:100%;height:auto;overflow:visible}
+.fw-dy .g{position:absolute;left:50%;bottom:16px;width:70px;height:70px;margin-left:-35px;border-radius:50%;background:radial-gradient(circle,#ffcf5acc 0,#ff9d1a55 38%,transparent 70%);animation:fwGlow2 1.8s ease-in-out var(--dl) infinite alternate}
+.fw-dy .fl{transform-box:fill-box;transform-origin:50% 100%;animation:fwFlick 1.3s ease-in-out var(--dl) infinite alternate}
+@keyframes fwGlow2{from{opacity:.6;transform:scale(.9)}to{opacity:1;transform:scale(1.12)}}
+@media(max-width:699px){.fw-dy:nth-child(even){display:none}.fw-dy{width:42px}}
+
+/* rising sparks (fixed layer) */
+.fw-em{position:absolute;bottom:-20px;left:var(--x);width:var(--s);height:var(--s);border-radius:50%;background:radial-gradient(circle,#fff6c9 0,#ffb703 45%,transparent 72%);opacity:0;animation:fwRise var(--d) linear var(--dl) infinite}
+@keyframes fwRise{0%{transform:translate(0,0) scale(.6);opacity:0}10%{opacity:.9}50%{transform:translate(var(--dx),-55vh) scale(1)}100%{transform:translate(calc(var(--dx) * -1),-105vh) scale(.4);opacity:0}}
+
+@media(prefers-reduced-motion:reduce){.fw-stars i,.fw-dy .fl,.fw-dy .g{animation:none}.fw-stars i{opacity:.6}}

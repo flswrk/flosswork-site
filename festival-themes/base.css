@@ -1,0 +1,45 @@
+/* Flosswork festival themes: shared base. Loaded only while a festival theme is active (see festival-themes/README.md).
+   A festival theme file sets the tokens below on html[data-fw-festival="<id>"] and adds its own decoration.
+     --fa  button / accent fill      --fo  text on --fa (default white)
+     --fg  accent on dark surfaces   --link  accent text on light surfaces
+   plus the site's own --green --greend --tint --soft --img as needed. */
+
+html[data-fw-festival]{--bn:40px}
+@media(max-width:759px){html[data-fw-festival]{--bn:36px}}
+
+/* sticky banner: fixed above the header, the page and header shift down by its height */
+html[data-fw-festival] body{padding-top:var(--bn)}
+html[data-fw-festival] .nav{top:var(--bn)}
+html[data-fw-festival]{scroll-padding-top:calc(72px + var(--bn))}
+.fw-fest{position:fixed;top:0;left:0;right:0;height:var(--bn);z-index:60;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 14px;font:600 13px/1 Inter,system-ui,sans-serif;letter-spacing:.02em;white-space:nowrap;overflow:hidden;view-transition-name:fwbanner}
+.fw-fest .txt{overflow:hidden;text-overflow:ellipsis}
+.fw-fest .ico{display:inline-flex;width:20px;height:20px;flex:none}
+.fw-fest .ico svg{width:100%;height:100%}
+.fw-fest .flame{transform-box:fill-box;transform-origin:50% 90%;animation:fwFlick 1.6s ease-in-out infinite alternate}
+.fw-fest .more{display:none;font-weight:400;opacity:.9}
+.fw-fest .ico+.txt+.more+.ico{display:none}
+@media(min-width:760px){
+  .fw-fest{font-size:14px}
+  .fw-fest .more{display:inline}
+  .fw-fest .ico+.txt+.more+.ico{display:inline-flex}
+}
+.fw-fx{position:fixed;inset:0;z-index:40;pointer-events:none;overflow:hidden}
+@keyframes fwFlick{0%{transform:scale(1,1) rotate(-3deg)}50%{transform:scale(.92,1.1) rotate(2deg)}100%{transform:scale(1.04,.95) rotate(-2deg)}}
+
+/* the site hard-codes its blue in places, so remap the accent through the festival theme tokens */
+html[data-fw-festival] .btn--green,html[data-fw-festival] .send,html[data-fw-festival] .btn--ink,
+html[data-fw-festival] .btn.btn--wa.btn--wa.send,html[data-fw-festival] .csheet .tile[data-call],
+html[data-fw-festival] .fabx.open .seg.call{background:var(--fa);color:var(--fo,#fff)}
+html[data-fw-festival] .btn--green:hover,html[data-fw-festival] .btn--ink:hover,html[data-fw-festival] .btn.btn--wa.btn--wa.send:hover{background:var(--fa);filter:brightness(1.12)}
+html[data-fw-festival] .btn--line.btn--accent{border-color:var(--link);color:var(--link)}
+html[data-fw-festival] .eyebrow,html[data-fw-festival] .t .pr button,html[data-fw-festival] .card .act button,
+html[data-fw-festival] .tap em,html[data-fw-festival] .why-c .k,html[data-fw-festival] .q .a a{color:var(--link)}
+html[data-fw-festival] .data b,html[data-fw-festival] .price .big,html[data-fw-festival] .price li:before,
+html[data-fw-festival] .form .tag,html[data-fw-festival] .cmp .h>div:first-child,html[data-fw-festival] .foot .brand em{color:var(--fg,var(--green))}
+html[data-fw-festival] .tabbar .tab[aria-current=page],html[data-fw-festival] .tabbar .tab[aria-expanded=true]{color:var(--link)}
+html[data-fw-festival] .tabbar .tab-ind::after{background:var(--link)}
+html[data-fw-festival] .tabbar .tab[aria-current=page] svg,html[data-fw-festival] .tabbar .tab[aria-expanded=true] svg{fill:color-mix(in srgb,var(--link) 15%,transparent)}
+html[data-fw-festival] .nav .l a:after{background:var(--fg,var(--green))}
+
+@media print{.fw-fest,.fw-fx{display:none}html[data-fw-festival] body{padding-top:0}}
+@media(prefers-reduced-motion:reduce){.fw-fest .flame{animation:none}.fw-fx{display:none}}

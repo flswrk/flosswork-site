@@ -88,11 +88,13 @@
     if (!key) return "Hi Flosswork, I'd like to book a consultation.";
     var n = needBy(key);
     if (n.mode === 'emergency') return 'Hi, I have a dental emergency and need urgent help.';
+    if (n.key === 'other') return "Hi Flosswork, I'd like to book a consultation.";
     return "Hi Flosswork, I'd like to book a consultation for " + lc(n.label) + '.';
   }
   function quoteText(key) { return "Hi Flosswork, I'd like a quote for " + lc(needBy(key).label) + '.'; }
   function waText() {
     if (isUrgent()) return 'Hi, I have a dental emergency and need urgent help.';
+    if (st.need === 'other') return "Hi Flosswork, I'd like to book a consultation (" + lc(st.when) + ').';
     return "Hi Flosswork, I'd like to book a consultation for " + lc(needBy(st.need).label) + ' (' + lc(st.when) + ').';
   }
 
@@ -316,6 +318,14 @@
       var n = e.target.closest('[data-need]'); if (n) {
         e.preventDefault(); track('need_click', { need: n.getAttribute('data-need') }); lead('quote_button', { need: n.getAttribute('data-need') });
         openWA(lc(n.textContent.trim()) === 'others' && n.closest('[data-more]') ? "Hi Flosswork, I have a dental concern that isn't listed and would like to talk to a doctor." : n.getAttribute('data-item') ? "Hi Flosswork, I'd like a quote for " + lc(n.getAttribute('data-item')) + '.' : n.closest('[data-more]') ? "Hi Flosswork, I'd like to know more about " + lc(n.textContent.trim()) + '.' : quoteText(n.getAttribute('data-need'))); }
+    });
+    /* Hidden entry to the internal data page: tap the footer copyright line 5 times within 3 seconds. No link in the HTML. */
+    var secretTaps = [];
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.foot .copy')) return;
+      var now = Date.now();
+      secretTaps = secretTaps.filter(function (t) { return now - t < 3000; }); secretTaps.push(now);
+      if (secretTaps.length >= 5) { secretTaps = []; window.location.href = 'admin/data.html'; }
     });
     document.addEventListener('keydown', function (e) {
       if (!drawer.classList.contains('open')) return;
