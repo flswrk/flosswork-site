@@ -22,3 +22,6 @@
 /admin/*
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store
+# Preview deployments (<id>.flosswork-site.pages.dev) are test copies: never index them.
+https://:version.flosswork-site.pages.dev/*
+  X-Robots-Tag: noindex

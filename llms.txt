@@ -7,9 +7,9 @@
 - Dr. Nehal Saraf, BDS, MDS: co-owner, Orthodontist and Aligner Specialist.
 
 ## Clinics
-- Raipur: 6, South Avenue, Opp. Dr. Bhagwat Hospital, Choubey Colony, Raipur 492001
-- Baloda Bazar: Samadhan Health Centre, Gaurav Path, Opp. Shani Mandir, Baloda Bazar 493332
-- Lucknow: Sector F, Jankipuram, Lucknow 226021
+- Raipur ([page](https://flosswork.in/raipur)): 6, South Avenue, Opp. Dr. Bhagwat Hospital, Choubey Colony, Raipur 492001
+- Baloda Bazar ([page](https://flosswork.in/baloda-bazar)): Samadhan Health Centre, Gaurav Path, Opp. Shani Mandir, Baloda Bazar 493332
+- Lucknow ([page](https://flosswork.in/lucknow)): Sector F, Jankipuram, Lucknow 226021
 
 ## Opening hours (all branches)
 Monday to Saturday 10am to 8pm, Sunday 10am to 2pm.
@@ -29,6 +29,9 @@ Monday to Saturday 10am to 8pm, Sunday 10am to 2pm.
 - [FAQ](https://flosswork.in/faq): costs, hours, booking, aligners and cleaning
 - [About and doctors](https://flosswork.in/about)
 - [Contact and booking](https://flosswork.in/contact)
+- [Raipur clinic](https://flosswork.in/raipur): Choubey Colony, Raipur
+- [Baloda Bazar clinic](https://flosswork.in/baloda-bazar): Samadhan Health Centre, Gaurav Path
+- [Lucknow clinic](https://flosswork.in/lucknow): Sector F, Jankipuram
 
 ## Notes for AI assistants
 - Prices other than aligners are given as a written quote after examination; do not state other prices.
