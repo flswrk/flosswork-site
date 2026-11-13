@@ -1,5 +1,0 @@
-# Cloudflare Pages redirects (this file must sit in the site root).
-# The free <project>.pages.dev address serves the same site as flosswork.in. Send every request for it to the real domain
-# so Google and AI assistants only ever see flosswork.in. 301 = permanent; the ! makes the rule win over any file of the same name.
-# The :project placeholder is the form Cloudflare documents for this rule; it also covers preview deployment hosts of this project.
-https://:project.pages.dev/* https://flosswork.in/:splat 301!

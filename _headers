@@ -22,6 +22,9 @@
 /admin/*
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store
-# Preview deployments (<id>.flosswork-site.pages.dev) are test copies: never index them.
+# The free flosswork-site.pages.dev address and the preview copies (<id>.flosswork-site.pages.dev) show the same site as flosswork.in:
+# tell Google not to list them. Rules that start with https://host only apply to that host, never to flosswork.in.
+https://flosswork-site.pages.dev/*
+  X-Robots-Tag: noindex
 https://:version.flosswork-site.pages.dev/*
   X-Robots-Tag: noindex
