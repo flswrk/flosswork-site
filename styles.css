@@ -290,7 +290,7 @@ select.in option{color:#111;background:#fff}
 .foot .loc{color:#fff;font-weight:500;margin-top:10px}
 .foot b+.loc{margin-top:0}
 .foot .brand{color:#fff}
-.foot-mark{width:150px;height:auto;display:block;color:#fff}
+.foot-mark{width:84px;height:auto;display:block;color:#fff}
 .foot .brand em{display:block;font-style:normal;font-weight:300;color:var(--green);font-size:15px;letter-spacing:0;margin-top:10px}
 .foot a{text-decoration:none;display:block;padding:3px 0}
 .foot a:hover{color:#fff}
@@ -334,7 +334,8 @@ select.in option{color:#111;background:#fff}
   .locs{grid-template-columns:repeat(3,1fr)}
   .partners{grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:none;grid-auto-flow:row;grid-auto-columns:auto;overflow:visible;margin-right:0;padding:0;gap:12px}
   .partners div{min-height:88px;font-size:clamp(13px,1.5vw,20px);padding:12px 6px;overflow-wrap:anywhere}
-  .foot .g{grid-template-columns:1.4fr 1fr 1fr 1.2fr}
+  .foot .g{grid-template-columns:1fr 1fr 1.3fr}
+  .foot .fbtns{display:flex}
   .cmp .r>div{padding:16px 22px;font-size:16px}
 }
 /* tap targets: at least 44px tall on touch screens */
@@ -652,7 +653,7 @@ select.in option{color:#111;background:#fff}
 }
 @media(min-width:1024px){.faqban{padding:8px 0 56px}.faqban .in{padding:32px 40px}.faqban h2{font-size:26px}.faqban p{font-size:16px}}
 /* footer logo: smaller on phones */
-@media(max-width:759px){.foot-mark{width:110px}.foot .brand em{margin-top:14px}}
+@media(max-width:759px){.foot .brand em{margin-top:14px}}
 /* treatment tile and service card titles in semibold */
 .t h3,.card h3{font-weight:600}
 /* mobile: the Inside gallery scrolls only as far as its photos; the tool chips wrap and stay in view */
@@ -697,3 +698,38 @@ section[aria-labelledby="vi-h"]{padding-bottom:0}
 
 /* footer copyright line: hidden 5-tap entry to the data page, so no text selection or double-tap zoom on fast taps */
 .foot .copy{-webkit-user-select:none;user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
+/* footer v2: logo + WhatsApp/Call buttons on top, three short columns, social icons in the Contact column */
+.foot-top{display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:14px 12px;margin-bottom:28px}
+.foot .fbtns{display:flex;gap:8px;margin-left:auto;margin-top:7px}
+.foot .fbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 14px;border-radius:99px;background:#0071e3;color:#fff;font:600 13px Inter;white-space:nowrap;transition:background .2s}
+@media(min-width:760px){.foot .fbtn{min-height:44px;padding:0 22px;gap:8px;font-size:14px}.foot .fbtns{gap:10px;margin-top:5px}}
+.foot .fbtn:hover{background:#0077ed;color:#fff}
+.foot .fbtn .ic{width:16px;height:16px;flex:none}
+@media(min-width:760px){.foot .fbtn .ic{width:18px;height:18px}}
+@media(max-width:759px){.foot .g{grid-template-columns:1fr 1fr}.foot .g>div:last-child{grid-column:1/-1}}
+.foot .soc{display:flex;gap:6px;margin-top:10px}
+.foot .soc a{display:grid;place-items:center;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid #ffffff26;color:#fff}
+.foot .soc a:hover{background:#ffffff14}
+.foot .soc .ic{width:18px;height:18px}
+
+/* contact page: the whole branch card opens its clinic page (stretched link on the name); Directions and Call stay clickable above it */
+.loc-card.link{position:relative;transition:border-color .2s,transform .25s var(--ease)}
+.loc-card.link:hover{border-color:var(--ink)}
+.loc-card.link .card-link{text-decoration:none;color:inherit}
+.loc-card.link .card-link::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.loc-card.link .card-link::before{content:"\2192";position:absolute;top:22px;right:24px;font-size:20px;color:var(--mute)}
+.loc-card.link .btns{position:relative;z-index:1}
+.loc-card.link .card-link:focus-visible{outline:none}
+.loc-card.link:has(.card-link:focus-visible){outline:3px solid var(--greend);outline-offset:2px}
+
+/* aligners page: the "Still have questions?" banner is one closed block; its button opens the nine questions, with a Read all FAQs button at the bottom */
+.faqban.fbx .in{display:block;color:var(--ink);border-color:transparent}
+.fbx .in>summary{list-style:none;cursor:pointer;display:flex;flex-direction:column;align-items:stretch;gap:18px}
+.fbx summary::-webkit-details-marker{display:none}
+@media(min-width:760px){.fbx .in>summary{flex-direction:row;align-items:center;justify-content:space-between;gap:24px}}
+.fbx .btn .c,.fbx .in[open] .btn .o{display:none}
+.fbx .in[open] .btn .c{display:inline}
+.fbx .qg-body{padding:22px 0 4px}
+.fbx .faq{max-width:none}
+.fbx .qg-more{margin-top:18px;display:flex;justify-content:center}
